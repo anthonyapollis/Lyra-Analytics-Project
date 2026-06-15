@@ -1,0 +1,5 @@
+RiskLevelKey,RiskLevel,RiskScoreMin,RiskScoreMax,RecommendedAction
+1,Low,0,39,Self-service or routine follow-up
+2,Medium,40,69,Managed support and follow-up
+3,High,70,89,Priority counsellor follow-up
+4,Critical,90,100,Immediate escalation

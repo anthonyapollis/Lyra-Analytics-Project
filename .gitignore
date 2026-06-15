@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+*.tmp
+__pycache__/
+*.pyc
+.env
+
+# Large generated datasets (238MB/207MB/52MB) exceed GitHub's 100MB limit
+# Run scripts/build_project_chunked.py to regenerate full files locally
+data/facts/FactCounsellingSessions.csv
+data/facts/FactMedicationSales.csv
+data/facts/FactPatientExperience.csv
+data/dimensions/DimConsent_SCD2.csv
+data/dimensions/DimEmployee_SCD2.csv

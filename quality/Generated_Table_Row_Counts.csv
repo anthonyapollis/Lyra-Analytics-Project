@@ -1,0 +1,17 @@
+TableName,Layer,RowCount,ColumnCount,FileName
+DimClientCompany,DIM,16,12,DimClientCompany.csv
+DimConsent_SCD2,DIM,475840,11,DimConsent_SCD2.csv
+DimCounsellor,DIM,12,8,DimCounsellor.csv
+DimCountry,DIM,5,9,DimCountry.csv
+DimCurrency,DIM,5,8,DimCurrency.csv
+DimDate,DIM,3652,10,DimDate.csv
+DimEmployee_SCD2,DIM,95168,13,DimEmployee_SCD2.csv
+DimIndustrySector,DIM,14,3,DimIndustrySector.csv
+DimIssueCategory,DIM,15,5,DimIssueCategory.csv
+DimMedication,DIM,290,8,DimMedication.csv
+DimRiskLevel,DIM,4,5,DimRiskLevel.csv
+DimServiceType,DIM,13,5,DimServiceType.csv
+DimFacilityGeography,FACT,767,14,DimFacilityGeography.csv
+FactCounsellingSessions,FACT,668293,45,FactCounsellingSessions.csv
+FactMedicationSales,FACT,750000,25,FactMedicationSales.csv
+FactPatientExperience,FACT,20000,34,FactPatientExperience.csv

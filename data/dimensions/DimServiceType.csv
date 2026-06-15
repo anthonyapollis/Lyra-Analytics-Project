@@ -1,0 +1,14 @@
+ServiceTypeKey,ServiceTypeCode,ServiceTypeName,ServiceCategory,DeliveryChannel
+1,ST001,Professional Telephone Counselling,Counselling,Remote
+2,ST002,In-Person Short-Term Solution Focused Counselling,Counselling,In-Person
+3,ST003,Work Life Services,Work-Life,Hybrid
+4,ST004,Managerial Counselling,Managerial,Remote
+5,ST005,Formal Referral and Conflict Mediation,Mediation,Hybrid
+6,ST006,Critical Incident Support,Crisis Support,Hybrid
+7,ST007,Wellbeing Coaching,Coaching,Remote
+8,ST008,Digital Solutions,Digital,Digital
+9,ST009,Crisis Management,Crisis Support,Hybrid
+10,ST010,Learning and Upskilling,Learning,Digital
+11,ST011,Organisational Development,Organisational,Hybrid
+12,ST012,Employee Wellness Days,Wellness Events,In-Person
+13,ST013,Organisational Performance Solutions,Organisational,Hybrid

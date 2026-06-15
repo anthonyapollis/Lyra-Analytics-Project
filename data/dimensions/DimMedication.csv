@@ -1,0 +1,291 @@
+MedicationKey,SourceMedicationNumber,MedicationName,MedicationFullDescription,Strength,TherapeuticClass,MentalHealthMedicationFlag,ActiveFlag
+1,1,Acetaminophen Tablet,Acetaminophen Tablet (500 mg),500 mg,Analgesic,0,1
+2,2,Ibuprofen Tablet,Ibuprofen Tablet (200 mg),200 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+3,3,Aspirin Tablet,Aspirin Tablet (81 mg),81 mg,Platelet Aggregation Inhibitor,0,1
+4,4,Naproxen Tablet,Naproxen Tablet (250 mg),250 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+5,5,Morphine Tablet,Morphine Tablet (15 mg),15 mg,Opioid Analgesic,0,1
+6,6,Oxycodone Tablet,Oxycodone Tablet (5 mg),5 mg,Opioid Analgesic,0,1
+7,7,Codeine Tablet,Codeine Tablet (30 mg),30 mg,Opioid Analgesic,0,1
+8,8,Hydrocodone/Acetaminophen Tablet,Hydrocodone/Acetaminophen Tablet (5/325 mg),5/325 mg,Opioid Analgesic/Analgesic Combination,0,1
+9,9,Tramadol Tablet,Tramadol Tablet (50 mg),50 mg,Opioid Analgesic,0,1
+10,10,Methadone Tablet,Methadone Tablet (10 mg),10 mg,Opioid Analgesic,0,1
+11,11,Buprenorphine/Naloxone Tablet,Buprenorphine/Naloxone Tablet (8/2 mg),8/2 mg,Opioid Analgesic/Opioid Antagonist Combination,0,1
+12,12,Gabapentin Capsule,Gabapentin Capsule (300 mg),300 mg,Anticonvulsant,0,1
+13,13,Pregabalin Capsule,Pregabalin Capsule (75 mg),75 mg,Anticonvulsant,0,1
+14,14,Amitriptyline Tablet,Amitriptyline Tablet (25 mg),25 mg,Tricyclic Antidepressant,1,1
+15,15,Fluoxetine Capsule,Fluoxetine Capsule (20 mg),20 mg,Selective Serotonin Reuptake Inhibitor,1,1
+16,16,Sertraline Tablet,Sertraline Tablet (50 mg),50 mg,Selective Serotonin Reuptake Inhibitor,1,1
+17,17,Escitalopram Tablet,Escitalopram Tablet (10 mg),10 mg,Selective Serotonin Reuptake Inhibitor,1,1
+18,18,Venlafaxine Capsule,Venlafaxine Capsule (75 mg),75 mg,Serotonin-Norepinephrine Reuptake Inhibitor,1,1
+19,19,Duloxetine Capsule,Duloxetine Capsule (30 mg),30 mg,Serotonin-Norepinephrine Reuptake Inhibitor,1,1
+20,20,Bupropion Tablet,Bupropion Tablet (150 mg),150 mg,Atypical Antidepressant,1,1
+21,21,Mirtazapine Tablet,Mirtazapine Tablet (15 mg),15 mg,Atypical Antidepressant,1,1
+22,22,Trazodone Tablet,Trazodone Tablet (50 mg),50 mg,Atypical Antidepressant,1,1
+23,23,Lorazepam Tablet,Lorazepam Tablet (1 mg),1 mg,Benzodiazepine,1,1
+24,24,Alprazolam Tablet,Alprazolam Tablet (0.25 mg),0.25 mg,Benzodiazepine,1,1
+25,25,Diazepam Tablet,Diazepam Tablet (5 mg),5 mg,Benzodiazepine,1,1
+26,26,Clonazepam Tablet,Clonazepam Tablet (0.5 mg),0.5 mg,Benzodiazepine,1,1
+27,27,Zolpidem Tablet,Zolpidem Tablet (10 mg),10 mg,Sedative-Hypnotic,1,1
+28,28,Eszopiclone Tablet,Eszopiclone Tablet (2 mg),2 mg,Sedative-Hypnotic,1,1
+29,29,Ramelteon Tablet,Ramelteon Tablet (8 mg),8 mg,Melatonin Receptor Agonist,1,1
+30,30,Methylphenidate Tablet,Methylphenidate Tablet (10 mg),10 mg,Central Nervous System Stimulant,1,1
+31,31,Amphetamine/Dextroamphetamine Tablet,Amphetamine/Dextroamphetamine Tablet (10/10 mg),10/10 mg,Central Nervous System Stimulant,1,1
+32,32,Atomoxetine Capsule,Atomoxetine Capsule (18 mg),18 mg,Norepinephrine Reuptake Inhibitor,1,1
+33,33,Lisdexamfetamine Capsule,Lisdexamfetamine Capsule (30 mg),30 mg,Central Nervous System Stimulant,1,1
+34,34,Guanfacine Tablet,Guanfacine Tablet (1 mg),1 mg,Alpha-2 Agonist,0,1
+35,35,Clonidine Tablet,Clonidine Tablet (0.2 mg),0.2 mg,Alpha-2 Agonist,0,1
+36,36,Risperidone Tablet,Risperidone Tablet (1 mg),1 mg,Atypical Antipsychotic,1,1
+37,37,Aripiprazole Tablet,Aripiprazole Tablet (5 mg),5 mg,Atypical Antipsychotic,1,1
+38,38,Olanzapine Tablet,Olanzapine Tablet (10 mg),10 mg,Atypical Antipsychotic,1,1
+39,39,Quetiapine Tablet,Quetiapine Tablet (25 mg),25 mg,Atypical Antipsychotic,1,1
+40,40,Haloperidol Tablet,Haloperidol Tablet (5 mg),5 mg,Typical Antipsychotic,1,1
+41,41,Lithium Carbonate Capsule,Lithium Carbonate Capsule (300 mg),300 mg,Mood Stabilizer,1,1
+42,42,Valproic Acid Capsule,Valproic Acid Capsule (250 mg),250 mg,Anticonvulsant/Mood Stabilizer,1,1
+43,43,Lamotrigine Tablet,Lamotrigine Tablet (50 mg),50 mg,Anticonvulsant,0,1
+44,46,Hydrochlorothiazide Tablet,Hydrochlorothiazide Tablet (12.5 mg),12.5 mg,Diuretic,0,1
+45,47,Furosemide Tablet,Furosemide Tablet (40 mg),40 mg,Loop Diuretic,0,1
+46,48,Spironolactone Tablet,Spironolactone Tablet (25 mg),25 mg,Potassium-Sparing Diuretic,0,1
+47,49,Metolazone Tablet,Metolazone Tablet (2.5 mg),2.5 mg,Thiazide Diuretic,0,1
+48,50,Atenolol Tablet,Atenolol Tablet (50 mg),50 mg,Beta-Blocker,0,1
+49,51,Metoprolol Tablet,Metoprolol Tablet (25 mg),25 mg,Beta-Blocker,0,1
+50,52,Propranolol Tablet,Propranolol Tablet (40 mg),40 mg,Beta-Blocker,0,1
+51,53,Carvedilol Tablet,Carvedilol Tablet (6.25 mg),6.25 mg,Beta-Blocker,0,1
+52,54,Labetalol Tablet,Labetalol Tablet (100 mg),100 mg,Beta-Blocker,0,1
+53,55,Enalapril Tablet,Enalapril Tablet (10 mg),10 mg,ACE Inhibitor,0,1
+54,56,Lisinopril Tablet,Lisinopril Tablet (20 mg),20 mg,ACE Inhibitor,0,1
+55,57,Captopril Tablet,Captopril Tablet (25 mg),25 mg,ACE Inhibitor,0,1
+56,58,Losartan Tablet,Losartan Tablet (50 mg),50 mg,Angiotensin II Receptor Blocker,0,1
+57,59,Valsartan Tablet,Valsartan Tablet (80 mg),80 mg,Angiotensin II Receptor Blocker,0,1
+58,60,Irbesartan Tablet,Irbesartan Tablet (150 mg),150 mg,Angiotensin II Receptor Blocker,0,1
+59,61,Telmisartan Tablet,Telmisartan Tablet (40 mg),40 mg,Angiotensin II Receptor Blocker,0,1
+60,62,Ramipril Capsule,Ramipril Capsule (5 mg),5 mg,ACE Inhibitor,0,1
+61,63,Amlodipine Tablet,Amlodipine Tablet (5 mg),5 mg,Calcium Channel Blocker,0,1
+62,64,Nifedipine Tablet,Nifedipine Tablet (10 mg),10 mg,Calcium Channel Blocker,0,1
+63,65,Verapamil Tablet,Verapamil Tablet (120 mg),120 mg,Calcium Channel Blocker,0,1
+64,66,Diltiazem Tablet,Diltiazem Tablet (60 mg),60 mg,Calcium Channel Blocker,0,1
+65,67,Isosorbide Dinitrate Tablet,Isosorbide Dinitrate Tablet (10 mg),10 mg,Vasodilator,0,1
+66,68,Nitroglycerin Tablet,Nitroglycerin Tablet (0.4 mg),0.4 mg,Vasodilator,0,1
+67,69,Digoxin Tablet,Digoxin Tablet (0.125 mg),0.125 mg,Cardiac Glycoside,0,1
+68,71,Torsemide Tablet,Torsemide Tablet (20 mg),20 mg,Loop Diuretic,0,1
+69,72,Hydrochlorothiazide/Amiloride Tablet,Hydrochlorothiazide/Amiloride Tablet (25/5 mg),25/5 mg,Diuretic/Thiazide Diuretic Combination,0,1
+70,73,Triamterene/Hydrochlorothiazide Capsule,Triamterene/Hydrochlorothiazide Capsule (37.5/25 mg),37.5/25 mg,Diuretic/Thiazide Diuretic Combination,0,1
+71,74,Lisinopril/Hydrochlorothiazide Tablet,Lisinopril/Hydrochlorothiazide Tablet (20/12.5 mg),20/12.5 mg,ACE Inhibitor/Thiazide Diuretic Combination,0,1
+72,75,Valsartan/Hydrochlorothiazide Tablet,Valsartan/Hydrochlorothiazide Tablet (160/12.5 mg),160/12.5 mg,Angiotensin II Receptor Blocker/Thiazide Diuretic Combination,0,1
+73,76,Metoprolol/Hydrochlorothiazide Tablet,Metoprolol/Hydrochlorothiazide Tablet (50/25 mg),50/25 mg,Beta-Blocker/Thiazide Diuretic Combination,0,1
+74,77,Enalapril/Hydrochlorothiazide Tablet,Enalapril/Hydrochlorothiazide Tablet (20/12.5 mg),20/12.5 mg,ACE Inhibitor/Thiazide Diuretic Combination,0,1
+75,78,Atenolol/Chlorthalidone Tablet,Atenolol/Chlorthalidone Tablet (50/25 mg),50/25 mg,Beta-Blocker/Thiazide Diuretic Combination,0,1
+76,79,Losartan/Hydrochlorothiazide Tablet,Losartan/Hydrochlorothiazide Tablet (50/12.5 mg),50/12.5 mg,Angiotensin II Receptor Blocker/Thiazide Diuretic Combination,0,1
+77,80,Irbesartan/Hydrochlorothiazide Tablet,Irbesartan/Hydrochlorothiazide Tablet (150/12.5 mg),150/12.5 mg,Angiotensin II Receptor Blocker/Thiazide Diuretic Combination,0,1
+78,81,Carvedilol/Clonidine Tablet,Carvedilol/Clonidine Tablet (25/0.1 mg),25/0.1 mg,Beta-Blocker/Alpha-2 Agonist Combination,0,1
+79,82,Propranolol/Hydrochlorothiazide Capsule,Propranolol/Hydrochlorothiazide Capsule (40/25 mg),40/25 mg,Beta-Blocker/Thiazide Diuretic Combination,0,1
+80,84,Nebivolol Tablet,Nebivolol Tablet (5 mg),5 mg,Beta-Blocker,0,1
+81,85,Labetalol Tablet,Labetalol Tablet (200 mg),200 mg,Beta-Blocker/Alpha-Blocker Combination,0,1
+82,86,Enalapril Tablet,Enalapril Tablet (20 mg),20 mg,ACE Inhibitor,0,1
+83,87,Lisinopril Tablet,Lisinopril Tablet (40 mg),40 mg,ACE Inhibitor,0,1
+84,88,Captopril Tablet,Captopril Tablet (50 mg),50 mg,ACE Inhibitor,0,1
+85,89,Benazepril Tablet,Benazepril Tablet (20 mg),20 mg,ACE Inhibitor,0,1
+86,90,Ramipril Capsule,Ramipril Capsule (10 mg),10 mg,ACE Inhibitor,0,1
+87,91,Quinapril Tablet,Quinapril Tablet (20 mg),20 mg,ACE Inhibitor,0,1
+88,92,Spironolactone Tablet,Spironolactone Tablet (50 mg),50 mg,Potassium-Sparing Diuretic,0,1
+89,93,Eplerenone Tablet,Eplerenone Tablet (25 mg),25 mg,Potassium-Sparing Diuretic,0,1
+90,94,Triamterene Capsule,Triamterene Capsule (50 mg),50 mg,Potassium-Sparing Diuretic,0,1
+91,95,Guanfacine Tablet,Guanfacine Tablet (2 mg),2 mg,Alpha-2 Agonist,0,1
+92,96,Clonidine Tablet,Clonidine Tablet (0.3 mg),0.3 mg,Alpha-2 Agonist,0,1
+93,97,Tamsulosin Capsule,Tamsulosin Capsule (0.4 mg),0.4 mg,Alpha-Blocker,0,1
+94,98,Terazosin Capsule,Terazosin Capsule (2 mg),2 mg,Alpha-Blocker,0,1
+95,99,Finasteride Tablet,Finasteride Tablet (5 mg),5 mg,5-Alpha Reductase Inhibitor,0,1
+96,100,Doxazosin Tablet,Doxazosin Tablet (4 mg),4 mg,Alpha-Blocker,0,1
+97,101,Albuterol Inhaler,Albuterol Inhaler (90 mcg/actuation),90 mcg/actuation,Short-Acting Beta-2 Agonist,0,1
+98,102,Levalbuterol Inhaler,Levalbuterol Inhaler (45 mcg/actuation),45 mcg/actuation,Short-Acting Beta-2 Agonist,0,1
+99,103,Salmeterol Inhaler,Salmeterol Inhaler (50 mcg/actuation),50 mcg/actuation,Long-Acting Beta-2 Agonist,0,1
+100,104,Formoterol Inhaler,Formoterol Inhaler (12 mcg/actuation),12 mcg/actuation,Long-Acting Beta-2 Agonist,0,1
+101,105,Ipratropium Inhaler,Ipratropium Inhaler (20 mcg/actuation),20 mcg/actuation,Anticholinergic,0,1
+102,106,Tiotropium Inhaler,Tiotropium Inhaler (18 mcg/actuation),18 mcg/actuation,Anticholinergic,0,1
+103,107,Budesonide Inhaler,Budesonide Inhaler (80 mcg/actuation),80 mcg/actuation,Inhaled Corticosteroid,0,1
+104,108,Beclomethasone Inhaler,Beclomethasone Inhaler (100 mcg/actuation),100 mcg/actuation,Inhaled Corticosteroid,0,1
+105,109,Fluticasone/Salmeterol Inhaler,Fluticasone/Salmeterol Inhaler (100/50 mcg/actuation),100/50 mcg/actuation,Inhaled Corticosteroid/Long-Acting Beta-2 Agonist Combination,0,1
+106,110,Budesonide/Formoterol Inhaler,Budesonide/Formoterol Inhaler (160/4.5 mcg/actuation),160/4.5 mcg/actuation,Inhaled Corticosteroid/Long-Acting Beta-2 Agonist Combination,0,1
+107,111,Fluticasone Inhaler,Fluticasone Inhaler (50 mcg/actuation),50 mcg/actuation,Inhaled Corticosteroid,0,1
+108,112,Mometasone Inhaler,Mometasone Inhaler (110 mcg/actuation),110 mcg/actuation,Inhaled Corticosteroid,0,1
+109,113,Montelukast Tablet,Montelukast Tablet (10 mg),10 mg,Leukotriene Receptor Antagonist,0,1
+110,114,Zafirlukast Tablet,Zafirlukast Tablet (20 mg),20 mg,Leukotriene Receptor Antagonist,0,1
+111,115,Ipratropium/Albuterol Inhaler,Ipratropium/Albuterol Inhaler (18/90 mcg/actuation),18/90 mcg/actuation,Anticholinergic/Short-Acting Beta-2 Agonist Combination,0,1
+112,116,Fluticasone Inhaler,Fluticasone Inhaler (250 mcg/actuation),250 mcg/actuation,Inhaled Corticosteroid,0,1
+113,117,Triamcinolone Inhaler,Triamcinolone Inhaler (55 mcg/actuation),55 mcg/actuation,Inhaled Corticosteroid,0,1
+114,118,Hydroxyzine Tablet,Hydroxyzine Tablet (25 mg),25 mg,Antihistamine,0,1
+115,119,Loratadine Tablet,Loratadine Tablet (10 mg),10 mg,Antihistamine,0,1
+116,120,Cetirizine Tablet,Cetirizine Tablet (10 mg),10 mg,Antihistamine,0,1
+117,121,Fexofenadine Tablet,Fexofenadine Tablet (180 mg),180 mg,Antihistamine,0,1
+118,122,Diphenhydramine Capsule,Diphenhydramine Capsule (25 mg),25 mg,Antihistamine,0,1
+119,123,Fluticasone Nasal Spray,Fluticasone Nasal Spray (50 mcg/spray),50 mcg/spray,Intranasal Corticosteroid,0,1
+120,124,Mometasone Nasal Spray,Mometasone Nasal Spray (50 mcg/spray),50 mcg/spray,Intranasal Corticosteroid,0,1
+121,125,Beclomethasone Nasal Spray,Beclomethasone Nasal Spray (42 mcg/spray),42 mcg/spray,Intranasal Corticosteroid,0,1
+122,126,Olopatadine Nasal Spray,Olopatadine Nasal Spray (665 mcg/spray),665 mcg/spray,Intranasal Antihistamine,0,1
+123,127,Azelastine Nasal Spray,Azelastine Nasal Spray (137 mcg/spray),137 mcg/spray,Intranasal Antihistamine,0,1
+124,128,Montelukast Tablet,Montelukast Tablet (5 mg),5 mg,Leukotriene Receptor Antagonist,0,1
+125,129,Zafirlukast Tablet,Zafirlukast Tablet (10 mg),10 mg,Leukotriene Receptor Antagonist,0,1
+126,130,Salicylic Acid Topical Cream,Salicylic Acid Topical Cream (2%),2%,Keratolytic,0,1
+127,131,Benzoyl Peroxide Topical Gel,Benzoyl Peroxide Topical Gel (5%),5%,Acne Treatment,0,1
+128,132,Clindamycin Topical Lotion,Clindamycin Topical Lotion (1%),1%,Antibiotic,0,1
+129,133,Tretinoin Topical Cream,Tretinoin Topical Cream (0.025%),0.025%,Retinoid,0,1
+130,134,Adapalene Topical Gel,Adapalene Topical Gel (0.1%),0.1%,Retinoid,0,1
+131,135,Hydrocortisone Topical Cream,Hydrocortisone Topical Cream (1%),1%,Corticosteroid,0,1
+132,136,Mupirocin Topical Ointment,Mupirocin Topical Ointment (2%),2%,Antibiotic,0,1
+133,137,Ketoconazole Topical Cream,Ketoconazole Topical Cream (2%),2%,Antifungal,0,1
+134,138,Fluconazole Topical Gel,Fluconazole Topical Gel (0.5%),0.5%,Antifungal,0,1
+135,139,Tretinoin Topical Cream,Tretinoin Topical Cream (0.05%),0.05%,Retinoid,0,1
+136,140,Adapalene/Benzoyl Peroxide Topical Gel,Adapalene/Benzoyl Peroxide Topical Gel (0.1/2.5%),0.1/2.5%,Retinoid/Acne Treatment Combination,0,1
+137,141,Clindamycin/Benzoyl Peroxide Topical Gel,Clindamycin/Benzoyl Peroxide Topical Gel (1/5%),1/5%,Antibiotic/Acne Treatment Combination,0,1
+138,142,Erythromycin/Benzoyl Peroxide Topical Gel,Erythromycin/Benzoyl Peroxide Topical Gel (3/5%),3/5%,Antibiotic/Acne Treatment Combination,0,1
+139,143,Hydroquinone Topical Cream,Hydroquinone Topical Cream (4%),4%,Skin Lightening Agent,0,1
+140,144,Benzoyl Peroxide/Clindamycin Topical Gel,Benzoyl Peroxide/Clindamycin Topical Gel (2.5/1%),2.5/1%,Acne Treatment/Antibiotic Combination,0,1
+141,145,Tretinoin/Clindamycin Topical Gel,Tretinoin/Clindamycin Topical Gel (0.025/1%),0.025/1%,Retinoid/Antibiotic Combination,0,1
+142,149,Nystatin Cream,"Nystatin Cream (100,000 units/g)","100,000 units/g",Antifungal,0,1
+143,150,Clotrimazole Topical Cream,Clotrimazole Topical Cream (1%),1%,Antifungal,0,1
+144,151,Fluocinonide Topical Ointment,Fluocinonide Topical Ointment (0.05%),0.05%,High-Potency Corticosteroid,0,1
+145,152,Triamcinolone Topical Ointment,Triamcinolone Topical Ointment (0.1%),0.1%,Corticosteroid,0,1
+146,153,Hydrocortisone Topical Cream,Hydrocortisone Topical Cream (2.5%),2.5%,Low-Potency Corticosteroid,0,1
+147,154,Desonide Topical Cream,Desonide Topical Cream (0.05%),0.05%,Low-Potency Corticosteroid,0,1
+148,155,Halobetasol Topical Ointment,Halobetasol Topical Ointment (0.05%),0.05%,High-Potency Corticosteroid,0,1
+149,156,Clobetasol Topical Cream,Clobetasol Topical Cream (0.05%),0.05%,High-Potency Corticosteroid,0,1
+150,157,Betamethasone Topical Cream,Betamethasone Topical Cream (0.05%),0.05%,High-Potency Corticosteroid,0,1
+151,158,Desoximetasone Topical Cream,Desoximetasone Topical Cream (0.25%),0.25%,Mid-Potency Corticosteroid,0,1
+152,159,Hydrocortisone Topical Cream,Hydrocortisone Topical Cream (1%),1%,Low-Potency Corticosteroid,0,1
+153,160,Fluticasone Topical Cream,Fluticasone Topical Cream (0.05%),0.05%,Mid-Potency Corticosteroid,0,1
+154,161,Acyclovir Topical Cream,Acyclovir Topical Cream (5%),5%,Antiviral,0,1
+155,162,Clotrimazole,Clotrimazole,Unknown,Betamethasone Topical Cream (1/0.05%) - Antifungal/Corticosteroid Combination,0,1
+156,163,Tretinoin Topical Cream,Tretinoin Topical Cream (0.1%),0.1%,Retinoid,0,1
+157,164,Adapalene/Benzoyl Peroxide Topical Gel,Adapalene/Benzoyl Peroxide Topical Gel (0.3/2.5%),0.3/2.5%,Retinoid/Acne Treatment Combination,0,1
+158,165,Nifedipine Topical Ointment,Nifedipine Topical Ointment (0.2%),0.2%,Calcium Channel Blocker,0,1
+159,166,Nitroglycerin Topical Ointment,Nitroglycerin Topical Ointment (2%),2%,Vasodilator,0,1
+160,167,Isosorbide Mononitrate Tablet,Isosorbide Mononitrate Tablet (30 mg),30 mg,Vasodilator,0,1
+161,168,Hydralazine Tablet,Hydralazine Tablet (10 mg),10 mg,Vasodilator,0,1
+162,169,Diltiazem Topical Cream,Diltiazem Topical Cream (2%),2%,Calcium Channel Blocker,0,1
+163,170,Terbinafine Cream,Terbinafine Cream (1%),1%,Antifungal,0,1
+164,171,Clindamycin Phosphate Topical Lotion,Clindamycin Phosphate Topical Lotion (1%),1%,Antibiotic,0,1
+165,172,Metronidazole Topical Gel,Metronidazole Topical Gel (0.75%),0.75%,Antibiotic,0,1
+166,173,Permethrin Topical Cream,Permethrin Topical Cream (5%),5%,Scabicide/Pediculicide,0,1
+167,175,"Nystatin/Triamcinolone Topical Cream (100,000 units/g","Nystatin/Triamcinolone Topical Cream (100,000 units/g",Unknown,0.1%) - Antifungal/Corticosteroid Combination,0,1
+168,178,Hydrocortisone Valerate Topical Cream,Hydrocortisone Valerate Topical Cream (0.2%),0.2%,Low-Potency Corticosteroid,0,1
+169,181,Fluocinolone Topical Oil,Fluocinolone Topical Oil (0.01%),0.01%,Low-Potency Corticosteroid,0,1
+170,182,Methotrexate Tablet,Methotrexate Tablet (2.5 mg),2.5 mg,Antimetabolite,0,1
+171,183,Leflunomide Tablet,Leflunomide Tablet (10 mg),10 mg,Disease-Modifying Antirheumatic Drug,0,1
+172,184,Hydroxychloroquine Tablet,Hydroxychloroquine Tablet (200 mg),200 mg,Disease-Modifying Antirheumatic Drug,0,1
+173,185,Sulfasalazine Tablet,Sulfasalazine Tablet (500 mg),500 mg,Disease-Modifying Antirheumatic Drug,0,1
+174,186,Celecoxib Capsule,Celecoxib Capsule (200 mg),200 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+175,187,Meloxicam Tablet,Meloxicam Tablet (15 mg),15 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+176,188,Diclofenac Tablet,Diclofenac Tablet (50 mg),50 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+177,189,Indomethacin Capsule,Indomethacin Capsule (25 mg),25 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+178,190,Prednisone Tablet,Prednisone Tablet (5 mg),5 mg,Corticosteroid,0,1
+179,191,Prednisolone Tablet,Prednisolone Tablet (5 mg),5 mg,Corticosteroid,0,1
+180,192,Methylprednisolone Tablet,Methylprednisolone Tablet (4 mg),4 mg,Corticosteroid,0,1
+181,193,Triamcinolone Tablet,Triamcinolone Tablet (4 mg),4 mg,Corticosteroid,0,1
+182,196,Fenoprofen Tablet,Fenoprofen Tablet (600 mg),600 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+183,197,Piroxicam Capsule,Piroxicam Capsule (20 mg),20 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+184,198,Etodolac Tablet,Etodolac Tablet (400 mg),400 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+185,199,Ketorolac Tablet,Ketorolac Tablet (10 mg),10 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+186,200,Oxaprozin Tablet,Oxaprozin Tablet (600 mg),600 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+187,201,Nabumetone Tablet,Nabumetone Tablet (500 mg),500 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+188,202,Rofecoxib Tablet,Rofecoxib Tablet (25 mg),25 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+189,203,Etoricoxib Tablet,Etoricoxib Tablet (90 mg),90 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+190,204,Valdecoxib Tablet,Valdecoxib Tablet (20 mg),20 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+191,205,Diflunisal Tablet,Diflunisal Tablet (500 mg),500 mg,Nonsteroidal Anti-Inflammatory Drug,0,1
+192,207,Acetaminophen Tablet,Acetaminophen Tablet (650 mg),650 mg,Analgesic,0,1
+193,208,Acetaminophen Tablet,Acetaminophen Tablet (325 mg),325 mg,Analgesic,0,1
+194,209,Acetaminophen Tablet,"Acetaminophen Tablet (1,000 mg)","1,000 mg",Analgesic,0,1
+195,210,Acetaminophen/Codeine Tablet,Acetaminophen/Codeine Tablet (300/30 mg),300/30 mg,Analgesic/Opioid Combination,0,1
+196,215,Fentanyl Patch,Fentanyl Patch (25 mcg/h),25 mcg/h,Opioid Analgesic,0,1
+197,218,Gabapentin Tablet,Gabapentin Tablet (300 mg),300 mg,Anticonvulsant,0,1
+198,219,Pregabalin Capsule,Pregabalin Capsule (50 mg),50 mg,Anticonvulsant,0,1
+199,220,Levetiracetam Tablet,Levetiracetam Tablet (500 mg),500 mg,Anticonvulsant,0,1
+200,221,Topiramate Tablet,Topiramate Tablet (25 mg),25 mg,Anticonvulsant,0,1
+201,222,Carbamazepine Tablet,Carbamazepine Tablet (200 mg),200 mg,Anticonvulsant,0,1
+202,223,Valproic Acid Capsule,Valproic Acid Capsule (250 mg),250 mg,Anticonvulsant,0,1
+203,224,Lamotrigine Tablet,Lamotrigine Tablet (100 mg),100 mg,Anticonvulsant,0,1
+204,225,Phenytoin Capsule,Phenytoin Capsule (100 mg),100 mg,Anticonvulsant,0,1
+205,226,Clonazepam Tablet,Clonazepam Tablet (1 mg),1 mg,Anticonvulsant,0,1
+206,230,Temazepam Capsule,Temazepam Capsule (15 mg),15 mg,Benzodiazepine,1,1
+207,231,Clorazepate Tablet,Clorazepate Tablet (3.75 mg),3.75 mg,Benzodiazepine,1,1
+208,232,Oxazepam Capsule,Oxazepam Capsule (10 mg),10 mg,Benzodiazepine,1,1
+209,233,Buspirone Tablet,Buspirone Tablet (5 mg),5 mg,Anxiolytic,1,1
+210,234,Hydroxyzine Tablet,Hydroxyzine Tablet (25 mg),25 mg,Anxiolytic,1,1
+211,235,Propranolol Tablet,Propranolol Tablet (10 mg),10 mg,Beta-Blocker,0,1
+212,238,Timolol Tablet,Timolol Tablet (10 mg),10 mg,Beta-Blocker,0,1
+213,239,Bisoprolol Tablet,Bisoprolol Tablet (5 mg),5 mg,Beta-Blocker,0,1
+214,240,Carvedilol Tablet,Carvedilol Tablet (12.5 mg),12.5 mg,Beta-Blocker,0,1
+215,242,Clonidine Tablet,Clonidine Tablet (0.1 mg),0.1 mg,Alpha-2 Agonist,0,1
+216,244,Prazosin Capsule,Prazosin Capsule (1 mg),1 mg,Alpha-Blocker,0,1
+217,245,Terazosin Capsule,Terazosin Capsule (1 mg),1 mg,Alpha-Blocker,0,1
+218,246,Doxazosin Tablet,Doxazosin Tablet (1 mg),1 mg,Alpha-Blocker,0,1
+219,248,Dutasteride Capsule,Dutasteride Capsule (0.5 mg),0.5 mg,5-Alpha Reductase Inhibitor,0,1
+220,249,Finasteride Tablet,Finasteride Tablet (1 mg),1 mg,5-Alpha Reductase Inhibitor,0,1
+221,250,Tadalafil Tablet,Tadalafil Tablet (20 mg),20 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+222,251,Sildenafil Tablet,Sildenafil Tablet (50 mg),50 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+223,252,Vardenafil Tablet,Vardenafil Tablet (10 mg),10 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+224,253,Alprostadil Injection,Alprostadil Injection (20 mcg/mL),20 mcg/mL,Prostaglandin E1 Analog,0,1
+225,254,Alprostadil Urethral Suppository,Alprostadil Urethral Suppository (125 mcg),125 mcg,Prostaglandin E1 Analog,0,1
+226,255,Minoxidil Topical Solution,Minoxidil Topical Solution (5%),5%,Vasodilator,0,1
+227,257,Tamsulosin Tablet,Tamsulosin Tablet (0.4 mg),0.4 mg,Alpha-Blocker,0,1
+228,258,Terazosin Tablet,Terazosin Tablet (10 mg),10 mg,Alpha-Blocker,0,1
+229,259,Sildenafil Tablet,Sildenafil Tablet (25 mg),25 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+230,260,Vardenafil Tablet,Vardenafil Tablet (20 mg),20 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+231,261,Cialis Tablet,Cialis Tablet (5 mg),5 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+232,262,Sildenafil Tablet,Sildenafil Tablet (100 mg),100 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+233,263,Vardenafil Tablet,Vardenafil Tablet (5 mg),5 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+234,264,Alprostadil Urethral Suppository,Alprostadil Urethral Suppository (250 mcg),250 mcg,Prostaglandin E1 Analog,0,1
+235,265,Phentolamine Injection,Phentolamine Injection (1 mg/mL),1 mg/mL,Alpha-Blocker,0,1
+236,266,Papaverine Injection,Papaverine Injection (30 mg/mL),30 mg/mL,Vasodilator,0,1
+237,267,Yohimbine Tablet,Yohimbine Tablet (5.4 mg),5.4 mg,Alpha-2 Blocker,0,1
+238,268,L,L,Unknown,Arginine Tablet (500 mg) - Amino Acid Supplement,0,1
+239,269,Testosterone Gel,Testosterone Gel (1%),1%,Androgen Hormone,0,1
+240,270,Testosterone Injection,Testosterone Injection (200 mg/mL),200 mg/mL,Androgen Hormone,0,1
+241,271,Estradiol Tablet,Estradiol Tablet (2 mg),2 mg,Estrogen Hormone,0,1
+242,272,Premarin Tablet,Premarin Tablet (0.625 mg),0.625 mg,Estrogen Hormone,0,1
+243,273,Medroxyprogesterone Tablet,Medroxyprogesterone Tablet (2.5 mg),2.5 mg,Progestin Hormone,0,1
+244,274,Norethindrone Tablet,Norethindrone Tablet (0.35 mg),0.35 mg,Progestin Hormone,0,1
+245,275,Methyltestosterone Tablet,Methyltestosterone Tablet (10 mg),10 mg,Androgen Hormone,0,1
+246,276,Clomiphene Tablet,Clomiphene Tablet (50 mg),50 mg,Selective Estrogen Receptor Modulator,0,1
+247,277,Tamoxifen Tablet,Tamoxifen Tablet (20 mg),20 mg,Selective Estrogen Receptor Modulator,0,1
+248,278,Anastrozole Tablet,Anastrozole Tablet (1 mg),1 mg,Aromatase Inhibitor,0,1
+249,279,Letrozole Tablet,Letrozole Tablet (2.5 mg),2.5 mg,Aromatase Inhibitor,0,1
+250,280,Fulvestrant Injection,Fulvestrant Injection (250 mg/mL),250 mg/mL,Selective Estrogen Receptor Downregulator,0,1
+251,281,Leuprolide Injection,Leuprolide Injection (1 mg/mL),1 mg/mL,Gonadotropin-Releasing Hormone Agonist,0,1
+252,282,Goserelin Injection,Goserelin Injection (3.6 mg),3.6 mg,Gonadotropin-Releasing Hormone Agonist,0,1
+253,283,Degarelix Injection,Degarelix Injection (80 mg),80 mg,Gonadotropin-Releasing Hormone Antagonist,0,1
+254,284,Naloxone Injection,Naloxone Injection (0.4 mg/mL),0.4 mg/mL,Opioid Antagonist,0,1
+255,285,Flumazenil Injection,Flumazenil Injection (0.1 mg/mL),0.1 mg/mL,Benzodiazepine Antagonist,1,1
+256,286,Atropine Injection,Atropine Injection (0.1 mg/mL),0.1 mg/mL,Anticholinergic,0,1
+257,287,Epinephrine Injection,Epinephrine Injection (1 mg/mL),1 mg/mL,Sympathomimetic,0,1
+258,288,Norepinephrine Injection,Norepinephrine Injection (2 mg/mL),2 mg/mL,Sympathomimetic,0,1
+259,289,Dopamine Injection,Dopamine Injection (200 mg/mL),200 mg/mL,Sympathomimetic,0,1
+260,290,Dobutamine Injection,Dobutamine Injection (250 mg/mL),250 mg/mL,Sympathomimetic,0,1
+261,291,Isoproterenol Injection,Isoproterenol Injection (0.2 mg/mL),0.2 mg/mL,Sympathomimetic,0,1
+262,304,Montelukast Tablet,Montelukast Tablet (4 mg),4 mg,Leukotriene Receptor Antagonist,0,1
+263,306,Salicylic Acid Topical Cream,Salicylic Acid Topical Cream (3%),3%,Keratolytic,0,1
+264,307,Benzoyl Peroxide Topical Gel,Benzoyl Peroxide Topical Gel (10%),10%,Acne Treatment,0,1
+265,308,Clindamycin Topical Lotion,Clindamycin Topical Lotion (2%),2%,Antibiotic,0,1
+266,310,Adapalene Topical Gel,Adapalene Topical Gel (0.3%),0.3%,Retinoid,0,1
+267,311,Hydrocortisone Topical Cream,Hydrocortisone Topical Cream (2%),2%,Corticosteroid,0,1
+268,313,Ketoconazole Topical Cream,Ketoconazole Topical Cream (1%),1%,Antifungal,0,1
+269,314,Fluconazole Topical Gel,Fluconazole Topical Gel (1%),1%,Antifungal,0,1
+270,317,Clindamycin/Benzoyl Peroxide Topical Gel,Clindamycin/Benzoyl Peroxide Topical Gel (1.2/2.5%),1.2/2.5%,Antibiotic/Acne Treatment Combination,0,1
+271,320,Benzoyl Peroxide/Clindamycin Topical Gel,Benzoyl Peroxide/Clindamycin Topical Gel (5/1%),5/1%,Acne Treatment/Antibiotic Combination,0,1
+272,326,Clotrimazole Topical Cream,Clotrimazole Topical Cream (2%),2%,Antifungal,0,1
+273,353,Leflunomide Tablet,Leflunomide Tablet (20 mg),20 mg,Disease-Modifying Antirheumatic Drug,0,1
+274,610,Prazosin Capsule,Prazosin Capsule (2 mg),2 mg,Alpha-Blocker,0,1
+275,612,Doxazosin Tablet,Doxazosin Tablet (2 mg),2 mg,Alpha-Blocker,0,1
+276,613,Tamsulosin Capsule,Tamsulosin Capsule (0.8 mg),0.8 mg,Alpha-Blocker,0,1
+277,616,Tadalafil Tablet,Tadalafil Tablet (2.5 mg),2.5 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+278,617,Sildenafil Tablet,Sildenafil Tablet (20 mg),20 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+279,618,Vardenafil Tablet,Vardenafil Tablet (2.5 mg),2.5 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+280,619,Alprostadil Injection,Alprostadil Injection (10 mcg/mL),10 mcg/mL,Prostaglandin E1 Analog,0,1
+281,621,Minoxidil Topical Solution,Minoxidil Topical Solution (2%),2%,Vasodilator,0,1
+282,623,Tamsulosin Tablet,Tamsulosin Tablet (0.2 mg),0.2 mg,Alpha-Blocker,0,1
+283,624,Terazosin Tablet,Terazosin Tablet (5 mg),5 mg,Alpha-Blocker,0,1
+284,625,Sildenafil Tablet,Sildenafil Tablet (2.5 mg),2.5 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+285,627,Cialis Tablet,Cialis Tablet (2.5 mg),2.5 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+286,628,Sildenafil Tablet,Sildenafil Tablet (10 mg),10 mg,Phosphodiesterase Type 5 Inhibitor,0,1
+287,630,Alprostadil Urethral Suppository,Alprostadil Urethral Suppository (50 mcg),50 mcg,Prostaglandin E1 Analog,0,1
+288,631,Phentolamine Injection,Phentolamine Injection (5 mg/mL),5 mg/mL,Alpha-Blocker,0,1
+289,632,Papaverine Injection,Papaverine Injection (60 mg/mL),60 mg/mL,Vasodilator,0,1
+290,634,L,L,Unknown,"Arginine Tablet (1,000 mg) - Amino Acid Supplement",0,1

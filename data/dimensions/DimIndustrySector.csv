@@ -1,0 +1,15 @@
+IndustrySectorKey,IndustrySectorName,SectorActiveFlag
+1,Basic Materials,1
+2,Technology,1
+3,Consumer Services,1
+4,Financial Services,1
+5,Healthcare,1
+6,Consumer Goods,1
+7,Public Sector,1
+8,Telecommunications,1
+9,Industrial,1
+10,Education,1
+11,Retail,1
+12,Logistics and Supply Chain,1
+13,Energy,1
+14,Mining,1

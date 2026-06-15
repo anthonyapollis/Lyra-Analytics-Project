@@ -1,0 +1,17 @@
+ClientCompanyKey,ClientCompanyID,ClientCompanyName,IndustrySectorName,CountryCode,ContractPackage,ContractStartDate,ContractEndDate,ContractStatus,EffectiveFromDate,EffectiveToDate,IsCurrent
+1,CL001,Standard Bank,Financial Services,ZA,Enterprise EWP,2024-01-01,2027-12-31,Active,2024-01-01,9999-12-31,1
+2,CL002,Discovery Limited,Financial Services,ZA,Integrated Wellbeing,2024-01-19,2027-12-31,Active,2024-01-01,9999-12-31,1
+3,CL003,Vodacom,Telecommunications,ZA,Enterprise EWP,2024-02-06,2027-12-31,Active,2024-01-01,9999-12-31,1
+4,CL004,MTN Group,Telecommunications,ZA,Enterprise EWP,2024-02-24,2027-12-31,Active,2024-01-01,9999-12-31,1
+5,CL005,Sasol,Energy,ZA,Critical Incident Plus,2024-03-13,2027-12-31,Active,2024-01-01,9999-12-31,1
+6,CL006,South African Public Sector Employer,Public Sector,ZA,Integrated Wellbeing,2024-03-31,2027-12-31,Active,2024-01-01,9999-12-31,1
+7,CL007,US Technology Employer,Technology,US,Digital First,2024-04-18,2027-12-31,Active,2024-01-01,9999-12-31,1
+8,CL008,US Healthcare Employer,Healthcare,US,Clinical Support,2024-05-06,2027-12-31,Active,2024-01-01,9999-12-31,1
+9,CL009,US Financial Services Employer,Financial Services,US,Enterprise EWP,2024-05-24,2027-12-31,Active,2024-01-01,9999-12-31,1
+10,CL010,UK Public Sector Employer,Public Sector,UK,Integrated Wellbeing,2024-06-11,2027-12-31,Active,2024-01-01,9999-12-31,1
+11,CL011,UK Financial Services Employer,Financial Services,UK,Enterprise EWP,2024-06-29,2027-12-31,Active,2024-01-01,9999-12-31,1
+12,CL012,Australian Mining Employer,Mining,AU,Critical Incident Plus,2024-07-17,2027-12-31,Active,2024-01-01,9999-12-31,1
+13,CL013,Australian Healthcare Employer,Healthcare,AU,Clinical Support,2024-08-04,2027-12-31,Active,2024-01-01,9999-12-31,1
+14,CL014,Canadian Technology Employer,Technology,CA,Digital First,2024-08-22,2027-12-31,Active,2024-01-01,9999-12-31,1
+15,CL015,Canadian Retail Employer,Retail,CA,Enterprise EWP,2024-09-09,2027-12-31,Active,2024-01-01,9999-12-31,1
+16,CL016,Global Logistics Employer,Logistics and Supply Chain,US,Enterprise EWP,2024-09-27,2027-12-31,Active,2024-01-01,9999-12-31,1

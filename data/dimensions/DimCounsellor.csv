@@ -1,0 +1,13 @@
+CounsellorKey,CounsellorID,CounsellorName,Profession,PrimaryLanguage,Specialisation,AccreditedFlag,ActiveFlag
+1,CO001,Counsellor 001,Clinical Psychologist,English,Counselling,1,1
+2,CO002,Counsellor 002,Registered Counsellor,English,Counselling,1,1
+3,CO003,Counsellor 003,Social Worker,English,Work Life Services,1,1
+4,CO004,Counsellor 004,Wellbeing Coach,English,Coaching,1,1
+5,CO005,Counsellor 005,Trauma Counsellor,English,Crisis Support,1,1
+6,CO006,Counsellor 006,Clinical Psychologist,Afrikaans,Counselling,1,1
+7,CO007,Counsellor 007,Registered Counsellor,isiXhosa,Counselling,1,1
+8,CO008,Counsellor 008,Registered Counsellor,isiZulu,Counselling,1,1
+9,CO009,Counsellor 009,Mediator,English,Mediation,1,1
+10,CO010,Counsellor 010,Organisational Psychologist,English,Organisational,1,1
+11,CO011,Counsellor 011,Learning Facilitator,English,Learning,1,1
+12,CO012,Counsellor 012,Executive Wellbeing Specialist,English,Executive Wellbeing,1,1

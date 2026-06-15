@@ -1,0 +1,6 @@
+CountryKey,CountryCode,CountryName,GlobalRegion,SubRegion,CurrencyCode,GDPRApplicableFlag,POPIAApplicableFlag,PrivacyRegime
+1,US,United States,North America,United States,USD,0,0,HIPAA-oriented privacy controls
+2,ZA,South Africa,Africa,Southern Africa,ZAR,0,1,POPIA-oriented privacy controls
+3,UK,United Kingdom,Europe,Western Europe,GBP,1,0,UK GDPR-oriented privacy controls
+4,AU,Australia,Asia-Pacific,Oceania,AUD,0,0,Australian Privacy Act-oriented controls
+5,CA,Canada,North America,Canada,CAD,0,0,PIPEDA-oriented privacy controls

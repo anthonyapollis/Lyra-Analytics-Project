@@ -1,0 +1,16 @@
+IssueCategoryKey,IssueCategoryCode,IssueCategoryName,IssueGroup,DefaultRiskLevel
+1,IC001,Depression,Mental Health,High
+2,IC002,Anxiety,Mental Health,High
+3,IC003,Burnout,Workplace Wellbeing,Medium
+4,IC004,Financial Stress,Work Life,Medium
+5,IC005,Relationship Issues,Personal Wellbeing,Medium
+6,IC006,Substance Abuse,Mental Health,High
+7,IC007,Trauma,Crisis,High
+8,IC008,Work Conflict,Workplace Wellbeing,Medium
+9,IC009,Grief and Bereavement,Personal Wellbeing,High
+10,IC010,Legal Support,Work Life,Low
+11,IC011,Family Responsibility,Work Life,Medium
+12,IC012,Stress Management,Workplace Wellbeing,Medium
+13,IC013,Sleep Problems,Mental Health,Medium
+14,IC014,Career Uncertainty,Workplace Wellbeing,Low
+15,IC015,Critical Incident Trauma,Crisis,Critical
