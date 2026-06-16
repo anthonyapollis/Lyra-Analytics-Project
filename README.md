@@ -1,123 +1,110 @@
-# Lyra Wellbeing Analytics — Data Warehouse Project
+<div align="center">
 
-End-to-end dimensional data model for an employee wellbeing analytics platform, built on **Snowflake + SQL Server** with SCD Type 2 history tracking.
+# Lyra Wellbeing Analytics — Data Warehouse
 
----
+![Snowflake](https://img.shields.io/badge/Snowflake-29B5E8?style=for-the-badge&logo=snowflake&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Star Schema](https://img.shields.io/badge/Star_Schema-10B981?style=for-the-badge)
+![SCD Type 2](https://img.shields.io/badge/SCD_Type_2-8B5CF6?style=for-the-badge)
 
-## Overview
+**Production-grade dimensional data warehouse for an employee wellbeing analytics platform.**  
+Designed for Lyra-style EAP (Employee Assistance Programme) reporting across corporate clients.
 
-| Metric | Value |
-|--------|-------|
-| Total rows (fact tables) | 1,438,293 |
-| Dimension tables | 12 |
-| Fact tables | 3 + 1 geography |
-| Schema layers | DIM / FACT |
-| SCD Type 2 tables | 2 (Employee, Consent) |
-| Platforms | Snowflake · SQL Server |
+</div>
 
 ---
 
-## Data Model
+## ⚡ At a Glance
+
+| | |
+|--|--|
+| 🏗 **16 tables** (12 dim · 3 fact · 1 geo) | 📊 **1.4M+** total rows |
+| 🔄 **SCD Type 2** on Employee & Consent | 🌍 **Multi-region** ZAR + USD currency |
+| 🏢 **Corporate EAP** client model | 🏥 **Mental health** issue categorisation |
+
+---
+
+## 🗂 Data Model
 
 ```
-DimDate ─┬─ FactCounsellingSessions ─ DimServiceType ─ DimIssueCategory
-         │             ├── DimClientCompany ─ DimCountry ─ DimCurrency
+DimDate ─┬─ FactCounsellingSessions ─── DimServiceType ─ DimIssueCategory
+         │             ├── DimClientCompany ─── DimCountry ─ DimCurrency
          │             ├── DimFacilityGeography
          │             ├── DimCounsellor
-         │             ├── DimEmployee_SCD2          ← SCD Type 2
-         │             └── DimConsent_SCD2            ← SCD Type 2
-         ├─ FactMedicationSales ─ DimMedication
-         └─ FactPatientExperience ─ DimServiceType / DimIssueCategory
+         │             ├── DimEmployee_SCD2       ◄ SCD Type 2
+         │             └── DimConsent_SCD2         ◄ SCD Type 2 (GDPR audit trail)
+         ├─ FactMedicationSales ────────── DimMedication
+         └─ FactPatientExperience ──────── DimServiceType / DimIssueCategory
 ```
-
-### Table Inventory
-
-| Layer | Table | Rows | Columns |
-|-------|-------|-----:|--------:|
-| DIM | DimClientCompany | 16 | 12 |
-| DIM | DimConsent_SCD2 | 475,840 | 11 |
-| DIM | DimCounsellor | 12 | 8 |
-| DIM | DimCountry | 5 | 9 |
-| DIM | DimCurrency | 5 | 8 |
-| DIM | DimDate | 3,652 | 10 |
-| DIM | DimEmployee_SCD2 | 95,168 | 13 |
-| DIM | DimIndustrySector | 14 | 3 |
-| DIM | DimIssueCategory | 15 | 5 |
-| DIM | DimMedication | 290 | 8 |
-| DIM | DimRiskLevel | 4 | 5 |
-| DIM | DimServiceType | 13 | 5 |
-| FACT | DimFacilityGeography | 767 | 14 |
-| FACT | FactCounsellingSessions | 668,293 | 45 |
-| FACT | FactMedicationSales | 750,000 | 25 |
-| FACT | FactPatientExperience | 20,000 | 34 |
 
 ---
 
-## Repository Structure
+## 📐 Table Inventory
+
+| Layer | Table | Rows | Purpose |
+|-------|-------|-----:|---------|
+| DIM | DimClientCompany | 16 | Corporate EAP clients |
+| DIM | DimConsent_SCD2 | 475,840 | GDPR consent audit trail (SCD2) |
+| DIM | DimCounsellor | 12 | Therapist/counsellor register |
+| DIM | DimCountry | 5 | SA + international regions |
+| DIM | DimCurrency | 5 | ZAR · USD with FX conversion |
+| DIM | DimDate | 3,652 | 10-year date spine |
+| DIM | DimEmployee_SCD2 | 95,168 | Employee history (SCD2) |
+| DIM | DimIndustrySector | 14 | Client industry classification |
+| DIM | DimIssueCategory | 15 | Mental health categories |
+| DIM | DimMedication | 290 | Medication formulary |
+| DIM | DimRiskLevel | 4 | Risk stratification |
+| DIM | DimServiceType | 13 | Counselling, coaching, crisis, digital |
+| FACT | DimFacilityGeography | 767 | Facility locations |
+| FACT | FactCounsellingSessions | 668,293 | Core EAP sessions fact |
+| FACT | FactMedicationSales | 750,000 | Pharmacy / medication transactions |
+| FACT | FactPatientExperience | 20,000 | Patient satisfaction scores |
+
+> **Note:** Full fact table CSVs (238MB–750MB) exceed GitHub's file limit.  
+> 500-row samples are included. Run `scripts/build_project_chunked.py` to regenerate full datasets locally.
+
+---
+
+## 📁 Repo Structure
 
 ```
 Lyra-Analytics-Project/
 ├── data/
-│   ├── dimensions/          # 12 dimension CSV files
-│   └── facts/               # 3 fact tables + geography
+│   ├── dimensions/          # All 12 dimension CSVs (full size)
+│   └── facts/               # 500-row samples + DimFacilityGeography
 ├── sql/
 │   ├── lyra_snowflake_ddl.sql          # Full Snowflake DDL
-│   ├── lyra_sqlserver_ddl.sql          # SQL Server DDL variant
+│   ├── lyra_sqlserver_ddl.sql          # SQL Server variant
 │   └── 01_Create_Lyra_Snowflake_Tables.sql
 ├── scripts/
-│   ├── build_project_chunked.py        # Chunked data generation
-│   ├── continue_project.py
-│   └── finalise_project.py
+│   └── build_project_chunked.py        # Generates full fact tables
 ├── docs/
-│   └── Data_Model_and_Project_Guide.md
+│   └── Data_Model_and_Project_Guide.md # ERD + design decisions
 └── quality/
     ├── Data_Dictionary_Sample.csv
-    ├── Generated_Table_Row_Counts.csv
-    └── Source_Row_Counts.csv
+    └── Generated_Table_Row_Counts.csv
 ```
 
 ---
 
-## Key Design Decisions
+## 🔑 Key Design Decisions
 
-- **DimClientCompany** — Lyra serves corporate clients; company is the top-level grain for EAP reporting.
-- **DimServiceType** — Covers telephone counselling, in-person, work-life services, crisis support, coaching, digital and upskilling.
-- **DimIssueCategory** — Mental health categories: depression, anxiety, burnout, trauma, stress, work conflict.
-- **DimCountry / DimCurrency** — Multi-region support including ZAR (South Africa) and USD with FX conversion.
-- **SCD Type 2** — `DimEmployee_SCD2` and `DimConsent_SCD2` track historical changes with `ValidFrom` / `ValidTo` / `IsCurrent` columns, preserving GDPR consent audit trails.
-
----
-
-## Tech Stack
-
-| Tool | Usage |
-|------|-------|
-| Snowflake | Primary cloud DW; COPY INTO, clustering, stages |
-| SQL Server | On-prem variant DDL |
-| Python | Data generation & project orchestration |
-| CSV | Portable data layer for portability |
+| Decision | Reason |
+|----------|--------|
+| **SCD Type 2 on DimEmployee** | Tracks job role / department changes over time for trend analysis |
+| **SCD Type 2 on DimConsent** | Full GDPR-compliant audit trail of consent changes |
+| **DimClientCompany grain** | Lyra is B2B — corporate client is the top reporting level |
+| **DimIssueCategory** | Enables burnout / anxiety / depression trend reporting by client |
+| **Multi-currency** | Supports South Africa (ZAR) and US (USD) in same model |
 
 ---
 
-## Getting Started
+<div align="center">
 
-**Snowflake:**
-```sql
--- Run in order
-\i sql/lyra_snowflake_ddl.sql
-\i sql/01_Create_Lyra_Snowflake_Tables.sql
-```
+[![Full Portfolio](https://img.shields.io/badge/Full_Portfolio-anthonyapollis.github.io-3B82F6?style=for-the-badge)](https://anthonyapollis.github.io)
+[![GitHub Profile](https://img.shields.io/badge/GitHub_Profile-anthonyapollis-181717?style=for-the-badge&logo=github)](https://github.com/anthonyapollis)
 
-**Load dimensions first, then facts:**
-```sql
-COPY INTO DimDate FROM @lyra_stage/DimDate.csv ...;
--- ... repeat for all dimension tables
-COPY INTO FactCounsellingSessions FROM @lyra_stage/FactCounsellingSessions.csv ...;
-```
+**Anthony Apollis · Data Engineer & Analytics Specialist · South Africa**
 
----
-
-## Author
-
-**Anthony Apollis** — Data Engineer & Analytics Specialist  
-[GitHub](https://github.com/anthonyapollis) · [Portfolio](https://anthonyapollis.github.io)
+</div>
