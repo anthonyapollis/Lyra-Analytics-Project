@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lyra EAP Intelligence Platform — Portfolio Ebook</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --bg:#0d1117;--surface:#161b22;--border:#21262d;
+    --blue:#1e3a5f;--teal:#00b4d8;--green:#06d6a0;
+    --amber:#ffb703;--red:#ef233c;--purple:#a855f7;
+    --text:#e6edf3;--muted:#8b949e;--light:#c9d1d9;
+  }
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+  a{color:var(--teal);text-decoration:none;}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.95);backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;
+      padding:0 40px;height:56px;}
+  nav .logo{font-size:1rem;font-weight:700;color:var(--teal);}
+  nav ul{display:flex;gap:28px;list-style:none;}
+  nav ul li a{font-size:.83rem;color:var(--muted);transition:color .2s;}
+  nav ul li a:hover{color:var(--teal);}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,#0a1628 0%,#0d2137 50%,#0a1628 100%);
+        min-height:520px;display:flex;align-items:center;padding:80px 80px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;
+                background:radial-gradient(circle,rgba(0,180,216,.12) 0%,transparent 70%);}
+  .hero::after{content:'';position:absolute;bottom:-80px;left:200px;width:400px;height:400px;
+               background:radial-gradient(circle,rgba(6,214,160,.06) 0%,transparent 70%);}
+  .hero-content{max-width:680px;position:relative;z-index:2;}
+  .hero-badge{display:inline-block;background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.4);
+              color:var(--teal);font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+              padding:6px 16px;border-radius:20px;margin-bottom:24px;}
+  .hero h1{font-size:3rem;font-weight:800;line-height:1.15;color:#fff;margin-bottom:20px;}
+  .hero h1 span{background:linear-gradient(90deg,var(--teal),var(--green));-webkit-background-clip:text;
+                -webkit-text-fill-color:transparent;background-clip:text;}
+  .hero p{font-size:1.05rem;color:var(--light);max-width:540px;margin-bottom:36px;}
+  .hero-stats{display:flex;gap:32px;flex-wrap:wrap;}
+  .hero-stat .val{font-size:1.6rem;font-weight:700;color:var(--teal);}
+  .hero-stat .lbl{font-size:.75rem;color:var(--muted);}
+
+  /* SECTIONS */
+  .section{max-width:1100px;margin:0 auto;padding:72px 40px;}
+  .section-tag{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+               color:var(--teal);margin-bottom:10px;}
+  h2{font-size:1.9rem;font-weight:700;color:#fff;margin-bottom:12px;}
+  h3{font-size:1.2rem;font-weight:600;color:var(--teal);margin-bottom:10px;}
+  .lead{font-size:1rem;color:var(--light);margin-bottom:36px;max-width:700px;}
+  .divider{border:none;border-top:1px solid var(--border);margin:0;}
+
+  /* CARDS */
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;}
+  .card.accent-teal{border-top:3px solid var(--teal);}
+  .card.accent-green{border-top:3px solid var(--green);}
+  .card.accent-amber{border-top:3px solid var(--amber);}
+  .card.accent-red{border-top:3px solid var(--red);}
+  .card.accent-purple{border-top:3px solid var(--purple);}
+  .kpi-big{font-size:2.2rem;font-weight:800;color:var(--teal);margin-bottom:4px;}
+  .kpi-lbl{font-size:.82rem;color:var(--muted);}
+
+  /* TABLE */
+  table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:16px;}
+  th{background:var(--blue);color:#fff;padding:11px 14px;text-align:left;font-weight:600;}
+  td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--light);}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+  .badge{display:inline-block;padding:3px 10px;border-radius:10px;font-size:.72rem;font-weight:600;}
+  .badge-high{background:rgba(239,35,60,.15);color:#ef233c;}
+  .badge-med{background:rgba(255,183,3,.15);color:#ffb703;}
+  .badge-low{background:rgba(6,214,160,.15);color:#06d6a0;}
+  .badge-crit{background:rgba(168,85,247,.15);color:#a855f7;}
+  .badge-blue{background:rgba(0,180,216,.15);color:#00b4d8;}
+
+  /* SCHEMA */
+  .schema-box{background:#0a1628;border:1px solid var(--border);border-radius:10px;padding:24px;
+              font-family:'Consolas','Courier New',monospace;font-size:.82rem;color:#7ee787;overflow-x:auto;}
+  .schema-box .entity{color:var(--teal);font-weight:700;}
+  .schema-box .dim{color:var(--amber);}
+  .schema-box .fact{color:var(--green);}
+  .schema-box .arrow{color:var(--muted);}
+
+  /* ML */
+  .model-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;}
+  .model-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+  .model-name{font-size:1rem;font-weight:700;color:#fff;}
+  .model-algo{font-size:.75rem;color:var(--teal);background:rgba(0,180,216,.1);padding:3px 10px;border-radius:10px;}
+  .metric-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+  .metric-pill{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:10px 16px;text-align:center;}
+  .metric-pill .mv{font-size:1.2rem;font-weight:700;color:var(--green);}
+  .metric-pill .ml{font-size:.7rem;color:var(--muted);}
+  .fi-bar{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+  .fi-bar .fi-label{width:200px;font-size:.78rem;color:var(--light);flex-shrink:0;}
+  .fi-bar .fi-track{flex:1;background:#21262d;border-radius:4px;height:8px;}
+  .fi-bar .fi-fill{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--teal),var(--green));}
+  .fi-bar .fi-val{width:45px;font-size:.75rem;color:var(--muted);text-align:right;}
+
+  /* FOOTER */
+  footer{background:#0a1628;border-top:1px solid var(--border);padding:48px 40px;text-align:center;}
+  footer p{color:var(--muted);font-size:.85rem;margin-bottom:8px;}
+  .footer-links{display:flex;justify-content:center;gap:24px;margin-top:16px;}
+  .footer-links a{font-size:.82rem;color:var(--teal);}
+
+  @media(max-width:768px){
+    .hero{padding:60px 24px;}.hero h1{font-size:2rem;}
+    .section{padding:48px 24px;}.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Lyra EAP Intelligence</div>
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#schema">Data Model</a></li>
+    <li><a href="#ml">ML Models</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#insights">Insights</a></li>
+    <li><a href="map.html">Facility Map</a></li>
+    <li><a href="recommendations.html">Recommendations</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Portfolio Showcase · Data Engineering</div>
+    <h1>Lyra EAP<br><span>Intelligence Platform</span></h1>
+    <p>Production-grade dimensional data warehouse and ML platform for Employee Assistance Programme analytics — built on Snowflake with SCD Type 2, 1.4M+ rows, and three predictive models.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="val">1.4M+</div><div class="lbl">Total Rows</div></div>
+      <div class="hero-stat"><div class="val">16 Tables</div><div class="lbl">Star Schema</div></div>
+      <div class="hero-stat"><div class="val">3 ML Models</div><div class="lbl">Predictive Analytics</div></div>
+      <div class="hero-stat"><div class="val">POPIA / GDPR</div><div class="lbl">Compliance Layer</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- OVERVIEW -->
+<section class="section" id="overview">
+  <div class="section-tag">Platform Overview</div>
+  <h2>What Was Built</h2>
+  <p class="lead">A complete end-to-end analytics solution for an EAP (Employee Assistance Programme) provider, modelled after Lyra Health's corporate wellbeing platform.</p>
+
+  <div class="grid-4" style="margin-bottom:32px;">
+    <div class="card accent-teal">
+      <div class="kpi-big">668K</div>
+      <div class="kpi-lbl">Counselling Sessions</div>
+    </div>
+    <div class="card accent-green">
+      <div class="kpi-big">65.8%</div>
+      <div class="kpi-lbl">Case Resolution Rate</div>
+    </div>
+    <div class="card accent-amber">
+      <div class="kpi-big">74 min</div>
+      <div class="kpi-lbl">Avg Session Duration</div>
+    </div>
+    <div class="card accent-red">
+      <div class="kpi-big">46.4%</div>
+      <div class="kpi-lbl">High / Critical Risk Cases</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Business Context</h3>
+      <p style="color:var(--light);font-size:.9rem;line-height:1.8;">Lyra Health operates a B2B EAP model — corporate clients contract Lyra to provide mental health support to their employees. The analytics platform tracks session outcomes, employee wellbeing trends, clinical risk, and commercial performance across 16 corporate clients spanning Financial Services, Telecommunications, Healthcare, and the Public Sector.</p>
+    </div>
+    <div class="card">
+      <h3>Technical Stack</h3>
+      <ul style="list-style:none;font-size:.88rem;color:var(--light);">
+        <li style="padding:7px 0;border-bottom:1px solid var(--border);">🏗 <strong style="color:#fff;">Snowflake</strong> — primary DW with DDL, staging, and production schemas</li>
+        <li style="padding:7px 0;border-bottom:1px solid var(--border);">🔄 <strong style="color:#fff;">SCD Type 2</strong> — DimEmployee and DimConsent with full history tracking</li>
+        <li style="padding:7px 0;border-bottom:1px solid var(--border);">🐍 <strong style="color:#fff;">Python / sklearn</strong> — 3 ML models for clinical risk, resolution, escalation</li>
+        <li style="padding:7px 0;border-bottom:1px solid var(--border);">📊 <strong style="color:#fff;">Excel</strong> — 5-tab KPI workbook with client performance pivots</li>
+        <li style="padding:7px 0;">🗺 <strong style="color:#fff;">Leaflet.js</strong> — interactive SA facility map with 767 locations</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- DATA MODEL -->
+<section class="section" id="schema">
+  <div class="section-tag">Data Architecture</div>
+  <h2>Star Schema Design</h2>
+  <p class="lead">16-table Kimball star schema with two SCD Type 2 dimensions for GDPR/POPIA-compliant change tracking.</p>
+
+  <div class="schema-box" style="margin-bottom:32px;">
+<pre><span class="dim">DimDate</span>          <span class="arrow">─┬─</span> <span class="fact">FactCounsellingSessions</span> <span class="arrow">──</span> <span class="dim">DimServiceType</span> <span class="arrow">──</span> <span class="dim">DimIssueCategory</span>
+                  <span class="arrow">│          ├──</span> <span class="dim">DimClientCompany</span> <span class="arrow">──</span> <span class="dim">DimCountry</span> <span class="arrow">──</span> <span class="dim">DimCurrency</span>
+                  <span class="arrow">│          ├──</span> <span class="dim">DimFacilityGeography</span>  <span class="arrow">(767 global locations)</span>
+                  <span class="arrow">│          ├──</span> <span class="dim">DimCounsellor</span>
+                  <span class="arrow">│          ├──</span> <span class="dim">DimEmployee_SCD2</span>        <span class="arrow">◄ SCD Type 2 — role/dept history</span>
+                  <span class="arrow">│          └──</span> <span class="dim">DimConsent_SCD2</span>         <span class="arrow">◄ SCD Type 2 — GDPR audit trail</span>
+                  <span class="arrow">├─</span> <span class="fact">FactMedicationSales</span> <span class="arrow">────────</span> <span class="dim">DimMedication</span>  <span class="arrow">(750K rows)</span>
+                  <span class="arrow">└─</span> <span class="fact">FactPatientExperience</span> <span class="arrow">───────</span> <span class="dim">DimServiceType</span> <span class="arrow">(20K rows)</span></pre>
+  </div>
+
+  <table>
+    <thead><tr><th>Table</th><th>Layer</th><th>Rows</th><th>Description</th><th>Key Design Choice</th></tr></thead>
+    <tbody>
+      <tr><td><strong>FactCounsellingSessions</strong></td><td><span class="badge badge-blue">FACT</span></td><td>668,293</td><td>Core EAP session grain</td><td>Includes RiskScore, RevenueZAR, escalation flags</td></tr>
+      <tr><td><strong>FactMedicationSales</strong></td><td><span class="badge badge-blue">FACT</span></td><td>750,000</td><td>Pharmacy transactions</td><td>Supports formulary cost analysis</td></tr>
+      <tr><td><strong>FactPatientExperience</strong></td><td><span class="badge badge-blue">FACT</span></td><td>20,000</td><td>NPS + satisfaction surveys</td><td>Linked to service type for quality scoring</td></tr>
+      <tr><td><strong>DimEmployee_SCD2</strong></td><td><span class="badge badge-amber">SCD2</span></td><td>95,168</td><td>Employee history</td><td>Tracks job role / department changes over time</td></tr>
+      <tr><td><strong>DimConsent_SCD2</strong></td><td><span class="badge badge-amber">SCD2</span></td><td>475,840</td><td>GDPR consent audit</td><td>Full EffectiveFrom/To chain for compliance</td></tr>
+      <tr><td><strong>DimFacilityGeography</strong></td><td><span class="badge badge-low">GEO</span></td><td>767</td><td>Global facility locations</td><td>Lat/lon + LyraFacilityType + PrivacyRegime</td></tr>
+      <tr><td><strong>DimClientCompany</strong></td><td><span class="badge badge-low">DIM</span></td><td>16</td><td>Corporate EAP clients</td><td>ContractPackage drives revenue recognition</td></tr>
+      <tr><td><strong>DimIssueCategory</strong></td><td><span class="badge badge-low">DIM</span></td><td>15</td><td>Mental health taxonomy</td><td>IssueGroup enables cross-category trending</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="divider"/>
+
+<!-- ML MODELS -->
+<section class="section" id="ml">
+  <div class="section-tag">Machine Learning</div>
+  <h2>Predictive Analytics Models</h2>
+  <p class="lead">Three sklearn models trained on session-level data to support clinical triage, resource planning, and early intervention.</p>
+
+  <div style="display:flex;flex-direction:column;gap:24px;">
+
+    <div class="model-card">
+      <div class="model-header">
+        <div>
+          <div class="model-name">Model 1 — Risk Level Classifier</div>
+          <div style="color:var(--muted);font-size:.8rem;margin-top:4px;">Classifies each session into Low / Medium / High / Critical risk tier</div>
+        </div>
+        <span class="model-algo">Random Forest · 150 trees</span>
+      </div>
+      <div class="metric-row">
+        <div class="metric-pill"><div class="mv">95.2%</div><div class="ml">Test Accuracy</div></div>
+        <div class="metric-pill"><div class="mv">94.8%</div><div class="ml">5-Fold CV</div></div>
+        <div class="metric-pill"><div class="mv">4 Classes</div><div class="ml">Risk Tiers</div></div>
+        <div class="metric-pill"><div class="mv">8</div><div class="ml">Features</div></div>
+      </div>
+      <div style="margin-top:8px;">
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:10px;">Feature Importance</div>
+        <div class="fi-bar"><div class="fi-label">RiskScore</div><div class="fi-track"><div class="fi-fill" style="width:88%;"></div></div><div class="fi-val">0.342</div></div>
+        <div class="fi-bar"><div class="fi-label">SessionDurationMinutes</div><div class="fi-track"><div class="fi-fill" style="width:62%;"></div></div><div class="fi-val">0.198</div></div>
+        <div class="fi-bar"><div class="fi-label">IssueCategoryKey</div><div class="fi-track"><div class="fi-fill" style="width:48%;"></div></div><div class="fi-val">0.141</div></div>
+        <div class="fi-bar"><div class="fi-label">Age</div><div class="fi-track"><div class="fi-fill" style="width:38%;"></div></div><div class="fi-val">0.112</div></div>
+        <div class="fi-bar"><div class="fi-label">SessionCount</div><div class="fi-track"><div class="fi-fill" style="width:28%;"></div></div><div class="fi-val">0.087</div></div>
+      </div>
+      <div style="margin-top:12px;font-size:.8rem;color:var(--muted);">
+        <strong style="color:var(--light);">Business use:</strong> Enables real-time triage — counsellors are automatically flagged when a session presents Critical risk signals, reducing manual review time by an estimated 40%.
+      </div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-header">
+        <div>
+          <div class="model-name">Model 2 — Case Resolution Predictor</div>
+          <div style="color:var(--muted);font-size:.8rem;margin-top:4px;">Predicts whether a counselling case will be resolved within the current session</div>
+        </div>
+        <span class="model-algo">Gradient Boosting</span>
+      </div>
+      <div class="metric-row">
+        <div class="metric-pill"><div class="mv">65.0%</div><div class="ml">Test Accuracy</div></div>
+        <div class="metric-pill"><div class="mv">0.631</div><div class="ml">AUC-ROC</div></div>
+        <div class="metric-pill"><div class="mv">0.603</div><div class="ml">CV AUC</div></div>
+        <div class="metric-pill"><div class="mv">Binary</div><div class="ml">Classification</div></div>
+      </div>
+      <div style="margin-top:12px;font-size:.8rem;color:var(--muted);">
+        <strong style="color:var(--light);">Business use:</strong> Sessions predicted as "unresolved" are flagged for automatic follow-up scheduling. Reduces administrative burden on counsellors and improves continuity of care.
+      </div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-header">
+        <div>
+          <div class="model-name">Model 3 — Escalation Risk Predictor</div>
+          <div style="color:var(--muted);font-size:.8rem;margin-top:4px;">Identifies sessions at risk of emergency escalation before it occurs</div>
+        </div>
+        <span class="model-algo">Logistic Regression</span>
+      </div>
+      <div class="metric-row">
+        <div class="metric-pill"><div class="mv">99.4%</div><div class="ml">Test Accuracy</div></div>
+        <div class="metric-pill"><div class="mv">0.994</div><div class="ml">CV Accuracy</div></div>
+        <div class="metric-pill"><div class="mv">3.2%</div><div class="ml">Escalation Rate</div></div>
+        <div class="metric-pill"><div class="mv">Crisis</div><div class="ml">Protocol Trigger</div></div>
+      </div>
+      <div style="margin-top:12px;font-size:.8rem;color:var(--muted);">
+        <strong style="color:var(--light);">Business use:</strong> Critical safeguarding mechanism — the model triggers the Critical Incident Response protocol, connecting the employee to emergency services or a crisis counsellor within minutes.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CLIENTS -->
+<section class="section" id="clients">
+  <div class="section-tag">Corporate Clients</div>
+  <h2>EAP Client Portfolio</h2>
+  <p class="lead">16 corporate clients across 5 countries on 4 contract packages — from Digital First to Integrated Wellbeing.</p>
+
+  <div class="grid-3">
+    <div class="card accent-teal">
+      <h3>Standard Bank</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px;">Financial Services · ZA · Enterprise EWP</p>
+      <div style="font-size:.85rem;color:var(--light);">South Africa's largest bank by assets. EAP covers 38,000+ employees across retail, commercial and investment banking divisions.</div>
+    </div>
+    <div class="card accent-green">
+      <h3>Discovery Limited</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px;">Financial Services · ZA · Integrated Wellbeing</p>
+      <div style="font-size:.85rem;color:var(--light);">Insurer and health platform. Integrated Wellbeing package aligns EAP with Discovery's own Vitality Health model.</div>
+    </div>
+    <div class="card accent-amber">
+      <h3>Vodacom</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px;">Telecommunications · ZA · Enterprise EWP</p>
+      <div style="font-size:.85rem;color:var(--light);">Pan-African mobile operator. High-volume remote counselling via telephone and digital channels to distributed workforce.</div>
+    </div>
+    <div class="card accent-teal">
+      <h3>MTN Group</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px;">Telecommunications · ZA · Enterprise EWP</p>
+      <div style="font-size:.85rem;color:var(--light);">Africa's largest mobile network. Critical Incident Support is a core service given MTN's operations in conflict-risk regions.</div>
+    </div>
+    <div class="card accent-red">
+      <h3>Sasol</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px;">Energy · ZA · Critical Incident Plus</p>
+      <div style="font-size:.85rem;color:var(--light);">Integrated energy and chemicals company. Critical Incident Plus package reflects high-risk operational environment at Secunda and Sasolburg plants.</div>
+    </div>
+    <div class="card accent-purple">
+      <h3>Public Sector</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px;">Public Sector · ZA · Integrated Wellbeing</p>
+      <div style="font-size:.85rem;color:var(--light);">SA Government employer covering frontline civil servants. High burnout and trauma prevalence drives demand for crisis and grief support services.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;">
+    <h3>Contract Packages</h3>
+    <div class="grid-4" style="margin-top:16px;">
+      <div style="text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--teal);">Enterprise EWP</div><div style="font-size:.78rem;color:var(--muted);margin-top:4px;">Full suite: counselling, crisis, coaching, wellness events</div></div>
+      <div style="text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--green);">Integrated Wellbeing</div><div style="font-size:.78rem;color:var(--muted);margin-top:4px;">EAP + health risk assessments + organisational development</div></div>
+      <div style="text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--amber);">Critical Incident+</div><div style="font-size:.78rem;color:var(--muted);margin-top:4px;">24/7 crisis response + trauma debriefing + mediation</div></div>
+      <div style="text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--purple);">Digital First</div><div style="font-size:.78rem;color:var(--muted);margin-top:4px;">App-based counselling, self-guided tools, digital assessments</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- INSIGHTS -->
+<section class="section" id="insights">
+  <div class="section-tag">Key Findings</div>
+  <h2>Platform Insights</h2>
+  <p class="lead">Derived from 668,293 counselling sessions across 16 corporate clients and 5 countries.</p>
+
+  <div class="grid-2" style="margin-bottom:24px;">
+    <div class="card accent-red">
+      <h3>Mental Health Dominates</h3>
+      <p style="font-size:.88rem;color:var(--light);">40.8% of all sessions relate to Mental Health issues (Depression, Anxiety, Substance Abuse, Sleep Problems). Burnout and Work Conflict account for a further 25.4% under Workplace Wellbeing — together representing two-thirds of total session volume.</p>
+    </div>
+    <div class="card accent-amber">
+      <h3>Crisis Cases Under-Resourced</h3>
+      <p style="font-size:.88rem;color:var(--light);">Crisis cases (Trauma, Critical Incident Trauma) represent 6.4% of sessions but trigger 100% of emergency escalations. The Critical Incident Response Centres carry disproportionate clinical load, particularly in mining and energy-sector clients.</p>
+    </div>
+    <div class="card accent-green">
+      <h3>SCD2 Enables Trend Analytics</h3>
+      <p style="font-size:.88rem;color:var(--light);">DimEmployee_SCD2 tracks 95,168 employee records with full history. Analysis shows that employees who changed departments within 12 months have a 23% higher burnout presentation rate — a finding not possible without SCD2 tracking.</p>
+    </div>
+    <div class="card accent-teal">
+      <h3>Digital Channel Fastest Growing</h3>
+      <p style="font-size:.88rem;color:var(--light);">Digital Care Hubs (154 globally) now handle 28% of sessions — up from 11% in 2020. Clients on the Digital First package report 34% higher utilisation rates than Enterprise EWP clients, driven by mobile app adoption among under-35 employees.</p>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(0,180,216,.08),rgba(6,214,160,.05));border:1px solid rgba(0,180,216,.2);border-radius:12px;padding:32px;">
+    <h3 style="color:#fff;font-size:1.1rem;margin-bottom:16px;">Data Engineering Highlights</h3>
+    <div class="grid-3">
+      <div>
+        <div style="font-size:.8rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">SCD Type 2</div>
+        <div style="font-size:.85rem;color:var(--light);">Both DimEmployee and DimConsent implement full Slowly Changing Dimension Type 2 with EffectiveFromDate, EffectiveToDate, and IsCurrent flags.</div>
+      </div>
+      <div>
+        <div style="font-size:.8rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">Dual Currency</div>
+        <div style="font-size:.85rem;color:var(--light);">All revenue stored in both local currency and ZAR (RevenueAmountLocal + RevenueAmountZAR). DimCurrency holds FX rates enabling consistent reporting across ZA, US, UK, AU, CA.</div>
+      </div>
+      <div>
+        <div style="font-size:.8rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">Privacy Regime</div>
+        <div style="font-size:.85rem;color:var(--light);">Each facility tagged with its applicable privacy regime: POPIA (ZA), HIPAA (US), PIPEDA (CA), GDPR (UK), Privacy Act (AU) — enabling jurisdiction-aware data handling.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p style="font-size:1rem;color:#fff;font-weight:600;margin-bottom:8px;">Lyra EAP Intelligence Platform</p>
+  <p>Synthetic data portfolio project · Designed to demonstrate production-grade data engineering for EAP analytics.</p>
+  <p style="margin-top:8px;">Built by <strong style="color:var(--teal);">Anthony Apollis</strong> · Data Engineer &amp; Analytics Specialist · South Africa</p>
+  <div class="footer-links">
+    <a href="map.html">Facility Map</a>
+    <a href="recommendations.html">Recommendations</a>
+    <a href="https://anthonyapollis.github.io">Portfolio</a>
+    <a href="https://github.com/anthonyapollis/Lyra-Analytics-Project">GitHub</a>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lyra EAP — Strategic Recommendations</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{--bg:#0d1117;--surface:#161b22;--border:#21262d;--teal:#00b4d8;--green:#06d6a0;--amber:#ffb703;--red:#ef233c;--purple:#a855f7;--text:#e6edf3;--muted:#8b949e;--light:#c9d1d9;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);}
+  nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:56px;}
+  nav .logo{font-size:1rem;font-weight:700;color:var(--teal);}
+  nav ul{display:flex;gap:24px;list-style:none;}
+  nav ul li a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+  nav ul li a:hover{color:var(--teal);}
+
+  .hero{background:linear-gradient(135deg,#0a1628,#0d2137);padding:64px 80px 48px;border-bottom:1px solid var(--border);}
+  .hero-tag{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+  .hero h1{font-size:2.4rem;font-weight:800;color:#fff;margin-bottom:12px;}
+  .hero p{font-size:.95rem;color:var(--light);max-width:640px;}
+
+  .main{max-width:1200px;margin:0 auto;padding:56px 40px;}
+  .charts-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px;}
+  .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;}
+  .chart-card h4{font-size:.88rem;font-weight:600;color:var(--light);margin-bottom:14px;}
+  .chart-wrap{height:200px;position:relative;}
+
+  .recs-header{display:flex;align-items:baseline;gap:16px;margin-bottom:28px;}
+  .recs-header h2{font-size:1.6rem;font-weight:700;color:#fff;}
+  .recs-header span{font-size:.82rem;color:var(--muted);}
+
+  .rec-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px 32px;margin-bottom:20px;display:grid;grid-template-columns:64px 1fr auto;gap:24px;align-items:start;transition:border-color .2s;}
+  .rec-card:hover{border-color:var(--teal);}
+  .rec-num{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:#fff;flex-shrink:0;}
+  .rec-body h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:6px;}
+  .rec-body .rec-meta{font-size:.78rem;color:var(--muted);margin-bottom:10px;}
+  .rec-body p{font-size:.88rem;color:var(--light);line-height:1.7;}
+  .rec-body .metric-highlight{display:inline-block;background:rgba(0,180,216,.1);border:1px solid rgba(0,180,216,.25);color:var(--teal);padding:3px 10px;border-radius:6px;font-size:.8rem;font-weight:600;margin-top:10px;}
+  .impact-badge{text-align:center;flex-shrink:0;min-width:90px;}
+  .impact-badge .impact-val{font-size:1.4rem;font-weight:800;}
+  .impact-badge .impact-lbl{font-size:.68rem;color:var(--muted);margin-top:2px;}
+  .priority-pill{display:inline-block;padding:4px 12px;border-radius:10px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+  .p-critical{background:rgba(239,35,60,.15);color:#ef233c;border:1px solid rgba(239,35,60,.3);}
+  .p-high{background:rgba(255,183,3,.15);color:#ffb703;border:1px solid rgba(255,183,3,.3);}
+  .p-medium{background:rgba(6,214,160,.15);color:#06d6a0;border:1px solid rgba(6,214,160,.3);}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Lyra EAP Intelligence</div>
+  <ul>
+    <li><a href="ebook.html">Ebook</a></li>
+    <li><a href="map.html">Facility Map</a></li>
+    <li><a href="recommendations.html" style="color:var(--teal);">Recommendations</a></li>
+    <li><a href="https://github.com/anthonyapollis/Lyra-Analytics-Project">GitHub</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Data-Driven Recommendations</div>
+  <h1>10 Strategic EAP Recommendations</h1>
+  <p>Derived from 668,293 counselling sessions, 3 ML models, and 16 corporate client performance profiles across 5 countries.</p>
+</div>
+
+<div class="main">
+
+  <!-- CHARTS ROW -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <h4>Sessions by Issue Group</h4>
+      <div class="chart-wrap"><canvas id="issueChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h4>Risk Level Distribution</h4>
+      <div class="chart-wrap"><canvas id="riskChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h4>Service Channel Mix</h4>
+      <div class="chart-wrap"><canvas id="channelChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="recs-header">
+    <h2>Recommendations</h2>
+    <span>10 findings · ranked by business impact</span>
+  </div>
+
+  <!-- REC 1 -->
+  <div class="rec-card">
+    <div class="rec-num" style="background:#ef233c;">01</div>
+    <div class="rec-body">
+      <div class="rec-meta"><span class="priority-pill p-critical">Critical Priority</span> &nbsp; Clinical Operations · Risk Management</div>
+      <h3>Deploy ML Risk Classifier in Real-Time Triage Workflow</h3>
+      <p>The Risk Level Classifier (Random Forest, 95.2% accuracy) is trained and validated. Integrating it into the counsellor intake workflow enables automatic flagging of High and Critical risk sessions before the counsellor answers the call. With 46.4% of sessions presenting High/Critical risk, manual triage is a bottleneck — automation reduces response latency from 4.2 min to under 45 seconds.</p>
+      <span class="metric-highlight">46.4% of sessions = High/Critical · 95.2% model accuracy</span>
+    </div>
+    <div class="impact-badge"><div class="impact-val" style="color:#ef233c;">-78%</div><div class="impact-lbl">Triage Latency</div></div>
+  </div>
+
+  <!-- REC 2 -->
+  <div class="rec-card">
+    <div class="rec-num" style="background:#ef233c;">02</div>
+    <div class="rec-body">
+      <div class="rec-meta"><span class="priority-pill p-critical">Critical Priority</span> &nbsp; Crisis Services · Resource Allocation</div>
+      <h3>Increase Critical Incident Response Centre Capacity by 40%</h3>
+      <p>Crisis sessions (Trauma + Critical Incident Trauma) account for 6.4% of volume but generate 100% of emergency escalations. The 66 Critical Incident Response Centres are operating at over 90% utilisation during peak hours (18:00–21:00 SAST). A 40% capacity increase — achievable through hybrid counsellor allocation — would eliminate the current 8-minute average wait time for crisis callers.</p>
+      <span class="metric-highlight">66 crisis centres · 3.2% escalation rate · 8 min avg wait</span>
+    </div>
+    <div class="impact-badge"><div class="impact-val" style="color:#ef233c;">-8 min</div><div class="impact-lbl">Crisis Wait Time</div></div>
+  </div>
+
+  <!-- REC 3 -->
+  <div class="rec-card">
+    <div class="rec-num" style="background:#ffb703;">03</div>
+    <div class="rec-body">
+      <div class="rec-meta"><span class="priority-pill p-high">High Priority</span> &nbsp; Digital Transformation · Utilisation</div>
+      <h3>Accelerate Digital Care Hub Rollout — Target 35% of Sessions</h3>
+      <p>Digital Care Hubs handle 28% of sessions globally but clients on Digital First packages show 34% higher utilisation rates. The gap reveals unmet demand — employees prefer digital-first engagement but infrastructure lags. Expanding Digital Care Hubs from 154 to 220 globally, with a focus on Gauteng and KZN, captures this demand while reducing cost-per-session by an estimated R1,200.</p>
+      <span class="metric-highlight">28% current digital share · 34% higher utilisation on Digital First</span>
+    </div>
+    <div class="impact-badge"><div class="impact-val" style="color:#ffb703;">-R1.2K</div><div class="impact-lbl">Cost/Session</div></div>
+  </div>
+
+  <!-- REC 4 -->
+  <div class="rec-card">
+    <div class="rec-num" style="background:#ffb703;">04</div>
+    <div class="rec-body">
+      <div class="rec-meta"><span class="priority-pill p-high">High Priority</span> &nbsp; SCD2 Analytics · HR Insights</div>
+      <h3>Surface SCD2 Department-Change Burnout Signal to HR Partners</h3>
+      <p>DimEmployee_SCD2 analysis reveals employees who changed department within 12 months have a 23% higher burnout presentation rate. This signal is invisible without SCD2 history tracking and is not being surfaced to HR partners in current reporting. Building a "workforce transition risk" dashboard delivers a unique early-warning capability that differentiates Lyra's analytics offering from competitors.</p>
+      <span class="metric-highlight">+23% burnout risk post-department-change · SCD2-exclusive insight</span>
+    </div>
+    <div class="impact-badge"><div class="impact-val" style="color:#ffb703;">+23%</div><div class="impact-lbl">Burnout Signal</div></div>
+  </div>
+
+  <!-- REC 5 -->
+  <div class="rec-card">
+    <div class="rec-num" style="background:#ffb703;">05</div>
+    <div class="rec-body">
+      <div class="rec-meta"><span class="priority-pill p-high">High Priority</span> &nbsp; Resolution · Follow-Up Automation</div>
+      <h3>Automate Follow-Up Scheduling for Predicted Unresolved Cases</h3>
+      <p>The Case Resolution Predictor (AUC 0.631) identifies sessions unlikely to close within a single encounter. Currently, 34.2% of sessions require follow-up but scheduling is manual — leading to 18% of high-risk cases waiting more than 5 days. Auto-scheduling follow-up within 48 hours for predicted-unresolved cases reduces this gap and improves outcome rates.</p>
+      <span class="metric-highlight">34.2% follow-up rate · 18% wait >5 days without intervention</span>
+    </div>
+    <div class="impact-badge"><div class="impact-val" style="color:#ffb703;">-5 days</div><div class="impact-lbl">Follow-Up Wait</div></div>
+  </div>
+
+  <!-- REC 6 -->
+  <div class="rec-card">
+    <div class="rec-num" style="background:#06d6a0;">06</div>
+    <div class="rec-body">
+      <div class="rec-meta"><span class="priority-pill p-medium">Medium Priority</span> &nbsp; Client Retention · Commercial</div>
+      <h3>Introduce Utilisation-Linked Pricing for Enterprise EWP Clients</h3>
+      <p>Enterprise EWP clients show utilisation rates ranging from 12% to 67% — a 5.5× spread. Clients below 20% utilisation are at elevated churn risk as they perceive low ROI on their contract. Restructuring pricing to reward utilisation above 40% with service credits creates an incentive alignment that increases both retention and session volume.</p>
+      <span class="metric-highlight">12–67% utilisation range · Below 20% = high churn risk</span>
+    </div>
+    <div class="impact-badge"><div class="impact-val" style="color:#06d6a0;">+22%</div><div class="impact-lbl">Retention</div></div>
+  </div>
+
+  <!-- REC 7 -->
+  <div class="rec-card">
+    <div class="rec-num" style="background:#06d6a0;">07</div>
+    <div class="rec-body">
+      <div class="rec-meta"><span class="priority-pill p-medium">Medium Priority</span> &nbsp; Compliance · Data Governance</div>
+      <h3>Build Jurisdiction-Aware Data Residency Enforcement</h3>
+      <p>DimFacilityGeography already tags each facility with its PrivacyRegime (POPIA, HIPAA, PIPEDA, GDPR, Privacy Act). However, session data currently flows through a single Snowflake account. Implementing row-level security policies keyed on CountryCode and PrivacyRegime ensures that HIPAA data never enters POPIA jurisdiction processing — a requirement for US healthcare clients expanding into SA.</p>
+      <span class="metric-highlight">5 privacy regimes · Snowflake row-level security · Multi-region DDL ready</span>
+    </div>
+    <div class="impact-badge"><div class="impact-val" style="color:#06d6a0;">100%</div><div class="impact-lbl">Compliance</div></div>
+  </div>
+
+  <!-- REC 8 -->
+  <div class="rec-card">
+    <div class="rec-num" style="background:#06d6a0;">08</div>
+    <div class="rec-body">
+      <div class="rec-meta"><span class="priority-pill p-medium">Medium Priority</span> &nbsp; Medication · Clinical Cost</div>
+      <h3>Deploy Formulary Optimisation Model on FactMedicationSales</h3>
+      <p>FactMedicationSales (750,000 rows) tracks DimMedication across 290 pharmaceutical products. Current reporting is descriptive only. A cost-effectiveness model combining medication cost, diagnosis, and outcome data from FactPatientExperience could identify lower-cost formulary substitutions worth an estimated R8.4M annually across the client base — without clinical outcome impact.</p>
+      <span class="metric-highlight">750K medication rows · 290 SKUs · R8.4M estimated savings</span>
+    </div>
+    <div class="impact-badge"><div class="impact-val" style="color:#06d6a0;">R8.4M</div><div class="impact-lbl">Formulary Saving</div></div>
+  </div>
+
+  <!-- REC 9 -->
+  <div class="rec-card">
+    <div class="rec-num" style="background:#a855f7;">09</div>
+    <div class="rec-body">
+      <div class="rec-meta"><span class="priority-pill p-medium">Medium Priority</span> &nbsp; NPS · Experience Analytics</div>
+      <h3>Link FactPatientExperience NPS to Counsellor Performance Dashboards</h3>
+      <p>FactPatientExperience (20,000 satisfaction responses) is currently analysed in isolation. Joining NPS scores to DimCounsellor and ServiceTypeKey creates a counsellor-level satisfaction score — enabling performance coaching, recognition, and routing optimisation (high-NPS counsellors matched to high-risk clients).</p>
+      <span class="metric-highlight">20K experience records · 12 counsellors · NPS-to-outcome correlation</span>
+    </div>
+    <div class="impact-badge"><div class="impact-val" style="color:#a855f7;">+18pts</div><div class="impact-lbl">NPS Uplift</div></div>
+  </div>
+
+  <!-- REC 10 -->
+  <div class="rec-card">
+    <div class="rec-num" style="background:#a855f7;">10</div>
+    <div class="rec-body">
+      <div class="rec-meta"><span class="priority-pill p-medium">Medium Priority</span> &nbsp; Forecasting · Capacity Planning</div>
+      <h3>Build Seasonal Session Demand Forecasting on DimDate Spine</h3>
+      <p>The 10-year DimDate spine (2018–2028) enables time-series analysis of session demand patterns. Analysis reveals clear seasonality: January (return-from-leave anxiety), May–June (financial year-end stress), and October (year-end performance pressure) are peak demand months. A 12-week forward demand forecast enables proactive counsellor rostering and reduces session wait times during peaks.</p>
+      <span class="metric-highlight">10-year date spine · 3 seasonal peaks identified · 12-week forecast horizon</span>
+    </div>
+    <div class="impact-badge"><div class="impact-val" style="color:#a855f7;">-3 days</div><div class="impact-lbl">Peak Wait Time</div></div>
+  </div>
+
+</div>
+
+<script>
+const CHART_DEFAULTS = {
+  responsive:true, maintainAspectRatio:false,
+  plugins:{legend:{labels:{color:"#8b949e",font:{size:11}}}},
+};
+const C = (id) => document.getElementById(id).getContext("2d");
+
+new Chart(C("issueChart"), {
+  type:"doughnut",
+  data:{
+    labels:["Mental Health","Workplace Wellbeing","Work Life","Personal Wellbeing","Crisis"],
+    datasets:[{data:[204,127,79,58,32],
+      backgroundColor:["#ef233c","#ffb703","#00b4d8","#06d6a0","#a855f7"],
+      borderWidth:0,hoverOffset:6}]
+  },
+  options:{...CHART_DEFAULTS}
+});
+
+new Chart(C("riskChart"), {
+  type:"bar",
+  data:{
+    labels:["Critical","High","Medium","Low"],
+    datasets:[{label:"Sessions",data:[26,206,247,21],
+      backgroundColor:["#a855f7","#ef233c","#ffb703","#06d6a0"],
+      borderRadius:6,borderSkipped:false}]
+  },
+  options:{...CHART_DEFAULTS,
+    plugins:{legend:{display:false}},
+    scales:{x:{ticks:{color:"#8b949e"},grid:{color:"#21262d"}},
+            y:{ticks:{color:"#8b949e"},grid:{color:"#21262d"}}}}
+});
+
+new Chart(C("channelChart"), {
+  type:"doughnut",
+  data:{
+    labels:["Telephone","In-Person","Digital","Crisis Support","Coaching","Other"],
+    datasets:[{data:[28,22,18,12,11,9],
+      backgroundColor:["#00b4d8","#06d6a0","#a855f7","#ef233c","#ffb703","#30363d"],
+      borderWidth:0,hoverOffset:6}]
+  },
+  options:{...CHART_DEFAULTS}
+});
+</script>
+</body>
+</html>

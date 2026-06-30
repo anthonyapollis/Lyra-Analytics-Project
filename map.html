@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lyra EAP — Facility Intelligence Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#e6edf3;}
+  #header{background:linear-gradient(135deg,#1e3a5f,#0a2540);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #00b4d8;}
+  #header h1{font-size:1.4rem;font-weight:700;color:#fff;}
+  #header h1 span{color:#00b4d8;}
+  #header .sub{font-size:.85rem;color:#8b949e;margin-top:4px;}
+  #stats{display:flex;gap:16px;padding:16px 32px;background:#161b22;border-bottom:1px solid #21262d;flex-wrap:wrap;}
+  .stat{background:#0d1117;border:1px solid #21262d;border-radius:8px;padding:12px 20px;min-width:140px;text-align:center;}
+  .stat .val{font-size:1.5rem;font-weight:700;color:#00b4d8;}
+  .stat .lbl{font-size:.75rem;color:#8b949e;margin-top:2px;}
+  #controls{display:flex;gap:12px;padding:12px 32px;background:#161b22;flex-wrap:wrap;align-items:center;}
+  .filter-btn{background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:7px 16px;border-radius:20px;cursor:pointer;font-size:.83rem;transition:all .2s;}
+  .filter-btn.active,.filter-btn:hover{background:#00b4d8;border-color:#00b4d8;color:#0d1117;font-weight:600;}
+  #map{height:calc(100vh - 210px);width:100%;}
+  .legend{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;min-width:200px;}
+  .legend h4{color:#00b4d8;margin-bottom:10px;font-size:.9rem;}
+  .legend-item{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:.82rem;color:#c9d1d9;}
+  .legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+  .info-box{background:#161b22;border:1px solid #00b4d8;border-radius:8px;padding:14px;min-width:220px;}
+  .info-box h4{color:#00b4d8;margin-bottom:8px;font-size:.9rem;}
+  .info-box p{font-size:.8rem;color:#8b949e;line-height:1.5;}
+</style>
+</head>
+<body>
+<div id="header">
+  <div>
+    <h1>Lyra EAP — <span>Facility Intelligence Map</span></h1>
+    <div class="sub">South Africa Care Network · 146 Facilities · POPIA-compliant</div>
+  </div>
+  <div style="color:#8b949e;font-size:.8rem;text-align:right;">Lyra Wellbeing Analytics Platform<br>Portfolio Showcase · Anthony Apollis</div>
+</div>
+<div id="stats">
+  <div class="stat"><div class="val">767</div><div class="lbl">Global Facilities</div></div>
+  <div class="stat"><div class="val">146</div><div class="lbl">SA Facilities</div></div>
+  <div class="stat"><div class="val">9</div><div class="lbl">SA Provinces</div></div>
+  <div class="stat"><div class="val">5</div><div class="lbl">Facility Types</div></div>
+  <div class="stat"><div class="val">668K</div><div class="lbl">Annual Sessions</div></div>
+  <div class="stat"><div class="val">16</div><div class="lbl">Corporate Clients</div></div>
+</div>
+<div id="controls">
+  <span style="font-size:.82rem;color:#8b949e;">Filter by type:</span>
+  <button class="filter-btn active" onclick="filterType('all',this)">All Types</button>
+  <button class="filter-btn" onclick="filterType('Telephone Counselling Centre',this)">Telephone</button>
+  <button class="filter-btn" onclick="filterType('In-Person Counselling Centre',this)">In-Person</button>
+  <button class="filter-btn" onclick="filterType('Digital Care Hub',this)">Digital Hub</button>
+  <button class="filter-btn" onclick="filterType('Corporate Wellness Site',this)">Wellness Site</button>
+  <button class="filter-btn" onclick="filterType('Critical Incident Response Centre',this)">Crisis Centre</button>
+</div>
+<div id="map"></div>
+
+<script>
+const SA_FACILITIES = [
+  // Western Cape (36)
+  {name:"Cape Town CBD Counselling Hub",type:"In-Person Counselling Centre",province:"Western Cape",lat:-33.924,lng:18.424,clients:["Standard Bank","Discovery Limited"],sessions:8200},
+  {name:"Bellville Telephone Centre",type:"Telephone Counselling Centre",province:"Western Cape",lat:-33.899,lng:18.629,clients:["Vodacom"],sessions:5100},
+  {name:"Stellenbosch Wellness Site",type:"Corporate Wellness Site",province:"Western Cape",lat:-33.936,lng:18.861,clients:["Sasol"],sessions:2800},
+  {name:"Paarl Digital Care Hub",type:"Digital Care Hub",province:"Western Cape",lat:-33.720,lng:18.963,clients:["Discovery Limited"],sessions:3200},
+  {name:"George In-Person Centre",type:"In-Person Counselling Centre",province:"Western Cape",lat:-33.963,lng:22.461,clients:["Standard Bank"],sessions:1900},
+  {name:"Tyger Valley Crisis Centre",type:"Critical Incident Response Centre",province:"Western Cape",lat:-33.875,lng:18.636,clients:["MTN Group"],sessions:720},
+  {name:"Claremont Counselling Centre",type:"In-Person Counselling Centre",province:"Western Cape",lat:-33.982,lng:18.470,clients:["Discovery Limited"],sessions:4100},
+  {name:"Somerset West Digital Hub",type:"Digital Care Hub",province:"Western Cape",lat:-34.065,lng:18.846,clients:["Vodacom"],sessions:2600},
+  // KwaZulu-Natal (31)
+  {name:"Durban CBD Counselling Centre",type:"In-Person Counselling Centre",province:"KwaZulu-Natal",lat:-29.858,lng:31.021,clients:["Standard Bank","Discovery Limited"],sessions:9400},
+  {name:"Umhlanga Telephone Hub",type:"Telephone Counselling Centre",province:"KwaZulu-Natal",lat:-29.727,lng:31.080,clients:["MTN Group"],sessions:4200},
+  {name:"Pietermaritzburg Wellness Site",type:"Corporate Wellness Site",province:"KwaZulu-Natal",lat:-29.617,lng:30.393,clients:["Sasol"],sessions:2100},
+  {name:"Pinetown Digital Care Hub",type:"Digital Care Hub",province:"KwaZulu-Natal",lat:-29.817,lng:30.860,clients:["Vodacom"],sessions:3800},
+  {name:"Newcastle Crisis Centre",type:"Critical Incident Response Centre",province:"KwaZulu-Natal",lat:-27.754,lng:29.932,clients:["MTN Group"],sessions:480},
+  {name:"Richards Bay Telephone Centre",type:"Telephone Counselling Centre",province:"KwaZulu-Natal",lat:-28.783,lng:32.050,clients:["Standard Bank"],sessions:1600},
+  {name:"Westville Counselling Hub",type:"In-Person Counselling Centre",province:"KwaZulu-Natal",lat:-29.836,lng:30.929,clients:["Discovery Limited"],sessions:3300},
+  // Gauteng (26)
+  {name:"Sandton Corporate Wellness",type:"Corporate Wellness Site",province:"Gauteng",lat:-26.107,lng:28.056,clients:["Standard Bank","Sasol","MTN Group"],sessions:12400},
+  {name:"Rosebank Digital Care Hub",type:"Digital Care Hub",province:"Gauteng",lat:-26.146,lng:28.044,clients:["Discovery Limited","Vodacom"],sessions:8700},
+  {name:"Midrand Telephone Centre",type:"Telephone Counselling Centre",province:"Gauteng",lat:-25.998,lng:28.129,clients:["MTN Group"],sessions:6100},
+  {name:"Pretoria In-Person Centre",type:"In-Person Counselling Centre",province:"Gauteng",lat:-25.745,lng:28.188,clients:["South African Public Sector Employer"],sessions:7800},
+  {name:"Johannesburg CBD Crisis Hub",type:"Critical Incident Response Centre",province:"Gauteng",lat:-26.205,lng:28.047,clients:["Standard Bank","Discovery Limited"],sessions:1100},
+  {name:"Centurion Counselling Centre",type:"In-Person Counselling Centre",province:"Gauteng",lat:-25.861,lng:28.189,clients:["Sasol"],sessions:4400},
+  {name:"Fourways Wellness Site",type:"Corporate Wellness Site",province:"Gauteng",lat:-26.018,lng:28.010,clients:["MTN Group","Vodacom"],sessions:5200},
+  // Eastern Cape (25)
+  {name:"Port Elizabeth Counselling Centre",type:"In-Person Counselling Centre",province:"Eastern Cape",lat:-33.961,lng:25.614,clients:["Standard Bank"],sessions:4800},
+  {name:"Gqeberha Digital Hub",type:"Digital Care Hub",province:"Eastern Cape",lat:-33.960,lng:25.612,clients:["Discovery Limited"],sessions:2900},
+  {name:"East London Telephone Centre",type:"Telephone Counselling Centre",province:"Eastern Cape",lat:-33.016,lng:27.911,clients:["Vodacom"],sessions:2200},
+  {name:"Mthatha Crisis Centre",type:"Critical Incident Response Centre",province:"Eastern Cape",lat:-31.589,lng:28.784,clients:["South African Public Sector Employer"],sessions:380},
+  // Free State (28)
+  {name:"Bloemfontein Counselling Hub",type:"In-Person Counselling Centre",province:"Free State",lat:-29.121,lng:26.214,clients:["Standard Bank","South African Public Sector Employer"],sessions:5600},
+  {name:"Bloemfontein Digital Centre",type:"Digital Care Hub",province:"Free State",lat:-29.118,lng:26.220,clients:["Discovery Limited"],sessions:3100},
+  {name:"Welkom Telephone Centre",type:"Telephone Counselling Centre",province:"Free State",lat:-27.981,lng:26.744,clients:["Sasol"],sessions:1400},
+  {name:"Kimberley Wellness Site",type:"Corporate Wellness Site",province:"Free State",lat:-28.742,lng:24.762,clients:["Sasol"],sessions:1100},
+  // Limpopo (synthetic)
+  {name:"Polokwane Corporate Centre",type:"In-Person Counselling Centre",province:"Limpopo",lat:-23.900,lng:29.468,clients:["South African Public Sector Employer"],sessions:2800},
+  {name:"Tzaneen Telephone Hub",type:"Telephone Counselling Centre",province:"Limpopo",lat:-23.833,lng:30.167,clients:["MTN Group"],sessions:1200},
+  // Mpumalanga (synthetic)
+  {name:"Nelspruit Counselling Centre",type:"In-Person Counselling Centre",province:"Mpumalanga",lat:-25.473,lng:30.970,clients:["Sasol"],sessions:2100},
+  {name:"Witbank Digital Care Hub",type:"Digital Care Hub",province:"Mpumalanga",lat:-25.876,lng:29.238,clients:["Standard Bank"],sessions:1700},
+  // North West (synthetic)
+  {name:"Rustenburg Wellness Site",type:"Corporate Wellness Site",province:"North West",lat:-25.662,lng:27.242,clients:["Sasol"],sessions:1900},
+  {name:"Mahikeng Telephone Centre",type:"Telephone Counselling Centre",province:"North West",lat:-25.864,lng:25.646,clients:["South African Public Sector Employer"],sessions:800},
+  // Northern Cape (synthetic)
+  {name:"Kimberley Counselling Hub",type:"In-Person Counselling Centre",province:"Northern Cape",lat:-28.742,lng:24.762,clients:["Standard Bank"],sessions:1100},
+];
+
+const TYPE_COLORS = {
+  "Telephone Counselling Centre":       "#00b4d8",
+  "In-Person Counselling Centre":       "#06d6a0",
+  "Digital Care Hub":                   "#a855f7",
+  "Corporate Wellness Site":            "#ffb703",
+  "Critical Incident Response Centre":  "#ef233c",
+};
+
+const map = L.map("map", {zoomControl:true}).setView([-29.0, 25.5], 6);
+L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{
+  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  maxZoom:19
+}).addTo(map);
+
+let allMarkers = [];
+
+function makeIcon(type){
+  const color = TYPE_COLORS[type] || "#00b4d8";
+  return L.divIcon({
+    className:"",
+    html:`<div style="width:14px;height:14px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 0 8px ${color}88;"></div>`,
+    iconSize:[14,14],iconAnchor:[7,7]
+  });
+}
+
+SA_FACILITIES.forEach(f => {
+  const marker = L.marker([f.lat, f.lng], {icon: makeIcon(f.type)});
+  marker.bindPopup(`
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;min-width:220px;color:#e6edf3;font-family:Segoe UI,sans-serif;">
+      <div style="color:#00b4d8;font-weight:700;font-size:.95rem;margin-bottom:6px;">${f.name}</div>
+      <div style="font-size:.78rem;color:#8b949e;margin-bottom:10px;">
+        <span style="background:${TYPE_COLORS[f.type]}22;color:${TYPE_COLORS[f.type]};border-radius:4px;padding:2px 8px;border:1px solid ${TYPE_COLORS[f.type]}44;">${f.type}</span>
+      </div>
+      <table style="font-size:.8rem;width:100%;border-collapse:collapse;">
+        <tr><td style="color:#8b949e;padding:2px 0;">Province</td><td style="color:#c9d1d9;text-align:right;">${f.province}</td></tr>
+        <tr><td style="color:#8b949e;padding:2px 0;">Annual Sessions</td><td style="color:#06d6a0;font-weight:700;text-align:right;">${f.sessions.toLocaleString()}</td></tr>
+        <tr><td style="color:#8b949e;padding:2px 0;">Clients Served</td><td style="color:#c9d1d9;text-align:right;">${f.clients.join(", ")}</td></tr>
+      </table>
+    </div>
+  `, {maxWidth:280, className:"dark-popup"});
+  marker.facilityType = f.type;
+  allMarkers.push(marker);
+  marker.addTo(map);
+});
+
+function filterType(type, btn){
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  allMarkers.forEach(m=>{
+    if(type==="all" || m.facilityType===type) m.addTo(map);
+    else map.removeLayer(m);
+  });
+}
+
+// Legend
+const legend = L.control({position:"bottomright"});
+legend.onAdd = () => {
+  const div = L.DomUtil.create("div","legend");
+  div.style.cssText="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;min-width:200px;";
+  div.innerHTML=`<div style="color:#00b4d8;font-weight:700;margin-bottom:10px;font-size:.9rem;">Facility Types</div>`+
+    Object.entries(TYPE_COLORS).map(([t,c])=>
+      `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:.78rem;color:#c9d1d9;">
+        <div style="width:12px;height:12px;border-radius:50%;background:${c};flex-shrink:0;"></div>${t}
+      </div>`
+    ).join("");
+  return div;
+};
+legend.addTo(map);
+
+// Province summary
+const info = L.control({position:"topleft"});
+info.onAdd = () => {
+  const div = L.DomUtil.create("div");
+  div.style.cssText="background:#161b22;border:1px solid #00b4d8;border-radius:8px;padding:14px;min-width:200px;font-family:Segoe UI,sans-serif;";
+  const provinces = [
+    ["Western Cape",36],["KwaZulu-Natal",31],["Free State",28],
+    ["Gauteng",26],["Eastern Cape",25],["Limpopo",8],
+    ["Mpumalanga",7],["North West",5],["Northern Cape",3]
+  ];
+  div.innerHTML=`<div style="color:#00b4d8;font-weight:700;margin-bottom:10px;font-size:.9rem;">SA Facilities by Province</div>`+
+    provinces.map(([p,n])=>`
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;font-size:.78rem;">
+        <span style="color:#c9d1d9;">${p}</span>
+        <span style="color:#06d6a0;font-weight:700;margin-left:12px;">${n}</span>
+      </div>
+      <div style="background:#21262d;border-radius:3px;height:4px;margin-bottom:4px;">
+        <div style="background:#00b4d8;height:4px;border-radius:3px;width:${Math.round(n/36*100)}%;"></div>
+      </div>`
+    ).join("");
+  return div;
+};
+info.addTo(map);
+</script>
+</body>
+</html>

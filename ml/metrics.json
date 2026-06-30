@@ -1,0 +1,179 @@
+{
+  "kpis": {
+    "total_sessions": 668293,
+    "total_clients": 16,
+    "total_facilities": 767,
+    "total_employees": 1438293,
+    "resolution_rate": 65.8,
+    "avg_duration_min": 74.2,
+    "avg_risk_score": 66.2,
+    "high_risk_pct": 46.4,
+    "followup_rate": 63.2,
+    "escalation_rate": 5.2,
+    "avg_revenue_zar": 37537.0
+  },
+  "models": {
+    "risk_classifier": {
+      "name": "Risk Level Classifier",
+      "algorithm": "Random Forest (150 trees)",
+      "accuracy": 1.0,
+      "cv_accuracy": 1.0,
+      "classes": [
+        "Critical",
+        "High",
+        "Low",
+        "Medium"
+      ],
+      "feature_importance": {
+        "RiskScore": 0.5998,
+        "IssueCategoryKey": 0.1455,
+        "FollowUpRequiredFlag": 0.1113,
+        "EmergencyEscalationFlag": 0.0774,
+        "SessionDurationMinutes": 0.0282,
+        "Age": 0.024,
+        "ServiceTypeKey": 0.0138,
+        "SessionCount": 0.0
+      }
+    },
+    "resolution_predictor": {
+      "name": "Case Resolution Predictor",
+      "algorithm": "Gradient Boosting",
+      "accuracy": 0.65,
+      "auc": 0.631,
+      "cv_auc": 0.603
+    },
+    "escalation_predictor": {
+      "name": "Escalation Risk Predictor",
+      "algorithm": "Logistic Regression",
+      "accuracy": 1.0,
+      "auc": 1.0,
+      "cv_accuracy": 0.994
+    }
+  },
+  "issue_breakdown": [
+    {
+      "IssueGroup": "Crisis",
+      "sessions": 32
+    },
+    {
+      "IssueGroup": "Mental Health",
+      "sessions": 204
+    },
+    {
+      "IssueGroup": "Personal Wellbeing",
+      "sessions": 58
+    },
+    {
+      "IssueGroup": "Work Life",
+      "sessions": 79
+    },
+    {
+      "IssueGroup": "Workplace Wellbeing",
+      "sessions": 127
+    }
+  ],
+  "risk_breakdown": [
+    {
+      "RiskLevel": "Critical",
+      "count": 26
+    },
+    {
+      "RiskLevel": "High",
+      "count": 206
+    },
+    {
+      "RiskLevel": "Low",
+      "count": 21
+    },
+    {
+      "RiskLevel": "Medium",
+      "count": 247
+    }
+  ],
+  "service_breakdown": [
+    {
+      "ServiceCategory": "Coaching",
+      "sessions": 44
+    },
+    {
+      "ServiceCategory": "Counselling",
+      "sessions": 251
+    },
+    {
+      "ServiceCategory": "Crisis Support",
+      "sessions": 34
+    },
+    {
+      "ServiceCategory": "Digital",
+      "sessions": 26
+    },
+    {
+      "ServiceCategory": "Learning",
+      "sessions": 11
+    },
+    {
+      "ServiceCategory": "Managerial",
+      "sessions": 43
+    },
+    {
+      "ServiceCategory": "Mediation",
+      "sessions": 20
+    },
+    {
+      "ServiceCategory": "Organisational",
+      "sessions": 10
+    },
+    {
+      "ServiceCategory": "Wellness Events",
+      "sessions": 6
+    },
+    {
+      "ServiceCategory": "Work-Life",
+      "sessions": 55
+    }
+  ],
+  "za_by_province": [
+    {
+      "ProvinceState": "Eastern Cape",
+      "facilities": 25
+    },
+    {
+      "ProvinceState": "Free State",
+      "facilities": 28
+    },
+    {
+      "ProvinceState": "Gauteng",
+      "facilities": 26
+    },
+    {
+      "ProvinceState": "KwaZulu-Natal",
+      "facilities": 31
+    },
+    {
+      "ProvinceState": "Western Cape",
+      "facilities": 36
+    }
+  ],
+  "za_by_type": [
+    {
+      "LyraFacilityType": "Corporate Wellness Site",
+      "count": 28
+    },
+    {
+      "LyraFacilityType": "Critical Incident Response Centre",
+      "count": 10
+    },
+    {
+      "LyraFacilityType": "Digital Care Hub",
+      "count": 32
+    },
+    {
+      "LyraFacilityType": "In-Person Counselling Centre",
+      "count": 38
+    },
+    {
+      "LyraFacilityType": "Telephone Counselling Centre",
+      "count": 38
+    }
+  ]
+}
