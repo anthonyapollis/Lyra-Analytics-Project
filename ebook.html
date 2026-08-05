@@ -110,6 +110,23 @@
     .hero{padding:60px 24px;}.hero h1{font-size:2rem;}
     .section{padding:48px 24px;}.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
   }
+
+  #qa-toggle{position:fixed;bottom:22px;right:22px;z-index:200;background:var(--blue);color:#fff;border:none;border-radius:30px;padding:13px 20px;font-size:13px;font-weight:700;box-shadow:0 6px 20px rgba(0,180,216,.3);cursor:pointer;display:flex;align-items:center;gap:8px;}
+  #qa-toggle:hover{background:var(--teal);}
+  #qa-panel{position:fixed;bottom:78px;right:22px;z-index:200;width:360px;max-width:92vw;max-height:70vh;background:var(--surface);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.5);display:none;flex-direction:column;overflow:hidden;border:1px solid var(--border);}
+  #qa-panel.open{display:flex;}
+  #qa-head{background:#0a1628;color:#fff;padding:13px 16px;font-size:13px;font-weight:700;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+  #qa-head button{background:none;border:none;color:#fff;font-size:16px;cursor:pointer;opacity:.7;}
+  #qa-log{flex:1;overflow-y:auto;padding:14px;font-size:12.5px;display:flex;flex-direction:column;gap:8px;}
+  #qa-log .bubble{padding:9px 12px;border-radius:10px;max-width:88%;line-height:1.5;}
+  #qa-log .bot{background:#0d1117;border:1px solid var(--border);align-self:flex-start;color:var(--text);}
+  #qa-log .user{background:var(--blue);color:#fff;align-self:flex-end;}
+  #qa-chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 10px;}
+  #qa-chips button{font-size:10.5px;background:#0d1117;border:1px solid var(--border);border-radius:14px;padding:5px 10px;cursor:pointer;color:var(--text);}
+  #qa-chips button:hover{border-color:var(--teal);}
+  #qa-input-row{display:flex;border-top:1px solid var(--border);}
+  #qa-input{flex:1;border:none;background:var(--surface);color:var(--text);padding:11px 12px;font-size:12.5px;outline:none;}
+  #qa-send{background:var(--teal);color:#04202b;border:none;padding:0 16px;font-weight:700;cursor:pointer;font-size:12px;}
 </style>
 </head>
 <body>
@@ -408,5 +425,88 @@
     <a href="https://github.com/anthonyapollis/Lyra-Analytics-Project">GitHub</a>
   </div>
 </footer>
+
+<button id="qa-toggle">&#128172; Ask about this platform</button>
+<div id="qa-panel">
+  <div id="qa-head"><span>Ask about Lyra EAP</span><button id="qa-close">&times;</button></div>
+  <div id="qa-log"><div class="bubble bot">Hi! Ask me about the data model, the ML models, the clients, or the tech stack.</div></div>
+  <div id="qa-chips">
+    <button>What is this project?</button>
+    <button>How much data is in this?</button>
+    <button>What do the ML models show?</button>
+    <button>Is the data real?</button>
+  </div>
+  <div id="qa-input-row">
+    <input id="qa-input" type="text" placeholder="Ask a question...">
+    <button id="qa-send">Send</button>
+  </div>
+</div>
+<script>
+var FAQ = [
+  {q: "What is this project?",
+   kw: ["what is this", "about this project", "what company", "lyra"],
+   a: "Lyra EAP Intelligence Platform is a production-grade dimensional data warehouse and ML platform for Employee Assistance Programme analytics, modelled after Lyra Health's corporate wellbeing platform - built on Snowflake with SCD Type 2, 1.4M+ rows, and three predictive models. Synthetic analytics case study, not a real EAP provider."},
+  {q: "How much data is in this?",
+   kw: ["how much data", "how many rows", "scale", "size of the data"],
+   a: "1.4M+ total rows across a 16-table star schema: 668,293 counselling sessions, 750,000 medication sales, 20,000 patient experience surveys, 95,168 SCD Type 2 employee records, 475,840 GDPR consent records, and 767 global facility locations."},
+  {q: "What do the ML models show?",
+   kw: ["what do the ml", "ml model", "machine learning", "risk classifier"],
+   a: "Three sklearn models: a Risk Level Classifier (Random Forest, 95.2% test accuracy) triaging sessions into Low/Medium/High/Critical; a Case Resolution Predictor (Gradient Boosting, 65.0% accuracy, AUC 0.631); and an Escalation Risk Predictor (Logistic Regression, 99.4% accuracy) that would trigger the Critical Incident Response protocol in a real deployment."},
+  {q: "Who are the clients?",
+   kw: ["client", "customer", "who uses", "standard bank", "vodacom"],
+   a: "16 fictional corporate clients across 5 countries on 4 contract packages (Enterprise EWP, Integrated Wellbeing, Critical Incident+, Digital First) - modelled on real SA corporates like Standard Bank, Discovery, Vodacom, MTN and Sasol for realistic scale and sector mix, though the data itself is entirely synthetic."},
+  {q: "What's the facility map?",
+   kw: ["facility map", "map", "where", "locations"],
+   a: "An interactive SA/global facility map (Leaflet.js) covering 767 locations - see map.html. Digital Care Hubs (154 globally) now handle 28% of sessions, up from 11% in 2020."},
+  {q: "Is the data real?",
+   kw: ["is the data real", "real data", "is this real", "synthetic", "fictional"],
+   a: "No - this is a synthetic analytics case study. Lyra EAP and all 16 corporate clients, employees, sessions and clinical records are fictional, generated for this portfolio project. No real patient, employee or clinical data is used anywhere."},
+  {q: "What's the tech stack?",
+   kw: ["tech stack", "technology", "what's it built with", "stack"],
+   a: "Snowflake (primary DW with DDL, staging and production schemas), SCD Type 2 on DimEmployee and DimConsent, Python/scikit-learn for the 3 ML models, a 5-tab Excel KPI workbook, and Leaflet.js for the interactive facility map."},
+  {q: "Who built this?",
+   kw: ["who built", "who made", "author", "anthony"],
+   a: "Anthony Apollis, as a portfolio project demonstrating production-grade dimensional data warehousing (star schema, SCD Type 2) and ML for EAP analytics - not a real Lyra Health system."},
+];
+document.addEventListener("DOMContentLoaded", function () {
+  var toggle = document.getElementById("qa-toggle");
+  var panel = document.getElementById("qa-panel");
+  var log = document.getElementById("qa-log");
+  var input = document.getElementById("qa-input");
+  var send = document.getElementById("qa-send");
+  function addBubble(text, who) {
+    var b = document.createElement("div");
+    b.className = "bubble " + who;
+    b.textContent = text;
+    log.appendChild(b);
+    log.scrollTop = log.scrollHeight;
+  }
+  function answer(q) {
+    var ql = q.toLowerCase();
+    var best = null, bestScore = 0;
+    FAQ.forEach(function (item) {
+      var score = 0;
+      item.kw.forEach(function (k) { if (ql.indexOf(k) !== -1) score += k.length; });
+      if (score > bestScore) { bestScore = score; best = item; }
+    });
+    return best ? best.a : "I don't have a grounded answer for that yet - try asking about the data model, the ML models, the clients, or the tech stack.";
+  }
+  function ask(q) {
+    if (!q.trim()) return;
+    addBubble(q, "user");
+    input.value = "";
+    setTimeout(function () { addBubble(answer(q), "bot"); }, 200);
+  }
+  if (toggle) {
+    toggle.addEventListener("click", function () { panel.classList.toggle("open"); });
+    document.getElementById("qa-close").addEventListener("click", function () { panel.classList.remove("open"); });
+    send.addEventListener("click", function () { ask(input.value); });
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") ask(input.value); });
+    document.querySelectorAll("#qa-chips button").forEach(function (btn) {
+      btn.addEventListener("click", function () { ask(btn.textContent); });
+    });
+  }
+});
+</script>
 </body>
 </html>
