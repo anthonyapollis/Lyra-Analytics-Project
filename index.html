@@ -28,6 +28,11 @@ h2{font-size:20px;margin:0 0 18px}
 .note,.disclaimer{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:0 0 26px;line-height:1.6;color:var(--muted)}
 footer{border-top:1px solid var(--line);padding:22px 24px;color:var(--muted);font-size:13px}
 footer a{color:var(--accent)}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:16px;margin:0 0 34px}
+figure.shot{margin:0;background:#fff;border:1px solid #e3e8e5;border-radius:10px;padding:12px}
+figure.shot img{width:100%;height:auto;display:block;border-radius:6px}
+figure.shot figcaption{font-size:14px;color:#5b6660;padding:8px 2px 0;line-height:1.5}
 </style>
 </head>
 <body>
@@ -38,6 +43,8 @@ footer a{color:var(--accent)}
 <div class="actions"><a class="btn primary" href="https://github.com/anthonyapollis/Lyra-Analytics-Project">View the code on GitHub</a><a class="btn" href="https://anthonyapollis.github.io/portfolio_showcase.html">All projects</a></div>
 </div></header>
 <main><div class="wrap">
+<h2>See the work</h2>
+<div class="gallery"><figure class="shot"><img src="landing/platform-overview.jpg" width="1440" height="900" alt="Lyra EAP Intelligence Platform overview" loading="lazy"><figcaption>The platform at a glance: a Snowflake star schema with SCD Type 2, 1.4 million rows across 16 tables and three predictive models.</figcaption></figure><figure class="shot"><img src="landing/recommendations.jpg" width="1440" height="900" alt="Ten strategic EAP recommendations" loading="lazy"><figcaption>Ten recommendations ranked by business impact, drawn from 668,293 counselling sessions, three ML models and 16 corporate client profiles.</figcaption></figure></div>
 <h2>Open the work</h2>
 <div class="grid"><a class="card" href="ebook.html"><span class="badge">Ebook</span><strong>Ebook</strong><span class="path">ebook.html</span></a><a class="card" href="recommendations.html"><span class="badge">Analysis</span><strong>Recommendations</strong><span class="path">recommendations.html</span></a><a class="card" href="map.html"><span class="badge">Map</span><strong>Map</strong><span class="path">map.html</span></a><a class="card" href="Lyra_EAP_Intelligence_Platform.xlsx"><span class="badge">Excel</span><strong>Intelligence workbook</strong><span class="path">Lyra_EAP_Intelligence_Platform.xlsx</span></a></div>
 </div></main>
