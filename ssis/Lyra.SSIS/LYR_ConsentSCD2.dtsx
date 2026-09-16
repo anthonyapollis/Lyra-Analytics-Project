@@ -1,0 +1,706 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:Executable DTS:CreationDate="09/16/2026 19:32:59" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="DESKTOP-ES5HL78" DTS:CreatorName="Anthony" DTS:DTSID="{A2502811-8D4B-4100-B482-4A8E785C8CA3}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="7177" DTS:ObjectName="LYR_ConsentSCD2" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{30AD802B-309F-475B-849C-725B6DE4C310}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+  <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager DTS:CreationName="OLEDB" DTS:DTSID="{AF2ABEFD-3EFA-48A4-AA3F-E9BCCB979FC8}" DTS:ObjectName="LyraDW_SSIS" DTS:refId="Package.ConnectionManagers[LyraDW_SSIS]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager DTS:ConnectionString="data source=localhost;initial catalog=LyraDW_SSIS;provider=SQLNCLI11.1;integrated security=SSPI;auto translate=False" />
+      </DTS:ObjectData>
+      <DTS:PropertyExpression DTS:Name="ServerName">@[$Package::ServerName]</DTS:PropertyExpression>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager DTS:CreationName="FLATFILE" DTS:DTSID="{B92654C5-74AF-4344-BBC2-166F61CACB81}" DTS:ObjectName="FF_ConsentSnapshot" DTS:refId="Package.ConnectionManagers[FF_ConsentSnapshot]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager DTS:CodePage="1252" DTS:ColumnNamesInFirstDataRow="True" DTS:ConnectionString="C:\Lyra\data\consent_snapshot.csv" DTS:Format="Delimited" DTS:HeaderRowDelimiter="_x000D__x000A_" DTS:LocaleID="7177" DTS:RowDelimiter="_x000D__x000A_" DTS:TextQualifier="_x0022_">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn DTS:ColumnDelimiter="_x002C_" DTS:ColumnType="Delimited" DTS:CreationName="" DTS:DataType="129" DTS:DTSID="{18DC94F7-1795-4D29-A223-17E3448271C8}" DTS:MaximumWidth="20" DTS:ObjectName="EmployeeNaturalKey" DTS:TextQualified="True" />
+            <DTS:FlatFileColumn DTS:ColumnDelimiter="_x002C_" DTS:ColumnType="Delimited" DTS:CreationName="" DTS:DataType="129" DTS:DTSID="{0A2C0EB5-8987-4D07-90DF-6B14CDEE300D}" DTS:MaximumWidth="5" DTS:ObjectName="CountryCode" DTS:TextQualified="True" />
+            <DTS:FlatFileColumn DTS:ColumnDelimiter="_x002C_" DTS:ColumnType="Delimited" DTS:CreationName="" DTS:DataType="129" DTS:DTSID="{0DE21E12-17D3-4CE5-998F-B735DFF89603}" DTS:MaximumWidth="50" DTS:ObjectName="ConsentType" DTS:TextQualified="True" />
+            <DTS:FlatFileColumn DTS:ColumnDelimiter="_x002C_" DTS:ColumnType="Delimited" DTS:CreationName="" DTS:DataType="129" DTS:DTSID="{9EEFC754-C923-43EF-B91A-33C603735F51}" DTS:MaximumWidth="20" DTS:ObjectName="ConsentStatus" DTS:TextQualified="True" />
+            <DTS:FlatFileColumn DTS:ColumnDelimiter="_x002C_" DTS:ColumnType="Delimited" DTS:CreationName="" DTS:DataType="129" DTS:DTSID="{B2034D82-0942-4086-9B04-277A3C69371F}" DTS:MaximumWidth="30" DTS:ObjectName="ConsentChannel" DTS:TextQualified="True" />
+            <DTS:FlatFileColumn DTS:ColumnDelimiter="_x000D__x000A_" DTS:ColumnType="Delimited" DTS:CreationName="" DTS:DataType="129" DTS:DTSID="{9EE70EF8-7330-4DD9-A73D-A1FA2B1677EF}" DTS:MaximumWidth="100" DTS:ObjectName="ChangeReason" DTS:TextQualified="True" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+      <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::SnapshotPath]</DTS:PropertyExpression>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{095BA649-C7C4-4F63-831A-B17CF742C036}" DTS:ObjectName="ServerName" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">localhost</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{ADEC9494-2F10-4361-86EE-14DE9192DD21}" DTS:ObjectName="SnapshotFile" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue" />
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{BAE69974-F374-4515-AF91-59A7FE5588FF}" DTS:ObjectName="SnapshotDate" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue" />
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{D45673B6-2C6E-43CE-AEB0-79A5EE78E560}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RunId">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{83D2C14C-7A42-4942-8463-316C37043DAD}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowsRead">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{5D2FB139-D761-4F1A-ABA5-6D6C62C6675E}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="NewMembers">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{E0C91571-AED0-4334-BF6A-A486D4EF41C1}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ChangedRows">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{7E0DEDE8-BB71-4D05-A83D-E667BD1991CA}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="UnchangedRows">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{9B802EA3-B9DF-4663-BA5C-62DD6CFA8ED6}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowsWritten">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{693904E4-9C0D-4A18-AF36-60A9C178919A}" DTS:EvaluateAsExpression="True" DTS:Expression="@[$Package::SnapshotFile]" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="SnapshotFileParam">
+      <DTS:VariableValue DTS:DataType="8" />
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{7D2F9118-C3EF-4025-859C-1A3101131D79}" DTS:EvaluateAsExpression="True" DTS:Expression="@[$Package::SnapshotDate]" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="SnapshotDateParam">
+      <DTS:VariableValue DTS:DataType="8" />
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{4F9B8B5F-EB15-4277-8AF9-8F7931BD8ABF}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="SnapshotPath">
+      <DTS:VariableValue DTS:DataType="8">C:\Lyra\data\consent_snapshot.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{83966A31-8C8A-42BF-8E9E-0F3751090792}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="SnapshotDate">
+      <DTS:VariableValue DTS:DataType="8">2024-01-01</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{34EC9DA1-1E00-493E-AB5D-56340093FEF3}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Log run start" DTS:refId="Package\SQL Log run start" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="LyraDW_SSIS" SQLTask:ResultType="ResultSetType_SingleRow" SQLTask:SqlStatementSource="SET NOCOUNT ON; INSERT INTO etl.PackageRun (PackageName, ExecutionGuid) OUTPUT inserted.RunId VALUES (?, ?);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="200" />
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::ExecutionInstanceGUID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="50" />
+          <SQLTask:ResultBinding SQLTask:DtsVariableName="User::RunId" SQLTask:ResultName="0" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{DFCAC8E1-9843-40B4-8E1F-F5281F885BE4}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Resolve snapshot from parameters or etl_Config" DTS:refId="Package\SQL Resolve snapshot from parameters or etl_Config" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="LyraDW_SSIS" SQLTask:ResultType="ResultSetType_SingleRow" SQLTask:SqlStatementSource="&#xA;SET NOCOUNT ON;&#xA;DECLARE @file nvarchar(400) = COALESCE(NULLIF(?, N''), (SELECT ConfigValue FROM etl.Config WHERE ConfigKey = 'SnapshotFile'));&#xA;DECLARE @date nvarchar(10)  = COALESCE(NULLIF(?, N''), (SELECT ConfigValue FROM etl.Config WHERE ConfigKey = 'SnapshotDate'));&#xA;DECLARE @folder nvarchar(400) = (SELECT ConfigValue FROM etl.Config WHERE ConfigKey = 'DataFolder');&#xA;IF @file IS NULL OR TRY_CONVERT(date, @date, 23) IS NULL&#xA;    THROW 50010, 'Snapshot not configured: pass SnapshotFile and SnapshotDate (yyyy-MM-dd) or run ssis\run_ssis.ps1 -Snapshot.', 1;&#xA;IF @file NOT LIKE '%\%' SET @file = CONCAT(@folder, '\', @file);&#xA;SELECT @file AS SnapshotPath, @date AS SnapshotDate;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="User::SnapshotFileParam" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="400" />
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="User::SnapshotDateParam" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="10" />
+          <SQLTask:ResultBinding SQLTask:DtsVariableName="User::SnapshotPath" SQLTask:ResultName="0" />
+          <SQLTask:ResultBinding SQLTask:DtsVariableName="User::SnapshotDate" SQLTask:ResultName="1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{77135CCE-0183-4A59-9AF6-B933A1E8CBEE}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Truncate staging" DTS:refId="Package\SQL Truncate staging" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="LyraDW_SSIS" SQLTask:SqlStatementSource="TRUNCATE TABLE stg.ConsentSnapshot; TRUNCATE TABLE stg.ConsentChanged;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DelayValidation="True" DTS:DTSID="{3F876387-9F7B-4463-91C3-AB352B8B87DA}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="DFT Stage snapshot" DTS:refId="Package\DFT Stage snapshot" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <pipeline BLOBTempStoragePath="" bufferTempStoragePath="" name="pipelineXml" version="1">
+          <components>
+            <component componentClassID="Microsoft.FlatFileSource" contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1" localeId="7177" name="FF consent snapshot" refId="Package\DFT Stage snapshot\FF consent snapshot" usesDispositions="true" version="1">
+              <connections>
+                <connection connectionManagerID="{B92654C5-74AF-4344-BBC2-166F61CACB81}:external" connectionManagerRefId="Package.ConnectionManagers[FF_ConsentSnapshot]" name="FlatFileConnection" refId="Package\DFT Stage snapshot\FF consent snapshot.Connections[FlatFileConnection]" />
+              </connections>
+              <outputs>
+                <output name="Output" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output]">
+                  <externalMetadataColumns isUsed="True">
+                    <externalMetadataColumn codePage="1252" dataType="str" length="20" name="EmployeeNaturalKey" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[EmployeeNaturalKey]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="5" name="CountryCode" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[CountryCode]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="50" name="ConsentType" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[ConsentType]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="20" name="ConsentStatus" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[ConsentStatus]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="30" name="ConsentChannel" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[ConsentChannel]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="100" name="ChangeReason" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[ChangeReason]" />
+                  </externalMetadataColumns>
+                  <outputColumns>
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[EmployeeNaturalKey]" length="20" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[EmployeeNaturalKey]" name="EmployeeNaturalKey" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[EmployeeNaturalKey]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.Boolean" description="Indicates whether the column uses the faster, locale-neutral parsing routines." name="FastParse">false</property>
+                        <property dataType="System.Boolean" description="Indicates whether the data is in binary format." name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[CountryCode]" length="5" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[CountryCode]" name="CountryCode" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[CountryCode]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.Boolean" description="Indicates whether the column uses the faster, locale-neutral parsing routines." name="FastParse">false</property>
+                        <property dataType="System.Boolean" description="Indicates whether the data is in binary format." name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[ConsentType]" length="50" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ConsentType]" name="ConsentType" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ConsentType]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.Boolean" description="Indicates whether the column uses the faster, locale-neutral parsing routines." name="FastParse">false</property>
+                        <property dataType="System.Boolean" description="Indicates whether the data is in binary format." name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[ConsentStatus]" length="20" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ConsentStatus]" name="ConsentStatus" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ConsentStatus]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.Boolean" description="Indicates whether the column uses the faster, locale-neutral parsing routines." name="FastParse">false</property>
+                        <property dataType="System.Boolean" description="Indicates whether the data is in binary format." name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[ConsentChannel]" length="30" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ConsentChannel]" name="ConsentChannel" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ConsentChannel]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.Boolean" description="Indicates whether the column uses the faster, locale-neutral parsing routines." name="FastParse">false</property>
+                        <property dataType="System.Boolean" description="Indicates whether the data is in binary format." name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].ExternalColumns[ChangeReason]" length="100" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ChangeReason]" name="ChangeReason" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ChangeReason]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.Boolean" description="Indicates whether the column uses the faster, locale-neutral parsing routines." name="FastParse">false</property>
+                        <property dataType="System.Boolean" description="Indicates whether the data is in binary format." name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                </output>
+                <output isErrorOut="true" name="Error" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Error]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn codePage="1252" dataType="text" description="Flat File Source Error Output Column" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Error].Columns[Flat File Source Error Output Column]" name="Flat File Source Error Output Column" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Error].Columns[Flat File Source Error Output Column]" />
+                    <outputColumn dataType="i4" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Error].Columns[ErrorCode]" specialFlags="1" />
+                    <outputColumn dataType="i4" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Error].Columns[ErrorColumn]" specialFlags="2" />
+                  </outputColumns>
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.Boolean" description="Specifies whether zero-length columns are treated as null." name="RetainNulls">false</property>
+                <property dataType="System.String" description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated." name="FileNameColumnName" />
+              </properties>
+            </component>
+            <component componentClassID="Microsoft.DerivedColumn" contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="DC Snapshot date" refId="Package\DFT Stage snapshot\DC Snapshot date" usesDispositions="true">
+              <inputs>
+                <input name="FF consent snapshot_Output_DC Snapshot date" refId="Package\DFT Stage snapshot\DC Snapshot date.Inputs[FF consent snapshot_Output_DC Snapshot date]">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output exclusionGroup="1" name="Output" refId="Package\DFT Stage snapshot\DC Snapshot date.Outputs[Output]" synchronousInputId="Package\DFT Stage snapshot\DC Snapshot date.Inputs[FF consent snapshot_Output_DC Snapshot date]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn dataType="dbDate" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\DFT Stage snapshot\DC Snapshot date.Outputs[Output].Columns[SnapshotDate]" name="SnapshotDate" refId="Package\DFT Stage snapshot\DC Snapshot date.Outputs[Output].Columns[SnapshotDate]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.String" description="Derived Column Expression" name="Expression">(DT_DBDATE)@[User::SnapshotDate]</property>
+                        <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">(DT_DBDATE)@[User::SnapshotDate]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                </output>
+                <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\DFT Stage snapshot\DC Snapshot date.Outputs[Error]" synchronousInputId="Package\DFT Stage snapshot\DC Snapshot date.Inputs[FF consent snapshot_Output_DC Snapshot date]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn dataType="i4" lineageId="Package\DFT Stage snapshot\DC Snapshot date.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\DFT Stage snapshot\DC Snapshot date.Outputs[Error].Columns[ErrorCode]" specialFlags="1" />
+                    <outputColumn dataType="i4" lineageId="Package\DFT Stage snapshot\DC Snapshot date.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\DFT Stage snapshot\DC Snapshot date.Outputs[Error].Columns[ErrorColumn]" specialFlags="2" />
+                  </outputColumns>
+                </output>
+              </outputs>
+            </component>
+            <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="RC Read" refId="Package\DFT Stage snapshot\RC Read">
+              <inputs>
+                <input hasSideEffects="true" name="DC Snapshot date_Output_RC Read" refId="Package\DFT Stage snapshot\RC Read.Inputs[DC Snapshot date_Output_RC Read]">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output name="Output" refId="Package\DFT Stage snapshot\RC Read.Outputs[Output]" synchronousInputId="Package\DFT Stage snapshot\RC Read.Inputs[DC Snapshot date_Output_RC Read]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::RowsRead</property>
+              </properties>
+            </component>
+            <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="DST stg ConsentSnapshot" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot" usesDispositions="true" version="4">
+              <connections>
+                <connection connectionManagerID="{AF2ABEFD-3EFA-48A4-AA3F-E9BCCB979FC8}:external" connectionManagerRefId="Package.ConnectionManagers[LyraDW_SSIS]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Connections[OleDbConnection]" />
+              </connections>
+              <inputs>
+                <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="RC Read_Output_DST stg ConsentSnapshot" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot]">
+                  <externalMetadataColumns isUsed="True">
+                    <externalMetadataColumn codePage="1252" dataType="str" length="20" name="EmployeeNaturalKey" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[EmployeeNaturalKey]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="5" name="CountryCode" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[CountryCode]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="50" name="ConsentType" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[ConsentType]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="20" name="ConsentStatus" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[ConsentStatus]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="30" name="ConsentChannel" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[ConsentChannel]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="100" name="ChangeReason" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[ChangeReason]" />
+                    <externalMetadataColumn dataType="dbDate" name="SnapshotDate" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[SnapshotDate]" />
+                  </externalMetadataColumns>
+                  <inputColumns>
+                    <inputColumn cachedDataType="dbDate" cachedName="SnapshotDate" externalMetadataColumnId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[SnapshotDate]" lineageId="Package\DFT Stage snapshot\DC Snapshot date.Outputs[Output].Columns[SnapshotDate]" name="" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].Columns[SnapshotDate]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="20" cachedName="EmployeeNaturalKey" externalMetadataColumnId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[EmployeeNaturalKey]" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[EmployeeNaturalKey]" name="" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].Columns[EmployeeNaturalKey]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="5" cachedName="CountryCode" externalMetadataColumnId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[CountryCode]" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[CountryCode]" name="" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].Columns[CountryCode]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="50" cachedName="ConsentType" externalMetadataColumnId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[ConsentType]" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ConsentType]" name="" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].Columns[ConsentType]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="20" cachedName="ConsentStatus" externalMetadataColumnId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[ConsentStatus]" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ConsentStatus]" name="" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].Columns[ConsentStatus]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="30" cachedName="ConsentChannel" externalMetadataColumnId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[ConsentChannel]" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ConsentChannel]" name="" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].Columns[ConsentChannel]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="100" cachedName="ChangeReason" externalMetadataColumnId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].ExternalColumns[ChangeReason]" lineageId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output].Columns[ChangeReason]" name="" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot].Columns[ChangeReason]" />
+                  </inputColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Outputs[Error]" synchronousInputId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn dataType="i4" lineageId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Outputs[Error].Columns[ErrorCode]" specialFlags="1" />
+                    <outputColumn dataType="i4" lineageId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Outputs[Error].Columns[ErrorColumn]" specialFlags="2" />
+                  </outputColumns>
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">[stg].[ConsentSnapshot]</property>
+                <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable" />
+                <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor" />
+                <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode">3</property>
+                <property dataType="System.Boolean" description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on." name="FastLoadKeepIdentity">false</property>
+                <property dataType="System.Boolean" description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on." name="FastLoadKeepNulls">false</property>
+                <property dataType="System.String" description="Specifies options to be used with fast load.  Applies only if fast load is turned on." name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property dataType="System.Int32" description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on." name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+            </component>
+          </components>
+          <paths>
+            <path endId="Package\DFT Stage snapshot\DC Snapshot date.Inputs[FF consent snapshot_Output_DC Snapshot date]" name="FF consent snapshot_Output_DC Snapshot date" refId="Package\DFT Stage snapshot.Paths[FF consent snapshot_Output_DC Snapshot date]" startId="Package\DFT Stage snapshot\FF consent snapshot.Outputs[Output]" />
+            <path endId="Package\DFT Stage snapshot\RC Read.Inputs[DC Snapshot date_Output_RC Read]" name="DC Snapshot date_Output_RC Read" refId="Package\DFT Stage snapshot.Paths[DC Snapshot date_Output_RC Read]" startId="Package\DFT Stage snapshot\DC Snapshot date.Outputs[Output]" />
+            <path endId="Package\DFT Stage snapshot\DST stg ConsentSnapshot.Inputs[RC Read_Output_DST stg ConsentSnapshot]" name="RC Read_Output_DST stg ConsentSnapshot" refId="Package\DFT Stage snapshot.Paths[RC Read_Output_DST stg ConsentSnapshot]" startId="Package\DFT Stage snapshot\RC Read.Outputs[Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{D8C1F6D5-F1CB-4DEC-9920-CF8BC97065DB}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="DFT Detect new and changed consents" DTS:refId="Package\DFT Detect new and changed consents" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <pipeline BLOBTempStoragePath="" bufferTempStoragePath="" name="pipelineXml" version="1">
+          <components>
+            <component componentClassID="Microsoft.OLEDBSource" contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7" name="SRC snapshot with attribute hash" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash" usesDispositions="true" version="7">
+              <connections>
+                <connection connectionManagerID="{AF2ABEFD-3EFA-48A4-AA3F-E9BCCB979FC8}:external" connectionManagerRefId="Package.ConnectionManagers[LyraDW_SSIS]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Connections[OleDbConnection]" />
+              </connections>
+              <outputs>
+                <output name="Output" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output]">
+                  <externalMetadataColumns isUsed="True">
+                    <externalMetadataColumn codePage="1252" dataType="str" length="20" name="EmployeeNaturalKey" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[EmployeeNaturalKey]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="5" name="CountryCode" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[CountryCode]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="50" name="ConsentType" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[ConsentType]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="20" name="ConsentStatus" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[ConsentStatus]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="30" name="ConsentChannel" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[ConsentChannel]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="100" name="ChangeReason" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[ChangeReason]" />
+                    <externalMetadataColumn dataType="dbDate" name="SnapshotDate" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[SnapshotDate]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="40" name="RowHash" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[RowHash]" />
+                  </externalMetadataColumns>
+                  <outputColumns>
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[EmployeeNaturalKey]" length="20" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[EmployeeNaturalKey]" name="EmployeeNaturalKey" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[EmployeeNaturalKey]" truncationRowDisposition="FailComponent" />
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[CountryCode]" length="5" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[CountryCode]" name="CountryCode" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[CountryCode]" truncationRowDisposition="FailComponent" />
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[ConsentType]" length="50" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentType]" name="ConsentType" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentType]" truncationRowDisposition="FailComponent" />
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[ConsentStatus]" length="20" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentStatus]" name="ConsentStatus" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentStatus]" truncationRowDisposition="FailComponent" />
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[ConsentChannel]" length="30" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentChannel]" name="ConsentChannel" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentChannel]" truncationRowDisposition="FailComponent" />
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[ChangeReason]" length="100" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ChangeReason]" name="ChangeReason" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ChangeReason]" truncationRowDisposition="FailComponent" />
+                    <outputColumn dataType="dbDate" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[SnapshotDate]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[SnapshotDate]" name="SnapshotDate" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[SnapshotDate]" truncationRowDisposition="FailComponent" />
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].ExternalColumns[RowHash]" length="40" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[RowHash]" name="RowHash" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[RowHash]" truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                </output>
+                <output isErrorOut="true" name="Error" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn codePage="1252" dataType="str" length="20" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[EmployeeNaturalKey]" name="EmployeeNaturalKey" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[EmployeeNaturalKey]" />
+                    <outputColumn codePage="1252" dataType="str" length="5" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[CountryCode]" name="CountryCode" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[CountryCode]" />
+                    <outputColumn codePage="1252" dataType="str" length="50" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ConsentType]" name="ConsentType" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ConsentType]" />
+                    <outputColumn codePage="1252" dataType="str" length="20" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ConsentStatus]" name="ConsentStatus" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ConsentStatus]" />
+                    <outputColumn codePage="1252" dataType="str" length="30" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ConsentChannel]" name="ConsentChannel" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ConsentChannel]" />
+                    <outputColumn codePage="1252" dataType="str" length="100" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ChangeReason]" name="ChangeReason" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ChangeReason]" />
+                    <outputColumn dataType="dbDate" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[SnapshotDate]" name="SnapshotDate" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[SnapshotDate]" />
+                    <outputColumn codePage="1252" dataType="str" length="40" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[RowHash]" name="RowHash" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[RowHash]" />
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ErrorCode]" specialFlags="1" />
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Error].Columns[ErrorColumn]" specialFlags="2" />
+                  </outputColumns>
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset" />
+                <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable" />
+                <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">
+SELECT EmployeeNaturalKey, CountryCode, ConsentType, ConsentStatus, ConsentChannel, ChangeReason, SnapshotDate,
+       CAST(CONVERT(char(40), HASHBYTES('SHA1', CONCAT(CountryCode, '|', ConsentStatus, '|', ConsentChannel)), 2) AS char(40)) AS RowHash
+FROM stg.ConsentSnapshot;</property>
+                <property dataType="System.String" description="The variable that contains the SQL command to be executed." name="SqlCommandVariable" />
+                <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode" typeConverter="AccessMode">2</property>
+                <property dataType="System.String" description="The mappings between the parameters in the SQL command and variables." name="ParameterMapping" />
+              </properties>
+            </component>
+            <component componentClassID="Microsoft.Lookup" contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6" name="LKP Current version" refId="Package\DFT Detect new and changed consents\LKP Current version" usesDispositions="true" version="6">
+              <connections>
+                <connection connectionManagerID="{AF2ABEFD-3EFA-48A4-AA3F-E9BCCB979FC8}:external" connectionManagerRefId="Package.ConnectionManagers[LyraDW_SSIS]" description="Connection manager used to access lookup data." name="OleDbConnection" refId="Package\DFT Detect new and changed consents\LKP Current version.Connections[OleDbConnection]" />
+              </connections>
+              <inputs>
+                <input name="SRC snapshot with attribute hash_Output_LKP Current version" refId="Package\DFT Detect new and changed consents\LKP Current version.Inputs[SRC snapshot with attribute hash_Output_LKP Current version]">
+                  <externalMetadataColumns />
+                  <inputColumns>
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="20" cachedName="EmployeeNaturalKey" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[EmployeeNaturalKey]" name="" refId="Package\DFT Detect new and changed consents\LKP Current version.Inputs[SRC snapshot with attribute hash_Output_LKP Current version].Columns[EmployeeNaturalKey]">
+                      <properties>
+                        <property dataType="System.String" description="Specifies the column in the reference table that a column joins." name="JoinToReferenceColumn">EmployeeNaturalKey</property>
+                        <property dataType="System.Null" description="Specifies the column in the reference table from which a column is copied." name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="50" cachedName="ConsentType" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentType]" name="" refId="Package\DFT Detect new and changed consents\LKP Current version.Inputs[SRC snapshot with attribute hash_Output_LKP Current version].Columns[ConsentType]">
+                      <properties>
+                        <property dataType="System.String" description="Specifies the column in the reference table that a column joins." name="JoinToReferenceColumn">ConsentType</property>
+                        <property dataType="System.Null" description="Specifies the column in the reference table from which a column is copied." name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output errorOrTruncationOperation="Lookup" exclusionGroup="1" name="Match" refId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Match]" synchronousInputId="Package\DFT Detect new and changed consents\LKP Current version.Inputs[SRC snapshot with attribute hash_Output_LKP Current version]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn dataType="i4" errorOrTruncationOperation="CopyColumn" lineageId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Match].Columns[ConsentKey]" name="ConsentKey" refId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Match].Columns[ConsentKey]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.String" description="Specifies the column in the reference table from which a column is copied." name="CopyFromReferenceColumn">ConsentKey</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="CopyColumn" length="40" lineageId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Match].Columns[CurrentRowHash]" name="CurrentRowHash" refId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Match].Columns[CurrentRowHash]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.String" description="Specifies the column in the reference table from which a column is copied." name="CopyFromReferenceColumn">CurrentRowHash</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                </output>
+                <output description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;" exclusionGroup="1" name="NoMatch" refId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[NoMatch]" synchronousInputId="Package\DFT Detect new and changed consents\LKP Current version.Inputs[SRC snapshot with attribute hash_Output_LKP Current version]">
+                  <externalMetadataColumns />
+                </output>
+                <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Error]" synchronousInputId="Package\DFT Detect new and changed consents\LKP Current version.Inputs[SRC snapshot with attribute hash_Output_LKP Current version]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Error].Columns[ErrorCode]" specialFlags="1" />
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Error].Columns[ErrorColumn]" specialFlags="2" />
+                  </outputColumns>
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.String" description="Specifies the SQL statement that generates the lookup table." expressionType="Notify" name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT EmployeeNaturalKey, ConsentType, ConsentKey, RowHash AS CurrentRowHash FROM dw.DimConsent WHERE IsCurrent = 1;</property>
+                <property dataType="System.String" description="Specifies a SQL statement that uses parameters to generate the lookup table." expressionType="Notify" name="SqlCommandParam" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT EmployeeNaturalKey, ConsentType, ConsentKey, RowHash AS CurrentRowHash FROM dw.DimConsent WHERE IsCurrent = 1;) [refTable] where [refTable].[EmployeeNaturalKey] = ? and [refTable].[ConsentType] = ?</property>
+                <property dataType="System.Int32" description="Specifies the type of connection used to access the reference dataset." name="ConnectionType" typeConverter="LookupConnectionType">0</property>
+                <property dataType="System.Int32" description="Specifies the cache type of the lookup table." name="CacheType" typeConverter="CacheType">0</property>
+                <property dataType="System.Int32" description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set." name="NoMatchBehavior" typeConverter="LookupNoMatchBehavior">1</property>
+                <property dataType="System.Int32" description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset." name="NoMatchCachePercentage">0</property>
+                <property dataType="System.Int32" description="Maximum Memory Usage for Reference Cache on a 32 bit platform." name="MaxMemoryUsage">25</property>
+                <property dataType="System.Int64" description="Maximum Memory Usage for Reference Cache on a 64 bit platform." name="MaxMemoryUsage64">25</property>
+                <property dataType="System.String" description="Indicates whether to reference metadata in an XML format." name="ReferenceMetadataXml">&lt;referenceMetadata&gt;
+  &lt;referenceColumns&gt;
+    &lt;referenceColumn name="EmployeeNaturalKey" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252" /&gt;
+    &lt;referenceColumn name="ConsentType" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252" /&gt;
+    &lt;referenceColumn name="ConsentKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0" /&gt;
+    &lt;referenceColumn name="CurrentRowHash" dataType="DT_STR" length="40" precision="0" scale="0" codePage="1252" /&gt;
+  &lt;/referenceColumns&gt;
+&lt;/referenceMetadata&gt;</property>
+                <property containsID="true" dataType="System.String" description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons." name="ParameterMap">#{Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[EmployeeNaturalKey]};#{Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentType]};</property>
+                <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                <property dataType="System.Boolean" description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used." name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+            </component>
+            <component componentClassID="Microsoft.ConditionalSplit" contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="CSPL Changed or unchanged" refId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged" usesDispositions="true">
+              <inputs>
+                <input name="LKP Current version_Match_CSPL Changed or unchanged" refId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Inputs[LKP Current version_Match_CSPL Changed or unchanged]">
+                  <externalMetadataColumns />
+                  <inputColumns>
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="40" cachedName="RowHash" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[RowHash]" name="" refId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Inputs[LKP Current version_Match_CSPL Changed or unchanged].Columns[RowHash]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="40" cachedName="CurrentRowHash" lineageId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Match].Columns[CurrentRowHash]" name="" refId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Inputs[LKP Current version_Match_CSPL Changed or unchanged].Columns[CurrentRowHash]" />
+                  </inputColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" exclusionGroup="1" name="Changed" refId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Outputs[Changed]" synchronousInputId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Inputs[LKP Current version_Match_CSPL Changed or unchanged]" truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns />
+                  <properties>
+                    <property containsID="true" dataType="System.String" name="Expression">#{Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[RowHash]} != #{Package\DFT Detect new and changed consents\LKP Current version.Outputs[Match].Columns[CurrentRowHash]}</property>
+                    <property containsID="true" dataType="System.String" expressionType="Notify" name="FriendlyExpression">RowHash != CurrentRowHash</property>
+                    <property dataType="System.Int32" name="EvaluationOrder">0</property>
+                  </properties>
+                </output>
+                <output exclusionGroup="1" name="Default" refId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Outputs[Default]" synchronousInputId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Inputs[LKP Current version_Match_CSPL Changed or unchanged]">
+                  <externalMetadataColumns />
+                  <properties>
+                    <property dataType="System.Boolean" name="IsDefaultOut">true</property>
+                  </properties>
+                </output>
+                <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Outputs[Error]" synchronousInputId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Inputs[LKP Current version_Match_CSPL Changed or unchanged]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Outputs[Error].Columns[ErrorCode]" specialFlags="1" />
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Outputs[Error].Columns[ErrorColumn]" specialFlags="2" />
+                  </outputColumns>
+                </output>
+              </outputs>
+            </component>
+            <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="RC Unchanged" refId="Package\DFT Detect new and changed consents\RC Unchanged">
+              <inputs>
+                <input hasSideEffects="true" name="CSPL Changed or unchanged_Default_RC Unchanged" refId="Package\DFT Detect new and changed consents\RC Unchanged.Inputs[CSPL Changed or unchanged_Default_RC Unchanged]">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output name="Output" refId="Package\DFT Detect new and changed consents\RC Unchanged.Outputs[Output]" synchronousInputId="Package\DFT Detect new and changed consents\RC Unchanged.Inputs[CSPL Changed or unchanged_Default_RC Unchanged]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::UnchangedRows</property>
+              </properties>
+            </component>
+            <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="RC Changed" refId="Package\DFT Detect new and changed consents\RC Changed">
+              <inputs>
+                <input hasSideEffects="true" name="CSPL Changed or unchanged_Changed_RC Changed" refId="Package\DFT Detect new and changed consents\RC Changed.Inputs[CSPL Changed or unchanged_Changed_RC Changed]">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output name="Output" refId="Package\DFT Detect new and changed consents\RC Changed.Outputs[Output]" synchronousInputId="Package\DFT Detect new and changed consents\RC Changed.Inputs[CSPL Changed or unchanged_Changed_RC Changed]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::ChangedRows</property>
+              </properties>
+            </component>
+            <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="DST stg ConsentChanged" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged" usesDispositions="true" version="4">
+              <connections>
+                <connection connectionManagerID="{AF2ABEFD-3EFA-48A4-AA3F-E9BCCB979FC8}:external" connectionManagerRefId="Package.ConnectionManagers[LyraDW_SSIS]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Connections[OleDbConnection]" />
+              </connections>
+              <inputs>
+                <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="RC Changed_Output_DST stg ConsentChanged" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged]">
+                  <externalMetadataColumns isUsed="True">
+                    <externalMetadataColumn dataType="i4" name="ConsentKey" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[ConsentKey]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="20" name="EmployeeNaturalKey" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[EmployeeNaturalKey]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="5" name="CountryCode" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[CountryCode]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="50" name="ConsentType" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[ConsentType]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="20" name="ConsentStatus" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[ConsentStatus]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="30" name="ConsentChannel" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[ConsentChannel]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="100" name="ChangeReason" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[ChangeReason]" />
+                    <externalMetadataColumn dataType="dbDate" name="SnapshotDate" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[SnapshotDate]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="40" name="RowHash" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[RowHash]" />
+                  </externalMetadataColumns>
+                  <inputColumns>
+                    <inputColumn cachedDataType="i4" cachedName="ConsentKey" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[ConsentKey]" lineageId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Match].Columns[ConsentKey]" name="" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].Columns[ConsentKey]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="20" cachedName="EmployeeNaturalKey" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[EmployeeNaturalKey]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[EmployeeNaturalKey]" name="" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].Columns[EmployeeNaturalKey]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="5" cachedName="CountryCode" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[CountryCode]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[CountryCode]" name="" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].Columns[CountryCode]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="50" cachedName="ConsentType" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[ConsentType]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentType]" name="" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].Columns[ConsentType]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="20" cachedName="ConsentStatus" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[ConsentStatus]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentStatus]" name="" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].Columns[ConsentStatus]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="30" cachedName="ConsentChannel" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[ConsentChannel]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentChannel]" name="" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].Columns[ConsentChannel]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="100" cachedName="ChangeReason" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[ChangeReason]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ChangeReason]" name="" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].Columns[ChangeReason]" />
+                    <inputColumn cachedDataType="dbDate" cachedName="SnapshotDate" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[SnapshotDate]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[SnapshotDate]" name="" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].Columns[SnapshotDate]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="40" cachedName="RowHash" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].ExternalColumns[RowHash]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[RowHash]" name="" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged].Columns[RowHash]" />
+                  </inputColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Outputs[Error]" synchronousInputId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Outputs[Error].Columns[ErrorCode]" specialFlags="1" />
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Outputs[Error].Columns[ErrorColumn]" specialFlags="2" />
+                  </outputColumns>
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">[stg].[ConsentChanged]</property>
+                <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable" />
+                <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor" />
+                <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode">3</property>
+                <property dataType="System.Boolean" description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on." name="FastLoadKeepIdentity">false</property>
+                <property dataType="System.Boolean" description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on." name="FastLoadKeepNulls">false</property>
+                <property dataType="System.String" description="Specifies options to be used with fast load.  Applies only if fast load is turned on." name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property dataType="System.Int32" description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on." name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+            </component>
+            <component componentClassID="Microsoft.DerivedColumn" contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="DC New member validity" refId="Package\DFT Detect new and changed consents\DC New member validity" usesDispositions="true">
+              <inputs>
+                <input name="LKP Current version_NoMatch_DC New member validity" refId="Package\DFT Detect new and changed consents\DC New member validity.Inputs[LKP Current version_NoMatch_DC New member validity]">
+                  <externalMetadataColumns />
+                  <inputColumns>
+                    <inputColumn cachedDataType="dbDate" cachedName="SnapshotDate" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[SnapshotDate]" name="" refId="Package\DFT Detect new and changed consents\DC New member validity.Inputs[LKP Current version_NoMatch_DC New member validity].Columns[SnapshotDate]" />
+                  </inputColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output exclusionGroup="1" name="Output" refId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output]" synchronousInputId="Package\DFT Detect new and changed consents\DC New member validity.Inputs[LKP Current version_NoMatch_DC New member validity]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn dataType="dbDate" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[EffectiveFromDate]" name="EffectiveFromDate" refId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[EffectiveFromDate]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property containsID="true" dataType="System.String" description="Derived Column Expression" name="Expression">#{Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[SnapshotDate]}</property>
+                        <property containsID="true" dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">SnapshotDate</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn dataType="dbDate" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[EffectiveToDate]" name="EffectiveToDate" refId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[EffectiveToDate]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.String" description="Derived Column Expression" name="Expression">(DT_DBDATE)"9999-12-31"</property>
+                        <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">(DT_DBDATE)"9999-12-31"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn dataType="bool" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[IsCurrent]" name="IsCurrent" refId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[IsCurrent]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.String" description="Derived Column Expression" name="Expression">TRUE</property>
+                        <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">TRUE</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[LoadRunId]" name="LoadRunId" refId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[LoadRunId]" truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property dataType="System.String" description="Derived Column Expression" name="Expression">@[User::RunId]</property>
+                        <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[User::RunId]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                </output>
+                <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Error]" synchronousInputId="Package\DFT Detect new and changed consents\DC New member validity.Inputs[LKP Current version_NoMatch_DC New member validity]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Error].Columns[ErrorCode]" specialFlags="1" />
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Error].Columns[ErrorColumn]" specialFlags="2" />
+                  </outputColumns>
+                </output>
+              </outputs>
+            </component>
+            <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="RC New members" refId="Package\DFT Detect new and changed consents\RC New members">
+              <inputs>
+                <input hasSideEffects="true" name="DC New member validity_Output_RC New members" refId="Package\DFT Detect new and changed consents\RC New members.Inputs[DC New member validity_Output_RC New members]">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output name="Output" refId="Package\DFT Detect new and changed consents\RC New members.Outputs[Output]" synchronousInputId="Package\DFT Detect new and changed consents\RC New members.Inputs[DC New member validity_Output_RC New members]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::NewMembers</property>
+              </properties>
+            </component>
+            <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="DST dw DimConsent new members" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members" usesDispositions="true" version="4">
+              <connections>
+                <connection connectionManagerID="{AF2ABEFD-3EFA-48A4-AA3F-E9BCCB979FC8}:external" connectionManagerRefId="Package.ConnectionManagers[LyraDW_SSIS]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Connections[OleDbConnection]" />
+              </connections>
+              <inputs>
+                <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="RC New members_Output_DST dw DimConsent new members" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members]">
+                  <externalMetadataColumns isUsed="True">
+                    <externalMetadataColumn dataType="i4" name="ConsentKey" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[ConsentKey]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="20" name="EmployeeNaturalKey" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[EmployeeNaturalKey]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="5" name="CountryCode" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[CountryCode]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="50" name="ConsentType" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[ConsentType]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="20" name="ConsentStatus" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[ConsentStatus]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="30" name="ConsentChannel" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[ConsentChannel]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="100" name="ChangeReason" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[ChangeReason]" />
+                    <externalMetadataColumn codePage="1252" dataType="str" length="40" name="RowHash" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[RowHash]" />
+                    <externalMetadataColumn dataType="dbDate" name="EffectiveFromDate" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[EffectiveFromDate]" />
+                    <externalMetadataColumn dataType="dbDate" name="EffectiveToDate" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[EffectiveToDate]" />
+                    <externalMetadataColumn dataType="bool" name="IsCurrent" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[IsCurrent]" />
+                    <externalMetadataColumn dataType="i4" name="LoadRunId" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[LoadRunId]" />
+                  </externalMetadataColumns>
+                  <inputColumns>
+                    <inputColumn cachedDataType="dbDate" cachedName="EffectiveFromDate" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[EffectiveFromDate]" lineageId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[EffectiveFromDate]" name="" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].Columns[EffectiveFromDate]" />
+                    <inputColumn cachedDataType="dbDate" cachedName="EffectiveToDate" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[EffectiveToDate]" lineageId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[EffectiveToDate]" name="" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].Columns[EffectiveToDate]" />
+                    <inputColumn cachedDataType="bool" cachedName="IsCurrent" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[IsCurrent]" lineageId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[IsCurrent]" name="" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].Columns[IsCurrent]" />
+                    <inputColumn cachedDataType="i4" cachedName="LoadRunId" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[LoadRunId]" lineageId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output].Columns[LoadRunId]" name="" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].Columns[LoadRunId]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="20" cachedName="EmployeeNaturalKey" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[EmployeeNaturalKey]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[EmployeeNaturalKey]" name="" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].Columns[EmployeeNaturalKey]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="5" cachedName="CountryCode" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[CountryCode]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[CountryCode]" name="" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].Columns[CountryCode]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="50" cachedName="ConsentType" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[ConsentType]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentType]" name="" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].Columns[ConsentType]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="20" cachedName="ConsentStatus" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[ConsentStatus]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentStatus]" name="" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].Columns[ConsentStatus]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="30" cachedName="ConsentChannel" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[ConsentChannel]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ConsentChannel]" name="" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].Columns[ConsentChannel]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="100" cachedName="ChangeReason" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[ChangeReason]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[ChangeReason]" name="" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].Columns[ChangeReason]" />
+                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="40" cachedName="RowHash" externalMetadataColumnId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].ExternalColumns[RowHash]" lineageId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output].Columns[RowHash]" name="" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members].Columns[RowHash]" />
+                  </inputColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Outputs[Error]" synchronousInputId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members]">
+                  <externalMetadataColumns />
+                  <outputColumns>
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Outputs[Error].Columns[ErrorCode]" specialFlags="1" />
+                    <outputColumn dataType="i4" lineageId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Outputs[Error].Columns[ErrorColumn]" specialFlags="2" />
+                  </outputColumns>
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">[dw].[DimConsent]</property>
+                <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable" />
+                <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor" />
+                <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode">3</property>
+                <property dataType="System.Boolean" description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on." name="FastLoadKeepIdentity">false</property>
+                <property dataType="System.Boolean" description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on." name="FastLoadKeepNulls">false</property>
+                <property dataType="System.String" description="Specifies options to be used with fast load.  Applies only if fast load is turned on." name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property dataType="System.Int32" description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on." name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+            </component>
+          </components>
+          <paths>
+            <path endId="Package\DFT Detect new and changed consents\LKP Current version.Inputs[SRC snapshot with attribute hash_Output_LKP Current version]" name="SRC snapshot with attribute hash_Output_LKP Current version" refId="Package\DFT Detect new and changed consents.Paths[SRC snapshot with attribute hash_Output_LKP Current version]" startId="Package\DFT Detect new and changed consents\SRC snapshot with attribute hash.Outputs[Output]" />
+            <path endId="Package\DFT Detect new and changed consents\DC New member validity.Inputs[LKP Current version_NoMatch_DC New member validity]" name="LKP Current version_NoMatch_DC New member validity" refId="Package\DFT Detect new and changed consents.Paths[LKP Current version_NoMatch_DC New member validity]" startId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[NoMatch]" />
+            <path endId="Package\DFT Detect new and changed consents\RC New members.Inputs[DC New member validity_Output_RC New members]" name="DC New member validity_Output_RC New members" refId="Package\DFT Detect new and changed consents.Paths[DC New member validity_Output_RC New members]" startId="Package\DFT Detect new and changed consents\DC New member validity.Outputs[Output]" />
+            <path endId="Package\DFT Detect new and changed consents\DST dw DimConsent new members.Inputs[RC New members_Output_DST dw DimConsent new members]" name="RC New members_Output_DST dw DimConsent new members" refId="Package\DFT Detect new and changed consents.Paths[RC New members_Output_DST dw DimConsent new members]" startId="Package\DFT Detect new and changed consents\RC New members.Outputs[Output]" />
+            <path endId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Inputs[LKP Current version_Match_CSPL Changed or unchanged]" name="LKP Current version_Match_CSPL Changed or unchanged" refId="Package\DFT Detect new and changed consents.Paths[LKP Current version_Match_CSPL Changed or unchanged]" startId="Package\DFT Detect new and changed consents\LKP Current version.Outputs[Match]" />
+            <path endId="Package\DFT Detect new and changed consents\RC Changed.Inputs[CSPL Changed or unchanged_Changed_RC Changed]" name="CSPL Changed or unchanged_Changed_RC Changed" refId="Package\DFT Detect new and changed consents.Paths[CSPL Changed or unchanged_Changed_RC Changed]" startId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Outputs[Changed]" />
+            <path endId="Package\DFT Detect new and changed consents\DST stg ConsentChanged.Inputs[RC Changed_Output_DST stg ConsentChanged]" name="RC Changed_Output_DST stg ConsentChanged" refId="Package\DFT Detect new and changed consents.Paths[RC Changed_Output_DST stg ConsentChanged]" startId="Package\DFT Detect new and changed consents\RC Changed.Outputs[Output]" />
+            <path endId="Package\DFT Detect new and changed consents\RC Unchanged.Inputs[CSPL Changed or unchanged_Default_RC Unchanged]" name="CSPL Changed or unchanged_Default_RC Unchanged" refId="Package\DFT Detect new and changed consents.Paths[CSPL Changed or unchanged_Default_RC Unchanged]" startId="Package\DFT Detect new and changed consents\CSPL Changed or unchanged.Outputs[Default]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{367FA7AD-0B6A-402F-A1E6-401BECE98CF3}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Expire changed versions and insert new versions" DTS:refId="Package\SQL Expire changed versions and insert new versions" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="LyraDW_SSIS" SQLTask:SqlStatementSource="&#xA;SET XACT_ABORT ON;&#xA;BEGIN TRANSACTION;&#xA;UPDATE d&#xA;   SET EffectiveToDate = DATEADD(day, -1, c.SnapshotDate),&#xA;       IsCurrent = 0&#xA;FROM dw.DimConsent d&#xA;JOIN stg.ConsentChanged c ON c.ConsentKey = d.ConsentKey&#xA;WHERE d.IsCurrent = 1;&#xA;&#xA;INSERT INTO dw.DimConsent (EmployeeNaturalKey, CountryCode, ConsentType, ConsentStatus, ConsentChannel, ChangeReason,&#xA;                           RowHash, EffectiveFromDate, EffectiveToDate, IsCurrent, LoadRunId)&#xA;SELECT EmployeeNaturalKey, CountryCode, ConsentType, ConsentStatus, ConsentChannel, ChangeReason,&#xA;       RowHash, SnapshotDate, '9999-12-31', 1, ?&#xA;FROM stg.ConsentChanged;&#xA;COMMIT TRANSACTION;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::RunId" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="0" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExpressionTask" DTS:DTSID="{F4E2F8DA-4880-4160-BB1F-5AE49B41CD5F}" DTS:ExecutableType="Microsoft.ExpressionTask" DTS:LocaleID="-1" DTS:ObjectName="EXP Rows written _ new members + new versions" DTS:refId="Package\EXP Rows written _ new members + new versions" DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <ExpressionTask Expression="@[User::RowsWritten] = @[User::NewMembers] + @[User::ChangedRows]" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{DDB6CDFD-AB95-47CF-9894-9884167E8368}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Log run success" DTS:refId="Package\SQL Log run success" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="LyraDW_SSIS" SQLTask:SqlStatementSource="UPDATE etl.PackageRun SET EndTime = SYSDATETIME(), Status = 'Succeeded', RowsRead = ?, RowsWritten = ?, RowsRejected = 0, Message = CONCAT('snapshot ', ?, ': new members ', ?, ', new versions ', ?, ', unchanged ', ?) WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::RowsRead" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="0" />
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::RowsWritten" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="0" />
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="User::SnapshotDate" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="10" />
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::NewMembers" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="0" />
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::ChangedRows" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="0" />
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::UnchangedRows" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="0" />
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::RunId" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="6" SQLTask:ParameterSize="0" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{8CDA2183-6401-4611-B962-C72F42BAD763}" DTS:From="Package\SQL Log run start" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Log run start_To_SQL Resolve snapshot from parameters or etl_Config" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Log run start_To_SQL Resolve snapshot from parameters or etl_Config]" DTS:To="Package\SQL Resolve snapshot from parameters or etl_Config" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{1F1BB778-CFCF-49FA-84CE-8855F745A78D}" DTS:From="Package\SQL Resolve snapshot from parameters or etl_Config" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Resolve snapshot from parameters or etl_Config_To_SQL Truncate staging" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Resolve snapshot from parameters or etl_Config_To_SQL Truncate staging]" DTS:To="Package\SQL Truncate staging" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{7B6DABCA-AD8A-4429-B7E3-CBC934247223}" DTS:From="Package\SQL Truncate staging" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Truncate staging_To_DFT Stage snapshot" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Truncate staging_To_DFT Stage snapshot]" DTS:To="Package\DFT Stage snapshot" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{802B2080-6319-4076-8C0B-8A88964211A4}" DTS:From="Package\DFT Stage snapshot" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_DFT Stage snapshot_To_DFT Detect new and changed consents" DTS:refId="Package.PrecedenceConstraints[Constraint_DFT Stage snapshot_To_DFT Detect new and changed consents]" DTS:To="Package\DFT Detect new and changed consents" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{81349F23-3CFA-4D27-8CF4-752BEE945CAB}" DTS:From="Package\DFT Detect new and changed consents" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_DFT Detect new and changed consents_To_SQL Expire changed versions and insert new versions" DTS:refId="Package.PrecedenceConstraints[Constraint_DFT Detect new and changed consents_To_SQL Expire changed versions and insert new versions]" DTS:To="Package\SQL Expire changed versions and insert new versions" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{6BD4D417-5B75-4CF6-9555-493694A4C86D}" DTS:From="Package\SQL Expire changed versions and insert new versions" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Expire changed versions and insert new versions_To_EXP Rows written _ new members + new versions" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Expire changed versions and insert new versions_To_EXP Rows written _ new members + new versions]" DTS:To="Package\EXP Rows written _ new members + new versions" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{0FCAEEC0-92FC-4DD6-8288-BA5707551FAE}" DTS:From="Package\EXP Rows written _ new members + new versions" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_EXP Rows written _ new members + new versions_To_SQL Log run success" DTS:refId="Package.PrecedenceConstraints[Constraint_EXP Rows written _ new members + new versions_To_SQL Log run success]" DTS:To="Package\SQL Log run success" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler DTS:CreationName="OnError" DTS:DTSID="{C63BF49D-1518-48B2-9B5F-6AD8A055F422}" DTS:EventID="0" DTS:EventName="OnError" DTS:LocaleID="-1" DTS:refId="Package.EventHandlers[OnError]">
+      <DTS:Variables>
+        <DTS:Variable DTS:CreationName="" DTS:Description="The propagate property of the event" DTS:DTSID="{49E6B128-5EE0-42CA-9987-390C84F41074}" DTS:IncludeInDebugDump="6789" DTS:Namespace="System" DTS:ObjectName="Propagate">
+          <DTS:VariableValue DTS:DataType="11">True</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{BF045BD2-1E34-4C42-ABCB-2FA932D28999}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Log run failure" DTS:refId="Package.EventHandlers[OnError]\SQL Log run failure" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData SQLTask:Connection="LyraDW_SSIS" SQLTask:SqlStatementSource="UPDATE etl.PackageRun SET EndTime = SYSDATETIME(), Status = 'Failed', Message = LEFT(CONCAT(Message, CASE WHEN Message IS NULL THEN '' ELSE ' | ' END, ?), 4000) WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::ErrorDescription" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="4000" />
+              <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::RunId" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="0" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+</DTS:Executable>

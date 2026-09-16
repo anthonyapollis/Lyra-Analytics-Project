@@ -1,0 +1,216 @@
+<#@ template language="C#" hostspecific="true" #>
+<#
+/*
+  Lyra Wellbeing - SCD Type 2 load of the consent dimension, generated from Biml.
+
+    LYR_ConsentSCD2
+      1. resolve the snapshot file and date (package parameters, else etl.Config)
+      2. stage the snapshot file                         -> stg.ConsentSnapshot
+      3. hash the tracked attributes and look up the current version on (EmployeeNaturalKey, ConsentType)
+           no match                -> insert as a new member (effective from the snapshot date)
+           match, hash differs     -> stg.ConsentChanged
+           match, hash equal       -> counted, nothing written
+      4. one transaction: expire changed versions (effective to = snapshot date - 1) and insert the new versions
+
+  Re-running the same snapshot is a no-op: every row then matches its current version.
+*/
+var target = "LyraDW_SSIS";
+#>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+  <Connections>
+    <OleDbConnection Name="<#= target #>" ConnectionString="Data Source=localhost;Initial Catalog=<#= target #>;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+    <FlatFileConnection Name="FF_ConsentSnapshot" FilePath="C:\Lyra\data\consent_snapshot.csv" FileFormat="FFF_ConsentSnapshot" />
+  </Connections>
+
+  <FileFormats>
+    <FlatFileFormat Name="FFF_ConsentSnapshot" CodePage="1252" IsUnicode="false" ColumnNamesInFirstDataRow="true" RowDelimiter="CRLF" TextQualifier="&quot;">
+      <Columns>
+        <Column Name="EmployeeNaturalKey" DataType="AnsiString" Length="20" Delimiter="Comma" />
+        <Column Name="CountryCode" DataType="AnsiString" Length="5" Delimiter="Comma" />
+        <Column Name="ConsentType" DataType="AnsiString" Length="50" Delimiter="Comma" />
+        <Column Name="ConsentStatus" DataType="AnsiString" Length="20" Delimiter="Comma" />
+        <Column Name="ConsentChannel" DataType="AnsiString" Length="30" Delimiter="Comma" />
+        <Column Name="ChangeReason" DataType="AnsiString" Length="100" Delimiter="CRLF" />
+      </Columns>
+    </FlatFileFormat>
+  </FileFormats>
+
+  <Packages>
+    <Package Name="LYR_ConsentSCD2" ConstraintMode="Linear" ProtectionLevel="DontSaveSensitive">
+      <Parameters>
+        <Parameter Name="ServerName" DataType="String">localhost</Parameter>
+        <Parameter Name="SnapshotFile" DataType="String"></Parameter>
+        <Parameter Name="SnapshotDate" DataType="String"></Parameter>
+      </Parameters>
+      <Connections>
+        <Connection ConnectionName="<#= target #>"><Expressions><Expression ExternalProperty="ServerName">@[$Package::ServerName]</Expression></Expressions></Connection>
+        <Connection ConnectionName="FF_ConsentSnapshot"><Expressions><Expression ExternalProperty="ConnectionString">@[User::SnapshotPath]</Expression></Expressions></Connection>
+      </Connections>
+      <Variables>
+        <Variable Name="RunId" DataType="Int32">0</Variable>
+        <Variable Name="RowsRead" DataType="Int32">0</Variable>
+        <Variable Name="NewMembers" DataType="Int32">0</Variable>
+        <Variable Name="ChangedRows" DataType="Int32">0</Variable>
+        <Variable Name="UnchangedRows" DataType="Int32">0</Variable>
+        <Variable Name="RowsWritten" DataType="Int32">0</Variable>
+        <Variable Name="SnapshotFileParam" DataType="String" EvaluateAsExpression="true">@[$Package::SnapshotFile]</Variable>
+        <Variable Name="SnapshotDateParam" DataType="String" EvaluateAsExpression="true">@[$Package::SnapshotDate]</Variable>
+        <Variable Name="SnapshotPath" DataType="String">C:\Lyra\data\consent_snapshot.csv</Variable>
+        <Variable Name="SnapshotDate" DataType="String">2024-01-01</Variable>
+      </Variables>
+      <Events>
+        <Event Name="OnError" EventType="OnError" ConstraintMode="Linear">
+          <Tasks>
+            <ExecuteSQL Name="SQL Log run failure" ConnectionName="<#= target #>">
+              <DirectInput>UPDATE etl.PackageRun SET EndTime = SYSDATETIME(), Status = 'Failed', Message = LEFT(CONCAT(Message, CASE WHEN Message IS NULL THEN '' ELSE ' | ' END, ?), 4000) WHERE RunId = ?;</DirectInput>
+              <Parameters>
+                <Parameter Name="0" VariableName="System.ErrorDescription" DataType="String" Length="4000" />
+                <Parameter Name="1" VariableName="User.RunId" DataType="Int32" />
+              </Parameters>
+            </ExecuteSQL>
+          </Tasks>
+        </Event>
+      </Events>
+      <Tasks>
+        <ExecuteSQL Name="SQL Log run start" ConnectionName="<#= target #>" ResultSet="SingleRow">
+          <DirectInput>SET NOCOUNT ON; INSERT INTO etl.PackageRun (PackageName, ExecutionGuid) OUTPUT inserted.RunId VALUES (?, ?);</DirectInput>
+          <Parameters>
+            <Parameter Name="0" VariableName="System.PackageName" DataType="String" Length="200" />
+            <Parameter Name="1" VariableName="System.ExecutionInstanceGUID" DataType="String" Length="50" />
+          </Parameters>
+          <Results><Result Name="0" VariableName="User.RunId" /></Results>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="SQL Resolve snapshot from parameters or etl.Config" ConnectionName="<#= target #>" ResultSet="SingleRow">
+          <DirectInput><![CDATA[
+SET NOCOUNT ON;
+DECLARE @file nvarchar(400) = COALESCE(NULLIF(?, N''), (SELECT ConfigValue FROM etl.Config WHERE ConfigKey = 'SnapshotFile'));
+DECLARE @date nvarchar(10)  = COALESCE(NULLIF(?, N''), (SELECT ConfigValue FROM etl.Config WHERE ConfigKey = 'SnapshotDate'));
+DECLARE @folder nvarchar(400) = (SELECT ConfigValue FROM etl.Config WHERE ConfigKey = 'DataFolder');
+IF @file IS NULL OR TRY_CONVERT(date, @date, 23) IS NULL
+    THROW 50010, 'Snapshot not configured: pass SnapshotFile and SnapshotDate (yyyy-MM-dd) or run ssis\run_ssis.ps1 -Snapshot.', 1;
+IF @file NOT LIKE '%\%' SET @file = CONCAT(@folder, '\', @file);
+SELECT @file AS SnapshotPath, @date AS SnapshotDate;]]></DirectInput>
+          <Parameters>
+            <Parameter Name="0" VariableName="User.SnapshotFileParam" DataType="String" Length="400" />
+            <Parameter Name="1" VariableName="User.SnapshotDateParam" DataType="String" Length="10" />
+          </Parameters>
+          <Results>
+            <Result Name="0" VariableName="User.SnapshotPath" />
+            <Result Name="1" VariableName="User.SnapshotDate" />
+          </Results>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="SQL Truncate staging" ConnectionName="<#= target #>">
+          <DirectInput>TRUNCATE TABLE stg.ConsentSnapshot; TRUNCATE TABLE stg.ConsentChanged;</DirectInput>
+        </ExecuteSQL>
+
+        <Dataflow Name="DFT Stage snapshot" DelayValidation="true">
+          <Transformations>
+            <FlatFileSource Name="FF consent snapshot" ConnectionName="FF_ConsentSnapshot" />
+            <DerivedColumns Name="DC Snapshot date">
+              <Columns>
+                <Column Name="SnapshotDate" DataType="Date">(DT_DBDATE)@[User::SnapshotDate]</Column>
+              </Columns>
+            </DerivedColumns>
+            <RowCount Name="RC Read" VariableName="User.RowsRead" />
+            <OleDbDestination Name="DST stg ConsentSnapshot" ConnectionName="<#= target #>" UseFastLoadIfAvailable="true" TableLock="true">
+              <ExternalTableOutput Table="[stg].[ConsentSnapshot]" />
+            </OleDbDestination>
+          </Transformations>
+        </Dataflow>
+
+        <Dataflow Name="DFT Detect new and changed consents">
+          <Transformations>
+            <OleDbSource Name="SRC snapshot with attribute hash" ConnectionName="<#= target #>">
+              <DirectInput><![CDATA[
+SELECT EmployeeNaturalKey, CountryCode, ConsentType, ConsentStatus, ConsentChannel, ChangeReason, SnapshotDate,
+       CAST(CONVERT(char(40), HASHBYTES('SHA1', CONCAT(CountryCode, '|', ConsentStatus, '|', ConsentChannel)), 2) AS char(40)) AS RowHash
+FROM stg.ConsentSnapshot;]]></DirectInput>
+            </OleDbSource>
+            <Lookup Name="LKP Current version" OleDbConnectionName="<#= target #>" NoMatchBehavior="RedirectRowsToNoMatchOutput" CacheMode="Full">
+              <DirectInput>SELECT EmployeeNaturalKey, ConsentType, ConsentKey, RowHash AS CurrentRowHash FROM dw.DimConsent WHERE IsCurrent = 1;</DirectInput>
+              <Inputs>
+                <Column SourceColumn="EmployeeNaturalKey" TargetColumn="EmployeeNaturalKey" />
+                <Column SourceColumn="ConsentType" TargetColumn="ConsentType" />
+              </Inputs>
+              <Outputs>
+                <Column SourceColumn="ConsentKey" />
+                <Column SourceColumn="CurrentRowHash" />
+              </Outputs>
+            </Lookup>
+
+            <!-- new business key: first version -->
+            <DerivedColumns Name="DC New member validity">
+              <InputPath OutputPathName="LKP Current version.NoMatch" />
+              <Columns>
+                <Column Name="EffectiveFromDate" DataType="Date">SnapshotDate</Column>
+                <Column Name="EffectiveToDate" DataType="Date">(DT_DBDATE)"9999-12-31"</Column>
+                <Column Name="IsCurrent" DataType="Boolean">TRUE</Column>
+                <Column Name="LoadRunId" DataType="Int32">@[User::RunId]</Column>
+              </Columns>
+            </DerivedColumns>
+            <RowCount Name="RC New members" VariableName="User.NewMembers" />
+            <OleDbDestination Name="DST dw DimConsent new members" ConnectionName="<#= target #>" UseFastLoadIfAvailable="true">
+              <ExternalTableOutput Table="[dw].[DimConsent]" />
+            </OleDbDestination>
+
+            <!-- existing business key: new version only when a tracked attribute changed -->
+            <ConditionalSplit Name="CSPL Changed or unchanged">
+              <InputPath OutputPathName="LKP Current version.Match" />
+              <OutputPaths>
+                <OutputPath Name="Changed"><Expression>RowHash != CurrentRowHash</Expression></OutputPath>
+              </OutputPaths>
+            </ConditionalSplit>
+            <RowCount Name="RC Changed" VariableName="User.ChangedRows">
+              <InputPath OutputPathName="CSPL Changed or unchanged.Changed" />
+            </RowCount>
+            <OleDbDestination Name="DST stg ConsentChanged" ConnectionName="<#= target #>" UseFastLoadIfAvailable="true" TableLock="true">
+              <ExternalTableOutput Table="[stg].[ConsentChanged]" />
+            </OleDbDestination>
+            <RowCount Name="RC Unchanged" VariableName="User.UnchangedRows">
+              <InputPath OutputPathName="CSPL Changed or unchanged.Default" />
+            </RowCount>
+          </Transformations>
+        </Dataflow>
+
+        <ExecuteSQL Name="SQL Expire changed versions and insert new versions" ConnectionName="<#= target #>">
+          <DirectInput><![CDATA[
+SET XACT_ABORT ON;
+BEGIN TRANSACTION;
+UPDATE d
+   SET EffectiveToDate = DATEADD(day, -1, c.SnapshotDate),
+       IsCurrent = 0
+FROM dw.DimConsent d
+JOIN stg.ConsentChanged c ON c.ConsentKey = d.ConsentKey
+WHERE d.IsCurrent = 1;
+
+INSERT INTO dw.DimConsent (EmployeeNaturalKey, CountryCode, ConsentType, ConsentStatus, ConsentChannel, ChangeReason,
+                           RowHash, EffectiveFromDate, EffectiveToDate, IsCurrent, LoadRunId)
+SELECT EmployeeNaturalKey, CountryCode, ConsentType, ConsentStatus, ConsentChannel, ChangeReason,
+       RowHash, SnapshotDate, '9999-12-31', 1, ?
+FROM stg.ConsentChanged;
+COMMIT TRANSACTION;]]></DirectInput>
+          <Parameters>
+            <Parameter Name="0" VariableName="User.RunId" DataType="Int32" />
+          </Parameters>
+        </ExecuteSQL>
+
+        <Expression Name="EXP Rows written = new members + new versions" Expression="@[User::RowsWritten] = @[User::NewMembers] + @[User::ChangedRows]" />
+
+        <ExecuteSQL Name="SQL Log run success" ConnectionName="<#= target #>">
+          <DirectInput>UPDATE etl.PackageRun SET EndTime = SYSDATETIME(), Status = 'Succeeded', RowsRead = ?, RowsWritten = ?, RowsRejected = 0, Message = CONCAT('snapshot ', ?, ': new members ', ?, ', new versions ', ?, ', unchanged ', ?) WHERE RunId = ?;</DirectInput>
+          <Parameters>
+            <Parameter Name="0" VariableName="User.RowsRead" DataType="Int32" />
+            <Parameter Name="1" VariableName="User.RowsWritten" DataType="Int32" />
+            <Parameter Name="2" VariableName="User.SnapshotDate" DataType="String" Length="10" />
+            <Parameter Name="3" VariableName="User.NewMembers" DataType="Int32" />
+            <Parameter Name="4" VariableName="User.ChangedRows" DataType="Int32" />
+            <Parameter Name="5" VariableName="User.UnchangedRows" DataType="Int32" />
+            <Parameter Name="6" VariableName="User.RunId" DataType="Int32" />
+          </Parameters>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Biml>

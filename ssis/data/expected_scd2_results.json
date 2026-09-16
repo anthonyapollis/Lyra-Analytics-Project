@@ -1,0 +1,20 @@
+{
+  "after_day1": {
+    "dim_rows": 500,
+    "current_rows": 500,
+    "expired_rows": 0
+  },
+  "after_day2": {
+    "dim_rows": 605,
+    "current_rows": 550,
+    "expired_rows": 55,
+    "new_members": 50,
+    "new_versions": 55,
+    "unchanged": 445
+  },
+  "after_day2_rerun": {
+    "dim_rows": 605,
+    "new_members": 0,
+    "new_versions": 0
+  }
+}

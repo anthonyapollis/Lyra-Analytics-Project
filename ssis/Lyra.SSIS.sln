@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Lyra.SSIS", "Lyra.SSIS\Lyra.SSIS.dtproj", "{0E62A05A-7C26-41D8-8F99-C9BDB306B06C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E62A05A-7C26-41D8-8F99-C9BDB306B06C}.Development|Default.ActiveCfg = Development
+		{0E62A05A-7C26-41D8-8F99-C9BDB306B06C}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B50E466F-D57E-4A70-A4AC-9AD2AEC3BC5A}
+	EndGlobalSection
+EndGlobal

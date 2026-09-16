@@ -12,3 +12,9 @@ data/facts/FactMedicationSales.csv
 data/facts/FactPatientExperience.csv
 data/dimensions/DimConsent_SCD2.csv
 data/dimensions/DimEmployee_SCD2.csv
+
+# SSIS build outputs and local VS state
+ssis/**/bin/
+ssis/**/obj/
+ssis/**/*.dtproj.user
+ssis/.vs/

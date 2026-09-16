@@ -13,6 +13,11 @@ Designed for Lyra-style EAP (Employee Assistance Programme) reporting across cor
 
 </div>
 
+> **SCD Type 2 in SSIS.** The consent dimension's history is also maintained on SQL Server by an SSIS package
+> generated from Biml. It hashes the tracked attributes, looks up the current version, then expires and inserts
+> in one transaction. Tested with known day-1 and day-2 snapshots: 500 → 605 rows (550 current, 55 expired),
+> as predicted in advance, and rerunning the same snapshot changes nothing. See [`ssis/`](ssis/README.md).
+
 ---
 
 ## ⚡ At a Glance

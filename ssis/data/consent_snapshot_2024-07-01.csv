@@ -1,0 +1,551 @@
+EmployeeNaturalKey,CountryCode,ConsentType,ConsentStatus,ConsentChannel,ChangeReason
+EMP0000001867,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000001867,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000001867,US,Marketing,Granted,HR Upload,Initial Consent
+EMP0000001867,US,Research,Granted,HR Upload,Initial Consent
+EMP0000001867,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000022972,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000022972,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000022972,US,Marketing,Granted,HR Upload,Initial Consent
+EMP0000022972,US,Research,Declined,Web Portal,Initial Consent
+EMP0000022972,US,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000030084,CA,Analytics,Declined,HR Upload,Initial Consent
+EMP0000030084,CA,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000030084,CA,Marketing,Granted,HR Upload,Initial Consent
+EMP0000030084,CA,Research,Granted,Web Portal,Initial Consent
+EMP0000030084,CA,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000042078,ZA,Analytics,Granted,HR Upload,Initial Consent
+EMP0000042078,ZA,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000042078,ZA,Marketing,Granted,Mobile App,Initial Consent
+EMP0000042078,ZA,Research,Declined,HR Upload,Initial Consent
+EMP0000042078,ZA,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000047297,US,Analytics,Granted,HR Upload,Initial Consent
+EMP0000047297,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000047297,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000047297,US,Research,Withdrawn,Web Portal,Consent Withdrawn
+EMP0000047297,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000065222,UK,Analytics,Withdrawn,Web Portal,Consent Withdrawn
+EMP0000065222,UK,Data Sharing,Declined,Web Portal,Initial Consent
+EMP0000065222,UK,Marketing,Granted,HR Upload,Initial Consent
+EMP0000065222,UK,Research,Declined,Mobile App,Initial Consent
+EMP0000065222,UK,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000091567,US,Analytics,Withdrawn,HR Upload,Consent Withdrawn
+EMP0000091567,US,Data Sharing,Withdrawn,Web Portal,Consent Withdrawn
+EMP0000091567,US,Marketing,Granted,Mobile App,Channel Update
+EMP0000091567,US,Research,Declined,Mobile App,Initial Consent
+EMP0000091567,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000095669,US,Analytics,Withdrawn,HR Upload,Consent Withdrawn
+EMP0000095669,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000095669,US,Marketing,Granted,Web Portal,Initial Consent
+EMP0000095669,US,Research,Granted,HR Upload,Initial Consent
+EMP0000095669,US,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000107694,CA,Analytics,Granted,Web Portal,Initial Consent
+EMP0000107694,CA,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000107694,CA,Marketing,Granted,Call Centre,Initial Consent
+EMP0000107694,CA,Research,Granted,Mobile App,Initial Consent
+EMP0000107694,CA,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000122029,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000122029,US,Data Sharing,Granted,Call Centre,Consent Granted
+EMP0000122029,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000122029,US,Research,Granted,Web Portal,Initial Consent
+EMP0000122029,US,Service Delivery,Granted,Call Centre,Channel Update
+EMP0000159835,UK,Analytics,Granted,Mobile App,Initial Consent
+EMP0000159835,UK,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000159835,UK,Marketing,Granted,Web Portal,Channel Update
+EMP0000159835,UK,Research,Granted,HR Upload,Initial Consent
+EMP0000159835,UK,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000164927,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000164927,US,Data Sharing,Declined,Call Centre,Initial Consent
+EMP0000164927,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000164927,US,Research,Granted,Web Portal,Initial Consent
+EMP0000164927,US,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000165476,US,Analytics,Withdrawn,Call Centre,Consent Withdrawn
+EMP0000165476,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000165476,US,Marketing,Granted,Web Portal,Initial Consent
+EMP0000165476,US,Research,Withdrawn,Web Portal,Consent Withdrawn
+EMP0000165476,US,Service Delivery,Declined,Mobile App,Initial Consent
+EMP0000173739,UK,Analytics,Granted,Call Centre,Initial Consent
+EMP0000173739,UK,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000173739,UK,Marketing,Granted,Web Portal,Initial Consent
+EMP0000173739,UK,Research,Granted,Web Portal,Consent Granted
+EMP0000173739,UK,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000195309,US,Analytics,Granted,HR Upload,Initial Consent
+EMP0000195309,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000195309,US,Marketing,Declined,Call Centre,Initial Consent
+EMP0000195309,US,Research,Granted,Web Portal,Consent Granted
+EMP0000195309,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000196736,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000196736,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000196736,US,Marketing,Granted,HR Upload,Initial Consent
+EMP0000196736,US,Research,Granted,Web Portal,Initial Consent
+EMP0000196736,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000218099,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0000218099,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000218099,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000218099,US,Research,Granted,Call Centre,Initial Consent
+EMP0000218099,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000246521,US,Analytics,Granted,HR Upload,Initial Consent
+EMP0000246521,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000246521,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000246521,US,Research,Granted,Mobile App,Initial Consent
+EMP0000246521,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000264982,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000264982,US,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000264982,US,Marketing,Granted,HR Upload,Channel Update
+EMP0000264982,US,Research,Granted,HR Upload,Initial Consent
+EMP0000264982,US,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000268009,AU,Analytics,Granted,Mobile App,Employee Relocation
+EMP0000268009,UK,Data Sharing,Granted,Mobile App,Employee Relocation
+EMP0000268009,UK,Marketing,Granted,Mobile App,Employee Relocation
+EMP0000268009,UK,Research,Granted,Call Centre,Employee Relocation
+EMP0000268009,CA,Service Delivery,Granted,Call Centre,Employee Relocation
+EMP0000281665,CA,Analytics,Declined,Web Portal,Initial Consent
+EMP0000281665,CA,Data Sharing,Granted,Call Centre,Channel Update
+EMP0000281665,CA,Marketing,Declined,Mobile App,Initial Consent
+EMP0000281665,CA,Research,Granted,HR Upload,Initial Consent
+EMP0000281665,CA,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000292113,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000292113,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000292113,US,Marketing,Granted,Web Portal,Initial Consent
+EMP0000292113,US,Research,Granted,Web Portal,Initial Consent
+EMP0000292113,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000309629,AU,Analytics,Granted,Web Portal,Initial Consent
+EMP0000309629,AU,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000309629,AU,Marketing,Granted,HR Upload,Initial Consent
+EMP0000309629,AU,Research,Granted,Call Centre,Initial Consent
+EMP0000309629,AU,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000319313,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000319313,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000319313,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000319313,US,Research,Withdrawn,Web Portal,Consent Withdrawn
+EMP0000319313,US,Service Delivery,Withdrawn,Call Centre,Consent Withdrawn
+EMP0000320804,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0000320804,US,Data Sharing,Declined,Web Portal,Initial Consent
+EMP0000320804,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000320804,US,Research,Granted,Mobile App,Initial Consent
+EMP0000320804,US,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000328258,CA,Analytics,Granted,Web Portal,Initial Consent
+EMP0000328258,CA,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000328258,CA,Marketing,Granted,Mobile App,Initial Consent
+EMP0000328258,CA,Research,Withdrawn,Call Centre,Consent Withdrawn
+EMP0000328258,CA,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000343846,US,Analytics,Declined,Web Portal,Initial Consent
+EMP0000343846,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000343846,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000343846,US,Research,Declined,Mobile App,Initial Consent
+EMP0000343846,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000350127,US,Analytics,Granted,HR Upload,Initial Consent
+EMP0000350127,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000350127,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000350127,US,Research,Granted,Call Centre,Initial Consent
+EMP0000350127,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000352319,UK,Analytics,Granted,Web Portal,Initial Consent
+EMP0000352319,UK,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000352319,UK,Marketing,Granted,Call Centre,Initial Consent
+EMP0000352319,UK,Research,Granted,HR Upload,Initial Consent
+EMP0000352319,UK,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000360695,CA,Analytics,Granted,Web Portal,Initial Consent
+EMP0000360695,CA,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000360695,CA,Marketing,Granted,Mobile App,Initial Consent
+EMP0000360695,CA,Research,Granted,Web Portal,Initial Consent
+EMP0000360695,CA,Service Delivery,Declined,Call Centre,Initial Consent
+EMP0000361901,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000361901,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000361901,US,Marketing,Granted,HR Upload,Initial Consent
+EMP0000361901,US,Research,Withdrawn,Mobile App,Consent Withdrawn
+EMP0000361901,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000383922,CA,Analytics,Granted,HR Upload,Initial Consent
+EMP0000383922,CA,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000383922,CA,Marketing,Granted,Web Portal,Initial Consent
+EMP0000383922,CA,Research,Declined,Mobile App,Initial Consent
+EMP0000383922,CA,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000388449,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0000388449,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000388449,US,Marketing,Granted,Call Centre,Channel Update
+EMP0000388449,US,Research,Granted,HR Upload,Initial Consent
+EMP0000388449,US,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000390040,US,Analytics,Declined,Web Portal,Initial Consent
+EMP0000390040,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000390040,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000390040,US,Research,Granted,HR Upload,Initial Consent
+EMP0000390040,US,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000418479,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000418479,US,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000418479,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000418479,US,Research,Declined,Mobile App,Initial Consent
+EMP0000418479,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000432976,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000432976,US,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000432976,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000432976,US,Research,Granted,Call Centre,Initial Consent
+EMP0000432976,US,Service Delivery,Declined,HR Upload,Initial Consent
+EMP0000439719,US,Analytics,Granted,HR Upload,Initial Consent
+EMP0000439719,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000439719,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000439719,US,Research,Granted,Mobile App,Initial Consent
+EMP0000439719,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000441054,US,Analytics,Declined,Mobile App,Initial Consent
+EMP0000441054,US,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000441054,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000441054,US,Research,Granted,HR Upload,Initial Consent
+EMP0000441054,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000454666,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000454666,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000454666,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000454666,US,Research,Granted,Mobile App,Initial Consent
+EMP0000454666,US,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000458824,US,Analytics,Granted,HR Upload,Channel Update
+EMP0000458824,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000458824,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000458824,US,Research,Granted,HR Upload,Initial Consent
+EMP0000458824,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000461816,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000461816,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000461816,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000461816,US,Research,Granted,Mobile App,Initial Consent
+EMP0000461816,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000463115,UK,Analytics,Granted,Call Centre,Employee Relocation
+EMP0000463115,ZA,Data Sharing,Granted,HR Upload,Employee Relocation
+EMP0000463115,UK,Marketing,Granted,Web Portal,Employee Relocation
+EMP0000463115,UK,Research,Granted,Mobile App,Employee Relocation
+EMP0000463115,AU,Service Delivery,Granted,HR Upload,Employee Relocation
+EMP0000464823,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000464823,US,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000464823,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000464823,US,Research,Withdrawn,HR Upload,Consent Withdrawn
+EMP0000464823,US,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000465471,UK,Analytics,Granted,Web Portal,Initial Consent
+EMP0000465471,UK,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000465471,UK,Marketing,Declined,Web Portal,Initial Consent
+EMP0000465471,UK,Research,Granted,Mobile App,Initial Consent
+EMP0000465471,UK,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000477653,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000477653,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000477653,US,Marketing,Declined,Call Centre,Initial Consent
+EMP0000477653,US,Research,Granted,Web Portal,Initial Consent
+EMP0000477653,US,Service Delivery,Withdrawn,Mobile App,Consent Withdrawn
+EMP0000483458,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0000483458,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000483458,US,Marketing,Withdrawn,Mobile App,Consent Withdrawn
+EMP0000483458,US,Research,Granted,Web Portal,Initial Consent
+EMP0000483458,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000484144,ZA,Analytics,Granted,Mobile App,Initial Consent
+EMP0000484144,ZA,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000484144,ZA,Marketing,Granted,HR Upload,Initial Consent
+EMP0000484144,ZA,Research,Granted,Mobile App,Initial Consent
+EMP0000484144,ZA,Service Delivery,Declined,Mobile App,Initial Consent
+EMP0000489135,UK,Analytics,Granted,Call Centre,Initial Consent
+EMP0000489135,UK,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000489135,UK,Marketing,Granted,Mobile App,Initial Consent
+EMP0000489135,UK,Research,Granted,Mobile App,Initial Consent
+EMP0000489135,UK,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000500909,ZA,Analytics,Granted,Mobile App,Initial Consent
+EMP0000500909,ZA,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000500909,ZA,Marketing,Granted,Web Portal,Initial Consent
+EMP0000500909,ZA,Research,Granted,Mobile App,Initial Consent
+EMP0000500909,ZA,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000503422,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0000503422,US,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000503422,US,Marketing,Granted,Web Portal,Initial Consent
+EMP0000503422,US,Research,Granted,Call Centre,Initial Consent
+EMP0000503422,US,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000503581,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000503581,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000503581,US,Marketing,Granted,HR Upload,Initial Consent
+EMP0000503581,US,Research,Granted,Web Portal,Initial Consent
+EMP0000503581,US,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000537871,ZA,Analytics,Granted,Call Centre,Initial Consent
+EMP0000537871,ZA,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000537871,ZA,Marketing,Granted,Mobile App,Initial Consent
+EMP0000537871,ZA,Research,Granted,Call Centre,Initial Consent
+EMP0000537871,ZA,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000553203,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000553203,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000553203,US,Marketing,Granted,HR Upload,Initial Consent
+EMP0000553203,US,Research,Granted,Web Portal,Initial Consent
+EMP0000553203,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000553397,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000553397,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000553397,US,Marketing,Declined,Call Centre,Initial Consent
+EMP0000553397,US,Research,Granted,Web Portal,Initial Consent
+EMP0000553397,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000565290,CA,Analytics,Granted,Mobile App,Initial Consent
+EMP0000565290,CA,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000565290,CA,Marketing,Declined,Mobile App,Initial Consent
+EMP0000565290,CA,Research,Granted,Call Centre,Initial Consent
+EMP0000565290,CA,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000577526,ZA,Analytics,Granted,Mobile App,Initial Consent
+EMP0000577526,ZA,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000577526,ZA,Marketing,Granted,Mobile App,Initial Consent
+EMP0000577526,ZA,Research,Granted,Mobile App,Initial Consent
+EMP0000577526,ZA,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000583186,US,Analytics,Declined,HR Upload,Initial Consent
+EMP0000583186,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000583186,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000583186,US,Research,Granted,Mobile App,Initial Consent
+EMP0000583186,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000584172,UK,Analytics,Granted,Call Centre,Initial Consent
+EMP0000584172,UK,Data Sharing,Granted,Mobile App,Consent Granted
+EMP0000584172,UK,Marketing,Granted,Mobile App,Initial Consent
+EMP0000584172,UK,Research,Granted,Call Centre,Initial Consent
+EMP0000584172,UK,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000586053,UK,Analytics,Declined,Web Portal,Channel Update
+EMP0000586053,UK,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000586053,UK,Marketing,Withdrawn,HR Upload,Consent Withdrawn
+EMP0000586053,UK,Research,Granted,Web Portal,Initial Consent
+EMP0000586053,UK,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000629576,UK,Analytics,Withdrawn,HR Upload,Consent Withdrawn
+EMP0000629576,UK,Data Sharing,Declined,HR Upload,Channel Update
+EMP0000629576,UK,Marketing,Granted,HR Upload,Initial Consent
+EMP0000629576,UK,Research,Granted,Mobile App,Channel Update
+EMP0000629576,UK,Service Delivery,Withdrawn,Call Centre,Consent Withdrawn
+EMP0000630656,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000630656,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000630656,US,Marketing,Withdrawn,Call Centre,Consent Withdrawn
+EMP0000630656,US,Research,Granted,HR Upload,Initial Consent
+EMP0000630656,US,Service Delivery,Declined,Mobile App,Initial Consent
+EMP0000649246,US,Analytics,Withdrawn,Web Portal,Consent Withdrawn
+EMP0000649246,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000649246,US,Marketing,Granted,Web Portal,Channel Update
+EMP0000649246,US,Research,Withdrawn,Mobile App,Consent Withdrawn
+EMP0000649246,US,Service Delivery,Withdrawn,Web Portal,Consent Withdrawn
+EMP0000651227,AU,Analytics,Granted,Mobile App,Initial Consent
+EMP0000651227,AU,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000651227,AU,Marketing,Granted,Mobile App,Initial Consent
+EMP0000651227,AU,Research,Granted,Mobile App,Initial Consent
+EMP0000651227,AU,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000654437,UK,Analytics,Granted,Call Centre,Initial Consent
+EMP0000654437,UK,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000654437,UK,Marketing,Declined,HR Upload,Initial Consent
+EMP0000654437,UK,Research,Granted,Web Portal,Initial Consent
+EMP0000654437,UK,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000655214,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000655214,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000655214,US,Marketing,Declined,HR Upload,Initial Consent
+EMP0000655214,US,Research,Granted,Call Centre,Initial Consent
+EMP0000655214,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000661637,ZA,Analytics,Granted,Mobile App,Initial Consent
+EMP0000661637,ZA,Data Sharing,Declined,Call Centre,Initial Consent
+EMP0000661637,ZA,Marketing,Granted,Mobile App,Initial Consent
+EMP0000661637,ZA,Research,Granted,HR Upload,Initial Consent
+EMP0000661637,ZA,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000671640,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0000671640,US,Data Sharing,Withdrawn,Call Centre,Consent Withdrawn
+EMP0000671640,US,Marketing,Withdrawn,HR Upload,Consent Withdrawn
+EMP0000671640,US,Research,Granted,Call Centre,Initial Consent
+EMP0000671640,US,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000683024,UK,Analytics,Granted,HR Upload,Initial Consent
+EMP0000683024,UK,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000683024,UK,Marketing,Granted,Web Portal,Channel Update
+EMP0000683024,UK,Research,Granted,HR Upload,Initial Consent
+EMP0000683024,UK,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000685633,US,Analytics,Declined,HR Upload,Initial Consent
+EMP0000685633,US,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000685633,US,Marketing,Declined,Call Centre,Initial Consent
+EMP0000685633,US,Research,Granted,Mobile App,Initial Consent
+EMP0000685633,US,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000687878,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000687878,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000687878,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000687878,US,Research,Declined,Web Portal,Initial Consent
+EMP0000687878,US,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000688923,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000688923,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000688923,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000688923,US,Research,Granted,Call Centre,Initial Consent
+EMP0000688923,US,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000696229,AU,Analytics,Granted,Web Portal,Initial Consent
+EMP0000696229,AU,Data Sharing,Declined,Mobile App,Initial Consent
+EMP0000696229,AU,Marketing,Declined,HR Upload,Initial Consent
+EMP0000696229,AU,Research,Granted,Call Centre,Initial Consent
+EMP0000696229,AU,Service Delivery,Granted,Web Portal,Channel Update
+EMP0000696556,US,Analytics,Declined,Mobile App,Initial Consent
+EMP0000696556,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000696556,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000696556,US,Research,Granted,Mobile App,Initial Consent
+EMP0000696556,US,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000697078,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0000697078,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000697078,US,Marketing,Declined,Web Portal,Initial Consent
+EMP0000697078,US,Research,Granted,Call Centre,Initial Consent
+EMP0000697078,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000702887,US,Analytics,Granted,HR Upload,Initial Consent
+EMP0000702887,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000702887,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000702887,US,Research,Granted,Call Centre,Initial Consent
+EMP0000702887,US,Service Delivery,Granted,Call Centre,Channel Update
+EMP0000703464,ZA,Analytics,Granted,Call Centre,Initial Consent
+EMP0000703464,ZA,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000703464,ZA,Marketing,Granted,Web Portal,Initial Consent
+EMP0000703464,ZA,Research,Declined,Web Portal,Initial Consent
+EMP0000703464,ZA,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000711350,CA,Analytics,Granted,HR Upload,Initial Consent
+EMP0000711350,CA,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000711350,CA,Marketing,Granted,HR Upload,Initial Consent
+EMP0000711350,CA,Research,Granted,Call Centre,Initial Consent
+EMP0000711350,CA,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000711818,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000711818,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000711818,US,Marketing,Granted,Web Portal,Initial Consent
+EMP0000711818,US,Research,Granted,HR Upload,Initial Consent
+EMP0000711818,US,Service Delivery,Declined,Web Portal,Initial Consent
+EMP0000719677,AU,Analytics,Granted,Call Centre,Initial Consent
+EMP0000719677,AU,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000719677,AU,Marketing,Declined,Mobile App,Initial Consent
+EMP0000719677,AU,Research,Granted,Mobile App,Initial Consent
+EMP0000719677,AU,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000732391,ZA,Analytics,Granted,Mobile App,Initial Consent
+EMP0000732391,ZA,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000732391,ZA,Marketing,Granted,Mobile App,Initial Consent
+EMP0000732391,ZA,Research,Granted,Mobile App,Initial Consent
+EMP0000732391,ZA,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000738456,ZA,Analytics,Declined,HR Upload,Initial Consent
+EMP0000738456,ZA,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0000738456,ZA,Marketing,Granted,Web Portal,Initial Consent
+EMP0000738456,ZA,Research,Declined,Mobile App,Initial Consent
+EMP0000738456,ZA,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000796347,CA,Analytics,Granted,Web Portal,Initial Consent
+EMP0000796347,CA,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000796347,CA,Marketing,Granted,Mobile App,Initial Consent
+EMP0000796347,CA,Research,Granted,Mobile App,Initial Consent
+EMP0000796347,CA,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000799343,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0000799343,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000799343,US,Marketing,Declined,HR Upload,Initial Consent
+EMP0000799343,US,Research,Granted,HR Upload,Initial Consent
+EMP0000799343,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000801375,US,Analytics,Declined,Mobile App,Initial Consent
+EMP0000801375,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000801375,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000801375,US,Research,Granted,Call Centre,Initial Consent
+EMP0000801375,US,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000813677,ZA,Analytics,Granted,Web Portal,Initial Consent
+EMP0000813677,ZA,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000813677,ZA,Marketing,Granted,Web Portal,Initial Consent
+EMP0000813677,ZA,Research,Granted,Mobile App,Initial Consent
+EMP0000813677,ZA,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000819520,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000819520,US,Data Sharing,Declined,Web Portal,Initial Consent
+EMP0000819520,US,Marketing,Declined,Call Centre,Channel Update
+EMP0000819520,US,Research,Granted,HR Upload,Initial Consent
+EMP0000819520,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000827874,UK,Analytics,Granted,Call Centre,Initial Consent
+EMP0000827874,UK,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000827874,UK,Marketing,Granted,Mobile App,Initial Consent
+EMP0000827874,UK,Research,Withdrawn,Mobile App,Consent Withdrawn
+EMP0000827874,UK,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000837221,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000837221,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000837221,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000837221,US,Research,Granted,Call Centre,Initial Consent
+EMP0000837221,US,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000847095,US,Analytics,Granted,HR Upload,Initial Consent
+EMP0000847095,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000847095,US,Marketing,Granted,HR Upload,Initial Consent
+EMP0000847095,US,Research,Granted,HR Upload,Initial Consent
+EMP0000847095,US,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000853750,US,Analytics,Granted,Call Centre,Initial Consent
+EMP0000853750,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000853750,US,Marketing,Granted,Web Portal,Initial Consent
+EMP0000853750,US,Research,Granted,Call Centre,Initial Consent
+EMP0000853750,US,Service Delivery,Withdrawn,Web Portal,Consent Withdrawn
+EMP0000858131,ZA,Analytics,Granted,Call Centre,Initial Consent
+EMP0000858131,ZA,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000858131,ZA,Marketing,Granted,Web Portal,Initial Consent
+EMP0000858131,ZA,Research,Granted,Call Centre,Initial Consent
+EMP0000858131,ZA,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000860170,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0000860170,US,Data Sharing,Declined,Call Centre,Initial Consent
+EMP0000860170,US,Marketing,Granted,Web Portal,Initial Consent
+EMP0000860170,US,Research,Granted,Web Portal,Initial Consent
+EMP0000860170,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000878286,UK,Analytics,Granted,Web Portal,Initial Consent
+EMP0000878286,UK,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000878286,UK,Marketing,Granted,Web Portal,Initial Consent
+EMP0000878286,UK,Research,Granted,HR Upload,Initial Consent
+EMP0000878286,UK,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0000886361,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0000886361,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0000886361,US,Marketing,Granted,HR Upload,Initial Consent
+EMP0000886361,US,Research,Granted,Call Centre,Initial Consent
+EMP0000886361,US,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0000905564,UK,Analytics,Declined,Mobile App,Initial Consent
+EMP0000905564,UK,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000905564,UK,Marketing,Granted,HR Upload,Initial Consent
+EMP0000905564,UK,Research,Granted,Web Portal,Initial Consent
+EMP0000905564,UK,Service Delivery,Declined,Call Centre,Initial Consent
+EMP0000920307,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0000920307,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000920307,US,Marketing,Granted,Mobile App,Initial Consent
+EMP0000920307,US,Research,Granted,Call Centre,Initial Consent
+EMP0000920307,US,Service Delivery,Declined,Mobile App,Initial Consent
+EMP0000945199,US,Analytics,Granted,HR Upload,Initial Consent
+EMP0000945199,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000945199,US,Marketing,Granted,HR Upload,Initial Consent
+EMP0000945199,US,Research,Granted,Web Portal,Initial Consent
+EMP0000945199,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000969327,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000969327,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000969327,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000969327,US,Research,Granted,HR Upload,Initial Consent
+EMP0000969327,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0000973520,US,Analytics,Granted,Mobile App,Initial Consent
+EMP0000973520,US,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0000973520,US,Marketing,Granted,Web Portal,Initial Consent
+EMP0000973520,US,Research,Granted,Web Portal,Initial Consent
+EMP0000973520,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0000998807,US,Analytics,Withdrawn,HR Upload,Consent Withdrawn
+EMP0000998807,US,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0000998807,US,Marketing,Granted,Call Centre,Initial Consent
+EMP0000998807,US,Research,Granted,Call Centre,Initial Consent
+EMP0000998807,US,Service Delivery,Granted,HR Upload,Initial Consent
+EMP0009100000,UK,Analytics,Granted,Web Portal,Initial Consent
+EMP0009100000,UK,Data Sharing,Declined,Web Portal,Initial Consent
+EMP0009100000,UK,Marketing,Declined,Web Portal,Initial Consent
+EMP0009100000,UK,Research,Granted,Mobile App,Initial Consent
+EMP0009100000,UK,Service Delivery,Declined,Call Centre,Initial Consent
+EMP0009100001,ZA,Analytics,Granted,HR Upload,Initial Consent
+EMP0009100001,ZA,Data Sharing,Declined,Mobile App,Initial Consent
+EMP0009100001,ZA,Marketing,Granted,Web Portal,Initial Consent
+EMP0009100001,ZA,Research,Granted,Web Portal,Initial Consent
+EMP0009100001,ZA,Service Delivery,Declined,HR Upload,Initial Consent
+EMP0009100002,US,Analytics,Granted,Web Portal,Initial Consent
+EMP0009100002,US,Data Sharing,Declined,Mobile App,Initial Consent
+EMP0009100002,US,Marketing,Granted,Web Portal,Initial Consent
+EMP0009100002,US,Research,Declined,Web Portal,Initial Consent
+EMP0009100002,US,Service Delivery,Declined,Web Portal,Initial Consent
+EMP0009100003,US,Analytics,Declined,Web Portal,Initial Consent
+EMP0009100003,US,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0009100003,US,Marketing,Declined,Mobile App,Initial Consent
+EMP0009100003,US,Research,Granted,Web Portal,Initial Consent
+EMP0009100003,US,Service Delivery,Granted,Call Centre,Initial Consent
+EMP0009100004,CA,Analytics,Declined,HR Upload,Initial Consent
+EMP0009100004,CA,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0009100004,CA,Marketing,Declined,HR Upload,Initial Consent
+EMP0009100004,CA,Research,Granted,Call Centre,Initial Consent
+EMP0009100004,CA,Service Delivery,Declined,Web Portal,Initial Consent
+EMP0009100005,CA,Analytics,Granted,HR Upload,Initial Consent
+EMP0009100005,CA,Data Sharing,Granted,Call Centre,Initial Consent
+EMP0009100005,CA,Marketing,Granted,Call Centre,Initial Consent
+EMP0009100005,CA,Research,Granted,Call Centre,Initial Consent
+EMP0009100005,CA,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0009100006,CA,Analytics,Granted,Web Portal,Initial Consent
+EMP0009100006,CA,Data Sharing,Granted,Mobile App,Initial Consent
+EMP0009100006,CA,Marketing,Granted,HR Upload,Initial Consent
+EMP0009100006,CA,Research,Granted,Web Portal,Initial Consent
+EMP0009100006,CA,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0009100007,CA,Analytics,Declined,HR Upload,Initial Consent
+EMP0009100007,CA,Data Sharing,Declined,HR Upload,Initial Consent
+EMP0009100007,CA,Marketing,Granted,HR Upload,Initial Consent
+EMP0009100007,CA,Research,Declined,Mobile App,Initial Consent
+EMP0009100007,CA,Service Delivery,Granted,Mobile App,Initial Consent
+EMP0009100008,UK,Analytics,Declined,Call Centre,Initial Consent
+EMP0009100008,UK,Data Sharing,Granted,Web Portal,Initial Consent
+EMP0009100008,UK,Marketing,Granted,Mobile App,Initial Consent
+EMP0009100008,UK,Research,Granted,Call Centre,Initial Consent
+EMP0009100008,UK,Service Delivery,Granted,Web Portal,Initial Consent
+EMP0009100009,AU,Analytics,Granted,Mobile App,Initial Consent
+EMP0009100009,AU,Data Sharing,Granted,HR Upload,Initial Consent
+EMP0009100009,AU,Marketing,Granted,Web Portal,Initial Consent
+EMP0009100009,AU,Research,Granted,Web Portal,Initial Consent
+EMP0009100009,AU,Service Delivery,Declined,Mobile App,Initial Consent
