@@ -1,0 +1,44 @@
+table dim_medication
+	lineageTag: 51a22ecb-5419-426a-9e9c-5e725feeb997
+
+	column medication_key
+		dataType: int64
+		formatString: 0
+		lineageTag: ffb5cc48-49ac-4a92-bfd7-58b8ac7799cb
+		summarizeBy: none
+		sourceColumn: medication_key
+
+	column medication
+		dataType: string
+		lineageTag: 606e8f6a-a8e0-4c3f-93a4-9a434268a28f
+		summarizeBy: none
+		sourceColumn: medication
+
+	column therapeutic_class
+		dataType: string
+		lineageTag: 94f55e68-abb6-42c8-be5d-314b89d1b640
+		summarizeBy: none
+		sourceColumn: therapeutic_class
+
+	column strength
+		dataType: string
+		lineageTag: efcf668a-90a4-4a97-b0bc-99a6b8955a9d
+		summarizeBy: none
+		sourceColumn: strength
+
+	column mental_health_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f49b085-28a6-4125-bb79-cbc45420c363
+		summarizeBy: none
+		sourceColumn: mental_health_flag
+
+	partition dim_medication = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_medication.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

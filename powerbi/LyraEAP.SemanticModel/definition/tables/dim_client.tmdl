@@ -1,0 +1,63 @@
+table dim_client
+	lineageTag: 33eab702-f27d-4dcc-a7e4-cdec0963d9d0
+
+	column client_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 9dd6009c-5974-4f0a-8def-ffa0c9f905a6
+		summarizeBy: none
+		sourceColumn: client_key
+
+	column client
+		dataType: string
+		lineageTag: d7d49362-7b3a-4eae-bfa1-160e49cd334f
+		summarizeBy: none
+		sourceColumn: client
+
+	column industry
+		dataType: string
+		lineageTag: 71a1bed5-6ab7-4b47-83ff-f93b6af349cf
+		summarizeBy: none
+		sourceColumn: industry
+
+	column client_country_code
+		dataType: string
+		lineageTag: 97148b66-eb4c-4c43-ac81-7a21b68eef7e
+		summarizeBy: none
+		sourceColumn: client_country_code
+
+	column contract_package
+		dataType: string
+		lineageTag: 222909b3-f6d1-4437-8de2-726c084efc0b
+		summarizeBy: none
+		sourceColumn: contract_package
+
+	column contract_status
+		dataType: string
+		lineageTag: 3adb80ab-1178-4053-a9f2-406da16c64ea
+		summarizeBy: none
+		sourceColumn: contract_status
+
+	column contract_start
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 776f3303-0ce8-4388-bb94-e80541dc4ca8
+		summarizeBy: none
+		sourceColumn: contract_start
+
+	column contract_end
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 4e000d17-1911-4622-a614-421be2aceb9d
+		summarizeBy: none
+		sourceColumn: contract_end
+
+	partition dim_client = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_client.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

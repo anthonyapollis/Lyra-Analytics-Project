@@ -1,0 +1,50 @@
+table dim_counsellor
+	lineageTag: d20e1208-d052-4b35-b8ee-f2e823a316d3
+
+	column counsellor_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d7afdd2-5e1c-475f-bb66-731d960f3d12
+		summarizeBy: none
+		sourceColumn: counsellor_key
+
+	column counsellor
+		dataType: string
+		lineageTag: a4b27aec-8f4c-4ee8-b18b-21ca651adc9a
+		summarizeBy: none
+		sourceColumn: counsellor
+
+	column profession
+		dataType: string
+		lineageTag: 8b3aa465-8b63-46e5-bdb9-d1e697c188f3
+		summarizeBy: none
+		sourceColumn: profession
+
+	column primary_language
+		dataType: string
+		lineageTag: 4d8a4528-929b-4251-8ce2-2db814567308
+		summarizeBy: none
+		sourceColumn: primary_language
+
+	column specialisation
+		dataType: string
+		lineageTag: 1c442fe6-769f-4b59-ada0-0883f913a092
+		summarizeBy: none
+		sourceColumn: specialisation
+
+	column accredited_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: bd09832a-5b2b-4368-b083-e06ab2735be8
+		summarizeBy: none
+		sourceColumn: accredited_flag
+
+	partition dim_counsellor = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_counsellor.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

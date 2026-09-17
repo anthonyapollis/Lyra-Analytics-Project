@@ -1,0 +1,6 @@
+role 'Country Manager'
+	modelPermission: read
+
+	tablePermission dim_country = [country_code] IN CALCULATETABLE(VALUES(security_country_access[country_code]), security_country_access[user_email] = USERPRINCIPALNAME())
+
+	annotation PBI_Id = b8122f0ed10e48aaaa868f45b6b8a4bd

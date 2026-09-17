@@ -1,0 +1,57 @@
+table dq_check
+	lineageTag: c5aa822a-f7f6-4c05-a9d8-271cf6835db7
+
+	column check_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 6692eae9-ffb8-40fa-a0b7-77dd710d235e
+		summarizeBy: none
+		sourceColumn: check_order
+
+	column check_name
+		dataType: string
+		lineageTag: aee1598a-9ded-4465-a1dd-d24bf0ffeabb
+		summarizeBy: none
+		sourceColumn: check_name
+
+	column source_table
+		dataType: string
+		lineageTag: 9adb00cb-df83-4390-8d03-6adc5b8a3bb0
+		summarizeBy: none
+		sourceColumn: source_table
+
+	column affected_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: be469c15-d1d4-4d63-b3f3-7bb9b64f10cd
+		summarizeBy: sum
+		sourceColumn: affected_rows
+
+	column population_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: ad936aea-7fc4-4b2d-9a12-0b20fc68f661
+		summarizeBy: sum
+		sourceColumn: population_rows
+
+	column evidence
+		dataType: string
+		lineageTag: 2dd053ec-0baa-411c-8e06-b9ad59cb6eb4
+		summarizeBy: none
+		sourceColumn: evidence
+
+	column remediation
+		dataType: string
+		lineageTag: 7c3bb5bd-aaeb-499c-8b4b-35ab305bd7d6
+		summarizeBy: none
+		sourceColumn: remediation
+
+	partition dq_check = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dq_check.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

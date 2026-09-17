@@ -1,0 +1,163 @@
+table fact_session
+	lineageTag: de4c49a5-560c-41ed-bf6d-7b117a5de6c7
+
+	column session_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: cb245138-3913-45bd-ba8d-4196181131ba
+		summarizeBy: none
+		sourceColumn: session_key
+
+	column visit_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: b7c00692-041c-4054-8252-f527e3d0fbf5
+		summarizeBy: none
+		sourceColumn: visit_date
+
+	column employee_key
+		dataType: string
+		isHidden
+		lineageTag: 3198cb2e-9729-4ab5-b787-21aa89228bda
+		summarizeBy: none
+		sourceColumn: employee_key
+
+	column age
+		dataType: int64
+		formatString: 0
+		lineageTag: 46253483-d8b4-48b8-910c-5e27cbf89a44
+		summarizeBy: none
+		sourceColumn: age
+
+	column age_band
+		dataType: string
+		lineageTag: 06aaa739-15a2-4448-adf6-80d0f6ba73ef
+		summarizeBy: none
+		sourceColumn: age_band
+		sortByColumn: age_band_sort
+
+	column age_band_sort
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 3215f9da-711e-4c08-ac45-0bcf420ad9b7
+		summarizeBy: none
+		sourceColumn: age_band_sort
+
+	column gender
+		dataType: string
+		lineageTag: ac06d674-0d5e-47fa-bae1-7fffdab87b5a
+		summarizeBy: none
+		sourceColumn: gender
+
+	column country_code
+		dataType: string
+		lineageTag: b9fb7de8-f509-40d4-af2f-6449bf485db7
+		summarizeBy: none
+		sourceColumn: country_code
+
+	column client_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: e2f87afd-50f3-4c0a-b5f6-b10ef776a9e6
+		summarizeBy: none
+		sourceColumn: client_key
+
+	column facility_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: b65a0d43-ced4-4a88-8dd0-94e6fb6895a6
+		summarizeBy: none
+		sourceColumn: facility_key
+
+	column service_type_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: b9231ec4-5536-4020-87a6-edb53a822b00
+		summarizeBy: none
+		sourceColumn: service_type_key
+
+	column issue_category_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 87d256fc-b8f3-4fa8-b144-46fa6e74b050
+		summarizeBy: none
+		sourceColumn: issue_category_key
+
+	column counsellor_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 8718271f-dc03-47df-9922-997c960a319c
+		summarizeBy: none
+		sourceColumn: counsellor_key
+
+	column risk_level
+		dataType: string
+		lineageTag: d1f89e35-817e-4c1a-918f-0227142cb15d
+		summarizeBy: none
+		sourceColumn: risk_level
+
+	column duration_minutes
+		dataType: int64
+		formatString: 0
+		lineageTag: 23b842c0-b21b-4d7b-a8b7-93f23a314e20
+		summarizeBy: sum
+		sourceColumn: duration_minutes
+
+	column risk_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 81a507a6-931c-43b2-854f-ca075540a3b6
+		summarizeBy: none
+		sourceColumn: risk_score
+
+	column follow_up_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: ba0f0e0c-20ec-4517-8e1b-6746321834e2
+		summarizeBy: none
+		sourceColumn: follow_up_flag
+
+	column escalation_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 71e462b1-f076-410e-a56b-8e8de69ac5e9
+		summarizeBy: none
+		sourceColumn: escalation_flag
+
+	column resolved_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 30bd876f-c345-4631-b42a-8a6063ed217d
+		summarizeBy: none
+		sourceColumn: resolved_flag
+
+	column session_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b2ccc10-871a-4cce-b67b-82dcfcc485da
+		summarizeBy: sum
+		sourceColumn: session_count
+
+	column revenue_zar
+		dataType: double
+		formatString: "R"#,0
+		lineageTag: 96c51a9f-7a7c-4888-9dd1-06df230aec6f
+		summarizeBy: sum
+		sourceColumn: revenue_zar
+
+	partition fact_session = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\fact_session.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

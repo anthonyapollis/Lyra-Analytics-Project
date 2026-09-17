@@ -1,0 +1,16 @@
+{
+  "sessions": 668293,
+  "res_mental": 0.502834,
+  "res_other": 0.72175,
+  "mental_share": 0.480954,
+  "res_high": 0.449997,
+  "res_low": 0.749959,
+  "high_share": 0.445047,
+  "res_client_min": 0.610925,
+  "res_client_max": 0.626189,
+  "under18": 132426,
+  "complaint_rate": 0.31895,
+  "recommend_rate": 0.2048,
+  "avg_wait": 92.62055,
+  "mh_med_share": 0.151019
+}

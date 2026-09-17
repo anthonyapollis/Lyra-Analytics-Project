@@ -1,0 +1,76 @@
+table fact_medication
+	lineageTag: 771c305e-6215-4e73-9b4d-701020a7ab3b
+
+	column medication_sale_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 4b04ffa8-a705-4321-8bed-96aba140b0d6
+		summarizeBy: none
+		sourceColumn: medication_sale_key
+
+	column sale_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 831e3bf3-4543-49d4-8e41-65b5c132155d
+		summarizeBy: none
+		sourceColumn: sale_date
+
+	column country_code
+		dataType: string
+		lineageTag: e71cde90-e792-42ae-ac42-1bc103aa0b45
+		summarizeBy: none
+		sourceColumn: country_code
+
+	column client_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: dc14c7fb-1bc2-49ef-8983-5d27d2e5a667
+		summarizeBy: none
+		sourceColumn: client_key
+
+	column medication_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: c3454da4-ca13-462e-9e9e-5ec5fe607143
+		summarizeBy: none
+		sourceColumn: medication_key
+
+	column units
+		dataType: int64
+		formatString: 0
+		lineageTag: 064e9e1e-5a04-47dd-a884-f8d88e22b06c
+		summarizeBy: sum
+		sourceColumn: units
+
+	column sales_zar
+		dataType: double
+		formatString: "R"#,0
+		lineageTag: 1d16d980-0005-402a-bcc4-791e5a914ef7
+		summarizeBy: sum
+		sourceColumn: sales_zar
+
+	column prescription_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: fa654d7c-8af9-4544-bdd8-ede0fe595273
+		summarizeBy: none
+		sourceColumn: prescription_flag
+
+	column treatment_type
+		dataType: string
+		lineageTag: e18c20b7-9c1f-4b62-9547-d90b226f1604
+		summarizeBy: none
+		sourceColumn: treatment_type
+
+	partition fact_medication = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\fact_medication.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

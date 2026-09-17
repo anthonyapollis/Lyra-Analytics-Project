@@ -1,0 +1,37 @@
+table dim_service_type
+	lineageTag: 76875460-94a4-4644-84b7-c6fbe781774a
+
+	column service_type_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 98589425-5546-43c7-aebe-662d80ebf659
+		summarizeBy: none
+		sourceColumn: service_type_key
+
+	column service_type
+		dataType: string
+		lineageTag: f9a61870-4440-4028-9867-2816fdbecf6b
+		summarizeBy: none
+		sourceColumn: service_type
+
+	column service_category
+		dataType: string
+		lineageTag: 0e79e1aa-0cdf-48b4-aa29-0b2b43959a18
+		summarizeBy: none
+		sourceColumn: service_category
+
+	column delivery_channel
+		dataType: string
+		lineageTag: f93d134c-79c0-43ea-b6c6-217c32bee22b
+		summarizeBy: none
+		sourceColumn: delivery_channel
+
+	partition dim_service_type = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_service_type.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

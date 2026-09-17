@@ -1,0 +1,47 @@
+table dim_risk_level
+	lineageTag: c8597f2c-e1f7-4f74-bca0-effd004bdddd
+
+	column risk_level
+		dataType: string
+		lineageTag: fc45cf5f-b0ed-4eeb-8c1b-43b09847f05c
+		summarizeBy: none
+		sourceColumn: risk_level
+		sortByColumn: risk_sort
+
+	column risk_sort
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: db45831c-1cbd-4bb5-939b-ab75b1381d82
+		summarizeBy: none
+		sourceColumn: risk_sort
+
+	column score_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 09306536-f685-410a-8567-ec719b7819c8
+		summarizeBy: sum
+		sourceColumn: score_min
+
+	column score_max
+		dataType: int64
+		formatString: 0
+		lineageTag: 55ba5fb7-dc4d-4e48-be3c-633a3ea3f674
+		summarizeBy: sum
+		sourceColumn: score_max
+
+	column recommended_action
+		dataType: string
+		lineageTag: 6af2101e-392d-4abf-8490-ba18bf1c361f
+		summarizeBy: none
+		sourceColumn: recommended_action
+
+	partition dim_risk_level = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_risk_level.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

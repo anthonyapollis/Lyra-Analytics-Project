@@ -1,0 +1,97 @@
+table dim_date
+	lineageTag: 5cbec877-95fe-406e-8e3e-b15a66d7790d
+	dataCategory: Time
+
+	column calendar_date
+		dataType: dateTime
+		isKey
+		formatString: yyyy-mm-dd
+		lineageTag: 8c8144c2-577b-45f5-a79a-dd614e237682
+		summarizeBy: none
+		sourceColumn: calendar_date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 71e692d4-dae9-4233-a314-6d3273b1cd50
+		summarizeBy: none
+		sourceColumn: year
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 243aedf4-c5de-4d59-bc66-59b845a24f3b
+		summarizeBy: none
+		sourceColumn: quarter
+
+	column quarter_label
+		dataType: string
+		lineageTag: 6850b279-687d-4bb2-bc28-5b63dcf20960
+		summarizeBy: none
+		sourceColumn: quarter_label
+
+	column month_number
+		dataType: int64
+		formatString: 0
+		lineageTag: a31c3fb5-48dc-4276-bb8d-86fdfb18d3b1
+		summarizeBy: none
+		sourceColumn: month_number
+
+	column month_name
+		dataType: string
+		lineageTag: 227dabe0-1452-4ab5-91a8-b4614a9401a9
+		summarizeBy: none
+		sourceColumn: month_name
+		sortByColumn: month_number
+
+	column month_short
+		dataType: string
+		lineageTag: 86a3e50a-0443-484e-a6ff-038aac6ed134
+		summarizeBy: none
+		sourceColumn: month_short
+		sortByColumn: month_number
+
+	column month_start
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 4d23bc5c-d2ef-4395-8c90-c40c24e1942a
+		summarizeBy: none
+		sourceColumn: month_start
+
+	column year_month_sort
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 1d0b8d07-a28e-4938-9618-713c81a8880d
+		summarizeBy: none
+		sourceColumn: year_month_sort
+
+	column year_month
+		dataType: string
+		lineageTag: 3d11e1c8-f0f4-4aba-914c-3e310d3f3119
+		summarizeBy: none
+		sourceColumn: year_month
+		sortByColumn: year_month_sort
+
+	column day_name
+		dataType: string
+		lineageTag: 834aca89-78fd-4aba-826d-681fa208bbe0
+		summarizeBy: none
+		sourceColumn: day_name
+
+	column is_weekend
+		dataType: int64
+		formatString: 0
+		lineageTag: 186cd41b-0838-4ca1-bde2-9024dc96d9b8
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_date.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

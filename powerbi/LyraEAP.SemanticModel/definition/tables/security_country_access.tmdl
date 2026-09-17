@@ -1,0 +1,27 @@
+table security_country_access
+	lineageTag: ffe6b546-b709-47ce-bc43-27a332db5df8
+	isHidden
+
+	column user_email
+		dataType: string
+		isHidden
+		lineageTag: 082dc08c-c79a-4b91-b9ff-38814e669d50
+		summarizeBy: none
+		sourceColumn: user_email
+
+	column country_code
+		dataType: string
+		isHidden
+		lineageTag: a346a0d9-3226-4576-9861-aecf106ce3bf
+		summarizeBy: none
+		sourceColumn: country_code
+
+	partition security_country_access = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\security_country_access.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

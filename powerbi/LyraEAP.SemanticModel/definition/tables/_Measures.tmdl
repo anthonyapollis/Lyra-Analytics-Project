@@ -1,0 +1,237 @@
+table _Measures
+	lineageTag: 4b25770c-677a-40a2-a541-0054f9b2c48d
+
+	measure 'Sessions' = SUM(fact_session[session_count])
+		formatString: #,0
+		displayFolder: 01 Sessions
+		lineageTag: 6c71bc07-9adb-4a0b-bcb3-c4d6fd899f25
+
+	measure 'Employees Served' = DISTINCTCOUNT(fact_session[employee_key])
+		formatString: #,0
+		displayFolder: 01 Sessions
+		lineageTag: f04233b3-f0b8-45e9-a3ca-4a4dbe168f52
+
+	measure 'Sessions per Employee' = DIVIDE([Sessions], [Employees Served])
+		formatString: 0.00
+		displayFolder: 01 Sessions
+		lineageTag: 9880b919-a3a7-4278-865e-6ef7fce908fe
+
+	measure 'Revenue (ZAR)' = SUM(fact_session[revenue_zar])
+		formatString: "R"#,0
+		displayFolder: 01 Sessions
+		lineageTag: 69b0b196-7d0f-4c92-9250-5bcd7d1bbe37
+
+	measure 'Revenue per Session' = DIVIDE([Revenue (ZAR)], [Sessions])
+		formatString: "R"#,0
+		displayFolder: 01 Sessions
+		lineageTag: 4195042e-694f-48d0-93b2-7339269b28b4
+
+	measure 'Avg Session Minutes' = AVERAGE(fact_session[duration_minutes])
+		formatString: 0.0
+		displayFolder: 01 Sessions
+		lineageTag: bc255f37-ae08-4d6a-8112-730ee456417f
+
+	measure 'Sessions Prior Year' = CALCULATE([Sessions], SAMEPERIODLASTYEAR(dim_date[calendar_date]))
+		formatString: #,0
+		displayFolder: 01 Sessions
+		lineageTag: 9590b2eb-5b23-4622-986d-eb79ca19c221
+
+	measure 'Sessions YoY %' = IF(NOT ISBLANK([Sessions]), DIVIDE([Sessions] - [Sessions Prior Year], [Sessions Prior Year]))
+		formatString: 0.0%
+		displayFolder: 01 Sessions
+		lineageTag: 42814146-f8da-486b-864f-be27f21751e3
+
+	measure 'Avg Risk Score' = AVERAGE(fact_session[risk_score])
+		formatString: 0.0
+		displayFolder: 02 Clinical
+		lineageTag: 1a033400-6909-4033-9561-455a0728bad7
+
+	measure 'High/Critical Sessions' = CALCULATE([Sessions], fact_session[risk_level] IN {"High", "Critical"})
+		formatString: #,0
+		displayFolder: 02 Clinical
+		lineageTag: 411dbbaf-d95b-44d4-9157-6c5506edebc3
+
+	measure 'High/Critical Share' = DIVIDE([High/Critical Sessions], [Sessions])
+		formatString: 0.0%
+		displayFolder: 02 Clinical
+		lineageTag: 94e38641-1a14-44f5-beb2-bc9e91e1eaac
+
+	measure 'Escalations' = SUM(fact_session[escalation_flag])
+		formatString: #,0
+		displayFolder: 02 Clinical
+		lineageTag: fa3a182e-c064-46e8-9b6e-4fdc86d9710b
+
+	measure 'Escalation Rate' = DIVIDE([Escalations], [Sessions])
+		formatString: 0.0%
+		displayFolder: 02 Clinical
+		lineageTag: 2fd3bb6d-100c-4937-8f6a-5afb519f7846
+
+	measure 'Follow-ups Required' = SUM(fact_session[follow_up_flag])
+		formatString: #,0
+		displayFolder: 02 Clinical
+		lineageTag: 302b0578-1f84-4178-ba20-d3f1954bf1b1
+
+	measure 'Follow-up Rate' = DIVIDE([Follow-ups Required], [Sessions])
+		formatString: 0.0%
+		displayFolder: 02 Clinical
+		lineageTag: 80e6943d-3b3d-40ca-9694-da64affdddd7
+
+	measure 'Resolved Cases' = SUM(fact_session[resolved_flag])
+		formatString: #,0
+		displayFolder: 02 Clinical
+		lineageTag: 44009223-d5bd-4a76-b535-e9a6e9ce1162
+
+	measure 'Resolution Rate' = DIVIDE([Resolved Cases], [Sessions])
+		formatString: 0.0%
+		displayFolder: 02 Clinical
+		lineageTag: 4f848a7a-54f2-47e2-841b-24ff2460ff37
+
+	measure 'Unresolved High/Critical' = CALCULATE([Sessions] - [Resolved Cases], fact_session[risk_level] IN {"High", "Critical"})
+		formatString: #,0
+		displayFolder: 02 Clinical
+		lineageTag: 6502e079-d773-403b-aa50-5396ddc9cb25
+
+	measure 'Active Counsellors' = DISTINCTCOUNT(fact_session[counsellor_key])
+		formatString: #,0
+		displayFolder: 03 Capacity
+		lineageTag: e1ab78b1-15ac-4d5b-99bd-5ebcf0ebc13b
+
+	measure 'Sessions per Counsellor' = DIVIDE([Sessions], [Active Counsellors])
+		formatString: #,0
+		displayFolder: 03 Capacity
+		lineageTag: 4c5045eb-919c-47fe-abf1-d7d7d6988535
+
+	measure 'Facilities Used' = DISTINCTCOUNT(fact_session[facility_key])
+		formatString: #,0
+		displayFolder: 03 Capacity
+		lineageTag: e7638669-5f1d-4a7f-aafa-9f34b29a020b
+
+	measure 'Sessions per Facility' = DIVIDE([Sessions], [Facilities Used])
+		formatString: #,0
+		displayFolder: 03 Capacity
+		lineageTag: ffd74a41-d5b6-413c-92f0-e55529cbad60
+
+	measure 'Survey Responses' = COUNTROWS(fact_experience)
+		formatString: #,0
+		displayFolder: 04 Experience
+		lineageTag: 21721ffa-5673-4501-9694-9617f32b4f66
+
+	measure 'Avg Satisfaction' = AVERAGE(fact_experience[satisfaction_score])
+		formatString: 0.00
+		displayFolder: 04 Experience
+		lineageTag: da6c5fa2-3060-47ca-a17e-8c85a58923e0
+
+	measure 'Avg Staff Rating' = AVERAGE(fact_experience[staff_rating])
+		formatString: 0.00
+		displayFolder: 04 Experience
+		lineageTag: 9f5004cd-88e7-4f31-9bb7-cb43013d430a
+
+	measure 'Avg Speed Rating' = AVERAGE(fact_experience[speed_rating])
+		formatString: 0.00
+		displayFolder: 04 Experience
+		lineageTag: 7ad2f7c0-d553-4aef-b61e-ad77fe715ba9
+
+	measure 'Avg Wait Minutes' = AVERAGE(fact_experience[wait_minutes])
+		formatString: 0.0
+		displayFolder: 04 Experience
+		lineageTag: ee8852ce-bec2-4b6e-bec8-e81eb93cf9dc
+
+	measure 'Avg Improvement' = AVERAGE(fact_experience[improvement_score])
+		formatString: 0.00
+		displayFolder: 04 Experience
+		lineageTag: fa27e35f-3d82-4b3a-a23c-1cc35540cdb3
+
+	measure 'Would Recommend Rate' = AVERAGE(fact_experience[would_recommend_flag])
+		formatString: 0.0%
+		displayFolder: 04 Experience
+		lineageTag: 2bbd5f82-bdd0-4744-b2a6-4b948efd27e4
+
+	measure 'Complaint Rate' = AVERAGE(fact_experience[complaint_flag])
+		formatString: 0.0%
+		displayFolder: 04 Experience
+		lineageTag: 4b0d7555-b015-469c-8858-eca442643a02
+
+	measure 'Net Promoter Score' = VAR n = [Survey Responses] VAR p = CALCULATE(COUNTROWS(fact_experience), fact_experience[recommend_score] >= 9) VAR d = CALCULATE(COUNTROWS(fact_experience), fact_experience[recommend_score] <= 6) RETURN DIVIDE(p - d, n) * 100
+		formatString: 0
+		displayFolder: 04 Experience
+		lineageTag: 4e712088-a3da-4725-94ca-10ad6c26186b
+
+	measure 'Medication Sales (ZAR)' = SUM(fact_medication[sales_zar])
+		formatString: "R"#,0
+		displayFolder: 05 Medication
+		lineageTag: 58964f4d-4232-4fe6-9157-8f94c8fbc27a
+
+	measure 'Units Sold' = SUM(fact_medication[units])
+		formatString: #,0
+		displayFolder: 05 Medication
+		lineageTag: 0e8e9f4f-5b44-4e39-a2fc-c2299d1d198a
+
+	measure 'Medication Transactions' = COUNTROWS(fact_medication)
+		formatString: #,0
+		displayFolder: 05 Medication
+		lineageTag: 192ae458-6a81-47c9-9d51-4a044cef947c
+
+	measure 'Mental Health Medication Sales' = CALCULATE([Medication Sales (ZAR)], dim_medication[mental_health_flag] = 1)
+		formatString: "R"#,0
+		displayFolder: 05 Medication
+		lineageTag: 4d7fd2a5-44d4-49d7-997c-acf93db931e6
+
+	measure 'Mental Health Medication Share' = DIVIDE([Mental Health Medication Sales], [Medication Sales (ZAR)])
+		formatString: 0.0%
+		displayFolder: 05 Medication
+		lineageTag: b2e16df0-57a0-4c85-8447-64a4f1da4bd9
+
+	measure 'Avg Sale Value' = DIVIDE([Medication Sales (ZAR)], [Medication Transactions])
+		formatString: "R"#,0
+		displayFolder: 05 Medication
+		lineageTag: 038e826e-6422-4d95-b39b-ee731def783f
+
+	measure 'DQ Checks' = COUNTROWS(dq_check)
+		formatString: #,0
+		displayFolder: 06 Data Quality
+		lineageTag: f154ee63-987d-42b9-8b5f-16c24cb2a858
+
+	measure 'DQ Affected Rows' = SUM(dq_check[affected_rows])
+		formatString: #,0
+		displayFolder: 06 Data Quality
+		lineageTag: 7a4794e5-1d9b-4917-9bc7-8dd50ffc0123
+
+	measure 'Under-18 Sessions' = CALCULATE([Sessions], fact_session[age] < 18)
+		formatString: #,0
+		displayFolder: 06 Data Quality
+		lineageTag: 32373d2e-71cd-4140-b3ac-dace25e8e501
+
+	measure 'Under-18 Share' = DIVIDE([Under-18 Sessions], [Sessions])
+		formatString: 0.0%
+		displayFolder: 06 Data Quality
+		lineageTag: 30aa8967-ae40-44ac-8dea-e49752405303
+
+	measure 'Facilities' = COUNTROWS(dim_facility)
+		formatString: #,0
+		displayFolder: 06 Data Quality
+		lineageTag: 9761a012-c17a-4727-b151-93e6262fc987
+
+	measure 'Province Mismatches' = CALCULATE(COUNTROWS(dim_facility), dim_facility[province_matches_city] = 0)
+		formatString: #,0
+		displayFolder: 06 Data Quality
+		lineageTag: 9b6d92b1-807a-4c26-87c7-970d621de462
+
+	measure 'Province Mismatch Rate' = DIVIDE([Province Mismatches], [Facilities])
+		formatString: 0.0%
+		displayFolder: 06 Data Quality
+		lineageTag: 82aec29e-c498-4161-823a-c95542aa604a
+
+	column _placeholder
+		isHidden
+		dataType: string
+		lineageTag: 7dd1010e-c795-48ef-a0f0-156c88730a99
+		summarizeBy: none
+		sourceColumn: _placeholder
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [_placeholder = text], {{""}})
+				in
+				    Source

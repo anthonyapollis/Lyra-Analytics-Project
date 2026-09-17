@@ -1,0 +1,37 @@
+table dim_issue_category
+	lineageTag: d5d610c4-3f45-4904-83d1-8c27a50f4046
+
+	column issue_category_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 82b24df6-33af-41c4-b54a-72db137ee9dd
+		summarizeBy: none
+		sourceColumn: issue_category_key
+
+	column issue_category
+		dataType: string
+		lineageTag: 6fb73e09-78f4-49f2-aa87-ef7004cd001b
+		summarizeBy: none
+		sourceColumn: issue_category
+
+	column issue_group
+		dataType: string
+		lineageTag: 106a3906-5581-4346-845f-a06a75f2f316
+		summarizeBy: none
+		sourceColumn: issue_group
+
+	column default_risk_level
+		dataType: string
+		lineageTag: 29613606-8c90-447e-8db7-ff40bf35a035
+		summarizeBy: none
+		sourceColumn: default_risk_level
+
+	partition dim_issue_category = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_issue_category.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

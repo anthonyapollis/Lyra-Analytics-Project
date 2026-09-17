@@ -1,0 +1,46 @@
+{
+  "name": "LyraEAP",
+  "dataColors": [
+    "#0077A3",
+    "#068F6A",
+    "#C98A12",
+    "#6D4BC2",
+    "#C8243A",
+    "#2F8FCE",
+    "#7A8B99",
+    "#3E7C59",
+    "#B5546B",
+    "#8A6D3B"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#0A2540",
+  "tableAccent": "#0077A3",
+  "good": "#068F6A",
+  "neutral": "#C98A12",
+  "bad": "#C8243A",
+  "maximum": "#C8243A",
+  "center": "#C98A12",
+  "minimum": "#068F6A",
+  "textClasses": {
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#0A2540"
+    },
+    "header": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#0A2540"
+    },
+    "label": {
+      "fontSize": 10,
+      "fontFace": "Segoe UI",
+      "color": "#5B6B7B"
+    },
+    "callout": {
+      "fontSize": 26,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#0077A3"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+table dim_facility
+	lineageTag: 26706a62-e95a-4685-bbb6-8fb711605f28
+
+	column facility_key
+		dataType: int64
+		formatString: 0
+		lineageTag: bb450eb4-5108-4da5-8481-55ad1937c588
+		summarizeBy: none
+		sourceColumn: facility_key
+
+	column facility
+		dataType: string
+		lineageTag: 506f7608-6c5b-499f-9588-86808b2ed351
+		summarizeBy: none
+		sourceColumn: facility
+
+	column facility_type
+		dataType: string
+		lineageTag: c33438ac-d871-48ba-90dc-87d35fa8a70e
+		summarizeBy: none
+		sourceColumn: facility_type
+
+	column site_category
+		dataType: string
+		lineageTag: 72624dd8-41e2-49e4-bc93-2be5a7162886
+		summarizeBy: none
+		sourceColumn: site_category
+
+	column facility_country_code
+		dataType: string
+		lineageTag: 7b2fac02-d4bf-4966-a922-9f3d611ed967
+		summarizeBy: none
+		sourceColumn: facility_country_code
+
+	column city
+		dataType: string
+		lineageTag: 5a589bda-c79d-4d4d-99ac-9b8dcd9a787a
+		summarizeBy: none
+		sourceColumn: city
+
+	column province
+		dataType: string
+		lineageTag: 26c2d61b-6d93-4cee-94db-83ba5208c595
+		summarizeBy: none
+		sourceColumn: province
+
+	column recorded_province
+		dataType: string
+		lineageTag: fa812966-2052-457d-8327-5e143fb0200f
+		summarizeBy: none
+		sourceColumn: recorded_province
+
+	column province_matches_city
+		dataType: int64
+		formatString: 0
+		lineageTag: f6b3a042-166a-4fcc-badd-adbbc57a4122
+		summarizeBy: sum
+		sourceColumn: province_matches_city
+
+	column active_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: fc0eda29-bb89-4063-aac4-f72cda4395d5
+		summarizeBy: none
+		sourceColumn: active_flag
+
+	partition dim_facility = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_facility.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

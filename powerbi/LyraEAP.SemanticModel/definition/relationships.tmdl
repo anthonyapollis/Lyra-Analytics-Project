@@ -1,0 +1,73 @@
+relationship 41271350-94ec-4027-9e2e-5bfad21cc5d6
+	fromColumn: fact_session.visit_date
+	toColumn: dim_date.calendar_date
+
+relationship 88c6e32a-004e-4f85-968d-01dd64221e19
+	fromColumn: fact_session.country_code
+	toColumn: dim_country.country_code
+
+relationship 091a99b7-37a7-481c-b47e-10f2ebeb5172
+	fromColumn: fact_session.client_key
+	toColumn: dim_client.client_key
+
+relationship 0bab0833-c216-4254-b7f7-4c827d7fc5b2
+	fromColumn: fact_session.facility_key
+	toColumn: dim_facility.facility_key
+
+relationship 3846b610-8df4-485e-9a4e-1a94c8596428
+	fromColumn: fact_session.service_type_key
+	toColumn: dim_service_type.service_type_key
+
+relationship 27dbf460-1a25-4ec7-9ea8-333edc409728
+	fromColumn: fact_session.issue_category_key
+	toColumn: dim_issue_category.issue_category_key
+
+relationship 0f91fa31-c7a9-4eff-8105-8af584fdaab1
+	fromColumn: fact_session.counsellor_key
+	toColumn: dim_counsellor.counsellor_key
+
+relationship 128428bc-791b-4bef-924f-89250a5ecf16
+	fromColumn: fact_session.risk_level
+	toColumn: dim_risk_level.risk_level
+
+relationship 47ce1d0a-d876-4408-9435-5bf3cff08633
+	fromColumn: fact_experience.feedback_date
+	toColumn: dim_date.calendar_date
+
+relationship 7d415e12-0898-4e22-809d-f95b08c81f81
+	fromColumn: fact_experience.country_code
+	toColumn: dim_country.country_code
+
+relationship 3bbb6c28-e3ea-47f1-90e2-0fcfb0ea8712
+	fromColumn: fact_experience.service_type_key
+	toColumn: dim_service_type.service_type_key
+
+relationship 3e6da1d4-1570-4d58-976c-14069e820c33
+	fromColumn: fact_experience.issue_category_key
+	toColumn: dim_issue_category.issue_category_key
+
+relationship 56d31a72-91f6-4703-b75e-e4c64c68c983
+	fromColumn: fact_medication.sale_date
+	toColumn: dim_date.calendar_date
+
+relationship fa98c1fc-165d-4759-9662-a91053790fa0
+	fromColumn: fact_medication.country_code
+	toColumn: dim_country.country_code
+
+relationship 710eaeb0-ea89-4cdb-a5fa-90dcbfd5379e
+	fromColumn: fact_medication.client_key
+	toColumn: dim_client.client_key
+
+relationship 48b106ba-38da-49b5-821f-df0dd7e45d56
+	fromColumn: fact_medication.medication_key
+	toColumn: dim_medication.medication_key
+
+relationship c7d5406e-02a7-40f5-82d7-b3b086aa9cb0
+	isActive: false
+	fromColumn: dim_client.client_country_code
+	toColumn: dim_country.country_code
+
+relationship bc5ab4b5-4e8b-42ea-a055-fdd318d479f5
+	isActive: false
+	fromColumn: dim_facility.facility_country_code
+	toColumn: dim_country.country_code

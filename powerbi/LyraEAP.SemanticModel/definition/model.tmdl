@@ -1,0 +1,27 @@
+model Model
+	culture: en-ZA
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-ZA
+
+	annotation __PBI_TimeIntelligenceEnabled = 0
+
+	annotation PBI_QueryOrder = ["DataFolder","_Measures","fact_session","fact_experience","fact_medication","dim_date","dim_country","dim_client","dim_facility","dim_service_type","dim_issue_category","dim_counsellor","dim_risk_level","dim_medication","dq_check","security_country_access"]
+
+ref table _Measures
+ref table fact_session
+ref table fact_experience
+ref table fact_medication
+ref table dim_date
+ref table dim_country
+ref table dim_client
+ref table dim_facility
+ref table dim_service_type
+ref table dim_issue_category
+ref table dim_counsellor
+ref table dim_risk_level
+ref table dim_medication
+ref table dq_check
+ref table security_country_access
+
+ref role 'Country Manager'

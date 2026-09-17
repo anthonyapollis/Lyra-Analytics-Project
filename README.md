@@ -71,6 +71,12 @@ DimDate ─┬─ FactCounsellingSessions ─── DimServiceType ─ DimIssueC
 
 ---
 
+## 📊 Power BI Report
+
+[`powerbi/`](powerbi/README.md) holds a generated Power BI project (PBIP). It has 8 pages: executive overview, clinical risk, clients, service delivery, patient experience, medication, data quality and recommendations. Behind them sit 44 DAX measures across three fact tables and a dynamic row-level-security role. Its measures were checked in Power BI Desktop against DuckDB over the same data.
+
+---
+
 ## 🗺 Facility Intelligence Map
 
 [`map.html`](map.html) is generated from the warehouse by `python scripts/build_facility_map.py` (edit `scripts/facility_map_template.html`, then rebuild). It aggregates all 668,293 sessions into a facility × year × client cube, so every figure on the page comes from the data.

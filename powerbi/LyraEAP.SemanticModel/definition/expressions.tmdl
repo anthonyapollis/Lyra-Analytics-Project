@@ -1,0 +1,4 @@
+expression DataFolder = "C:\Users\Anthony.DESKTOP-ES5HL78\Downloads\Lyra-Analytics-Project\powerbi\data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 0d19987a-40fc-4ca1-8c1b-049a5369ef4f
+
+	annotation PBI_ResultType = Text

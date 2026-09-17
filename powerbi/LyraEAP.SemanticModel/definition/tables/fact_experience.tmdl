@@ -1,0 +1,118 @@
+table fact_experience
+	lineageTag: e25d47ea-d31a-4d56-9699-8dafee38a7ad
+
+	column experience_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: d4ffc544-f5c6-4521-a1a5-f736af218a8b
+		summarizeBy: none
+		sourceColumn: experience_key
+
+	column feedback_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 44e8ffd8-5d59-4a10-8a29-4af73451ac45
+		summarizeBy: none
+		sourceColumn: feedback_date
+
+	column country_code
+		dataType: string
+		lineageTag: 7f3e9412-65f7-4f5f-8174-44a4c23f8665
+		summarizeBy: none
+		sourceColumn: country_code
+
+	column service_type_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: f04a4513-300b-4a79-8c89-e38821a420d3
+		summarizeBy: none
+		sourceColumn: service_type_key
+
+	column issue_category_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 4433ac54-9244-481e-af28-849a7c0a17b5
+		summarizeBy: none
+		sourceColumn: issue_category_key
+
+	column satisfaction_score
+		dataType: double
+		lineageTag: dfe4d715-66db-437f-b4db-4f89feb70534
+		summarizeBy: sum
+		sourceColumn: satisfaction_score
+
+	column recommend_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 481a3e5d-4cf0-4d59-8576-7ce7a3bd8016
+		summarizeBy: sum
+		sourceColumn: recommend_score
+
+	column staff_rating
+		dataType: int64
+		formatString: 0
+		lineageTag: 254d693a-ba44-4633-90cd-db65ec35ec1a
+		summarizeBy: sum
+		sourceColumn: staff_rating
+
+	column speed_rating
+		dataType: int64
+		formatString: 0
+		lineageTag: e148cac5-b68f-4160-93c5-8f9c841b2905
+		summarizeBy: sum
+		sourceColumn: speed_rating
+
+	column wait_minutes
+		dataType: int64
+		formatString: 0
+		lineageTag: 14f1fdf5-feb8-4877-9c1f-4d53c446e3eb
+		summarizeBy: sum
+		sourceColumn: wait_minutes
+
+	column outcome_before
+		dataType: int64
+		formatString: 0
+		lineageTag: aa13bf9f-9983-4371-a810-c2af5fe40ceb
+		summarizeBy: sum
+		sourceColumn: outcome_before
+
+	column outcome_after
+		dataType: int64
+		formatString: 0
+		lineageTag: f8012420-4e68-4c82-bd8b-c1d9a9345503
+		summarizeBy: sum
+		sourceColumn: outcome_after
+
+	column improvement_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 5eae4e22-6dc4-402d-9bd8-17d890dedf72
+		summarizeBy: sum
+		sourceColumn: improvement_score
+
+	column would_recommend_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: de3d109b-5049-49d8-9e21-ae0e42426016
+		summarizeBy: none
+		sourceColumn: would_recommend_flag
+
+	column complaint_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 27d750ce-fe4c-4dca-ad63-8bf0da12d4dd
+		summarizeBy: none
+		sourceColumn: complaint_flag
+
+	partition fact_experience = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\fact_experience.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

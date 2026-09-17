@@ -1,0 +1,42 @@
+table dim_country
+	lineageTag: cc1a4483-961a-4509-9510-bbbe7c0149be
+
+	column country_code
+		dataType: string
+		lineageTag: 8895c5f3-68ed-49ef-a621-17fd7677a2f6
+		summarizeBy: none
+		sourceColumn: country_code
+
+	column country
+		dataType: string
+		lineageTag: cdf017f0-3ddd-4674-b6d5-a91aa8fa9411
+		summarizeBy: none
+		sourceColumn: country
+
+	column region
+		dataType: string
+		lineageTag: d5459afe-2b2f-4098-a063-8cd5672cc96f
+		summarizeBy: none
+		sourceColumn: region
+
+	column currency_code
+		dataType: string
+		lineageTag: dbc6fe9c-81f6-4550-8c0d-9fec5d7d2cde
+		summarizeBy: none
+		sourceColumn: currency_code
+
+	column privacy_regime
+		dataType: string
+		lineageTag: 07cbf07b-7bbd-493c-be22-2562ec2da18f
+		summarizeBy: none
+		sourceColumn: privacy_regime
+
+	partition dim_country = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_country.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
