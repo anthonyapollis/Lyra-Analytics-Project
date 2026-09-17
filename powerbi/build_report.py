@@ -23,7 +23,7 @@ FINDINGS = json.loads((ROOT / "data" / "findings.json").read_text(encoding="utf-
 
 W, H = 1280, 720
 NAVY, TEAL, GREEN, AMBER, RED, PURPLE = "#0A2540", "#0077A3", "#068F6A", "#C98A12", "#C8243A", "#6D4BC2"
-SLATE, RULE, PAPER, CANVAS, TILE = "#5B6B7B", "#DCE3EA", "#FFFFFF", "#F3F6F9", "#FFFFFF"
+SLATE, RULE, PAPER, CANVAS = "#5B6B7B", "#DCE3EA", "#FFFFFF", "#F3F6F9"
 SERIES = [TEAL, GREEN, AMBER, PURPLE, RED, "#2F8FCE", "#7A8B99", "#3E7C59", "#B5546B", "#8A6D3B"]
 M = "_Measures"
 
@@ -54,6 +54,12 @@ def raw(v):
 
 def colour(hexstr):
     return {"solid": {"color": lit(hexstr)}}
+
+
+def tint(hexstr, strength=0.12):
+    """Blend a colour into white, so a KPI tile carries its accent without competing with the figure."""
+    rgb = [int(hexstr[i:i + 2], 16) for i in (1, 3, 5)]
+    return "#" + "".join(f"{round(255 - (255 - c) * strength):02X}" for c in rgb)
 
 
 def visual(vtype, x, y, w, h, title=None, projections=None, objects=None, accent=None, z=0):
@@ -95,7 +101,7 @@ def visual(vtype, x, y, w, h, title=None, projections=None, objects=None, accent
         objects.setdefault("legend", [{"properties": {"show": raw("true"), "position": lit("Bottom"), "fontSize": raw("9D")}}])
         objects.setdefault("labels", [{"properties": {"labelStyle": lit("Percent of total"), "fontSize": raw("9D")}}])
     if vtype == "card":
-        vc["background"] = [{"properties": {"color": colour(TILE), "show": raw("true"), "transparency": raw("0D")}}]
+        vc["background"] = [{"properties": {"color": colour(tint(accent or TEAL)), "show": raw("true"), "transparency": raw("0D")}}]
         vc["border"] = [{"properties": {"color": colour(accent or TEAL), "show": raw("true"), "radius": raw("6D")}}]
         vc["title"] = [{"properties": {"text": lit(title), "fontColor": colour(SLATE), "fontSize": raw("10D"),
                                        "fontFamily": lit("Segoe UI"), "alignment": lit("left"), "show": raw("true")}}]
@@ -108,7 +114,7 @@ def visual(vtype, x, y, w, h, title=None, projections=None, objects=None, accent
         objects.setdefault("values", [{"properties": {"fontSize": raw("9D"), "fontColor": colour(NAVY)}}])
     if vtype == "slicer":
         objects.setdefault("data", [{"properties": {"mode": lit("Dropdown")}}])
-        objects.setdefault("header", [{"properties": {"fontColor": colour(SLATE), "textSize": raw("9D")}}])
+        objects.setdefault("header", [{"properties": {"show": raw("false")}}])
 
     cfg = {"name": gid(),
            "layouts": [{"id": 0, "position": {"x": x, "y": y, "z": z, "width": w, "height": h}}],
@@ -139,7 +145,7 @@ ACT = {"fontSize": "10pt", "fontWeight": "bold", "color": GREEN}
 
 
 def header(title, subtitle, slicers=True):
-    v = [textbox(30, 12, 760, 40, [(title, BIG)]), textbox(30, 52, 760, 44, [(subtitle, SUB)])]
+    v = [textbox(30, 6, 780, 50, [(title, BIG)]), textbox(30, 56, 780, 44, [(subtitle, SUB)])]
     if slicers:
         v += [visual("slicer", 830, 18, 205, 72, "Year", {"Values": [("dim_date", "year", False)]}),
               visual("slicer", 1045, 18, 205, 72, "Country", {"Values": [("dim_country", "country", False)]})]
