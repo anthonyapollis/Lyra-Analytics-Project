@@ -71,6 +71,17 @@ DimDate ─┬─ FactCounsellingSessions ─── DimServiceType ─ DimIssueC
 
 ---
 
+## 🗺 Facility Intelligence Map
+
+[`map.html`](map.html) is generated from the warehouse by `python scripts/build_facility_map.py` (edit `scripts/facility_map_template.html`, then rebuild). It aggregates all 668,293 sessions into a facility × year × client cube, so every figure on the page comes from the data.
+
+- **Explore:** filter by country, city, year range, corporate client and facility type. Colour by type, sessions, escalation rate, resolution rate or high/critical risk. Toggle clustering, a session heatmap and city totals. Rank facilities, then download the filtered set as CSV.
+- **Nearest:** click the map, or use your location, to find the closest matching facilities.
+- **Coverage:** set a service radius to see which South African towns without a facility fall outside it.
+- **Data quality:** DimFacilityGeography's coordinates fail validation: every facility sits between 4 and 14 degrees, whatever its country. In 85% of South African rows, the recorded province does not contain the recorded city. The map places facilities at their city centre, explains why on the page, and lists the fixes needed at source.
+
+---
+
 ## 📁 Repo Structure
 
 ```
